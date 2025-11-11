@@ -33,8 +33,8 @@ export default function Footer() {
                             CONTATO
                         </h4>
                         <div className="space-y-3">
-                            <Link 
-                                href="mailto:contato@therightbox.com.br" 
+                            <Link
+                                href="mailto:contato@therightbox.com.br"
                                 className="block text-sm text-zinc-300 hover:text-laranja-intenso transition-colors"
                             >
                                 EMAIL
@@ -48,9 +48,9 @@ export default function Footer() {
                             SOCIAL
                         </h4>
                         <div className="space-y-3">
-                            <a 
-                                href="https://instagram.com/therightbox" 
-                                target="_blank" 
+                            <a
+                                href="https://instagram.com/therightbox"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="block text-sm text-zinc-300 hover:text-laranja-intenso transition-colors"
                             >
@@ -64,9 +64,9 @@ export default function Footer() {
                             SOCIAL
                         </h4>
                         <div className="space-y-3">
-                            <a 
-                                href="https://instagram.com/therightbox" 
-                                target="_blank" 
+                            <a
+                                href="https://instagram.com/therightbox"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="block text-sm text-zinc-300 hover:text-laranja-intenso transition-colors"
                             >
@@ -78,9 +78,9 @@ export default function Footer() {
 
                 {/* Additional Instagram link at bottom */}
                 <div className="border-t border-white/10 pt-8">
-                    <a 
-                        href="https://instagram.com/therightbox" 
-                        target="_blank" 
+                    <a
+                        href="https://instagram.com/therightbox"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block text-sm text-zinc-300 hover:text-laranja-intenso transition-colors"
                     >

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Button } from "./ui/button";
 
 export default function ScrollButton() {
     const [isAtBottom, setIsAtBottom] = useState(false);
@@ -11,7 +12,7 @@ export default function ScrollButton() {
             const scrollHeight = document.documentElement.scrollHeight;
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
             const clientHeight = window.innerHeight;
-            
+
             const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
             setIsAtBottom(isNearBottom);
         };
@@ -31,29 +32,31 @@ export default function ScrollButton() {
             window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
         }
     };
-
     return (
         <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-40">
-            <button
+            <Button
+                variant="none"
                 onClick={handleClick}
-                className="flex flex-col items-center gap-2 text-laranja-intenso/60 hover:text-laranja-intenso transition-all duration-300 cursor-pointer group"
+                className="flex flex-col items-center gap-2 transition-all duration-300 cursor-pointer group bg-none hover:scale-105 hover:text-laranja-intenso"
                 aria-label={isAtBottom ? "Voltar ao topo" : "Scroll para baixo"}
             >
-                <span className="text-xs uppercase tracking-wider text-white/50 group-hover:text-white/70 transition-colors">
+                <span
+                    className="scroll-btn-label"
+                >
                     {isAtBottom ? "Voltar ao topo" : "Role para baixo"}
                 </span>
                 <svg
-                    className={`w-5 h-5 animate-bounce transition-transform duration-300 ${isAtBottom ? 'rotate-180' : ''}`}
+                    className={`scroll-btn-icon w-6 h-6 animate-bounce transition-transform duration-300 text-laranja-intenso group-hover:text-laranja-chama ${isAtBottom ? 'rotate-180' : ''}`}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                 >
                     <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
-            </button>
+            </Button>
         </div>
     );
 }
