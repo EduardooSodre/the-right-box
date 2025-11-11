@@ -4,9 +4,9 @@ import Image from "next/image";
 export default function Header() {
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/5">
-            <nav className="container mx-auto px-12 lg:px-16  flex items-center justify-between">
+            <nav className="container mx-auto px-12 lg:px-16 py-3 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-4 transition-opacity hover:opacity-80">
-                    <div className="w-24 h-24 relative shrink-0">
+                    <div className="w-16 h-16 relative shrink-0">
                         <Image
                             src="/logo.png"
                             alt="The Right Box Logo"
@@ -16,7 +16,7 @@ export default function Header() {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-white font-['AmsiPro'] font-black text-4xl italic leading-none tracking-tight">
+                        <span className="text-white font-['AmsiPro'] font-black text-3xl italic leading-none tracking-tight">
                             HOME
                         </span>
                     </div>

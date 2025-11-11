@@ -93,3 +93,16 @@ body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
+
+/* Select dropdown styling */
+select option {
+  background-color: white;
+  color: #18181b;
+  padding: 8px 12px;
+}
+
+select option:checked,
+select option:hover {
+  background-color: #e95009;
+  color: white;
+}

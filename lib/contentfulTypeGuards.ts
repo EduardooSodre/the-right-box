@@ -16,7 +16,9 @@ export function isHeroContent(entry: any): entry is HeroContent {
   );
 }
 
-export function isAccelerationContent(entry: any): entry is AccelerationContent {
+export function isAccelerationContent(
+  entry: any
+): entry is AccelerationContent {
   return (
     typeof entry.title === "string" &&
     typeof entry.subtitle === "string" &&

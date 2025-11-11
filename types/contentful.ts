@@ -42,6 +42,11 @@ export interface BlogPost {
 
 export interface ContactContent {
   formTitle: string;
-  fields: Array<{ label: string; name: string; type: string; options?: string[] }>;
+  fields: Array<{
+    label: string;
+    name: string;
+    type: string;
+    options?: string[];
+  }>;
   successMessage: string;
 }

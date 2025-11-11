@@ -80,7 +80,7 @@ export default function Hero({ content }: HeroProps) {
             </div>
 
             {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
                 <button
                     onClick={() => {
                         const nextSection = document.getElementById('next-section');
@@ -88,11 +88,12 @@ export default function Hero({ content }: HeroProps) {
                             nextSection.scrollIntoView({ behavior: 'smooth' });
                         }
                     }}
-                    className="flex flex-col items-center gap-2 text-laranja-intenso/70 hover:text-laranja-intenso transition-colors cursor-pointer"
+                    className="flex flex-col items-center gap-2 text-laranja-intenso/60 hover:text-laranja-intenso transition-all duration-300 cursor-pointer group"
                     aria-label="Scroll para próxima seção"
                 >
+                    <span className="text-xs uppercase tracking-wider text-white/50 group-hover:text-white/70 transition-colors">Role para baixo</span>
                     <svg
-                        className="w-6 h-6"
+                        className="w-5 h-5 animate-bounce"
                         fill="none"
                         strokeLinecap="round"
                         strokeLinejoin="round"

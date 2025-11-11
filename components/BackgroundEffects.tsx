@@ -5,7 +5,7 @@ export default function BackgroundEffects() {
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
             {/* Background luminous images */}
             <div className="absolute inset-0 opacity-20">
-                <Image 
+                <Image
                     src="/images/Raias luminosas em fundo negro.png"
                     alt=""
                     fill
@@ -14,7 +14,7 @@ export default function BackgroundEffects() {
                 />
             </div>
             <div className="absolute inset-0 opacity-10">
-                <Image 
+                <Image
                     src="/images/Curvas Luminosas em Fundo Negro 2.png"
                     alt=""
                     fill
