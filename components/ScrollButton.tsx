@@ -33,7 +33,7 @@ export default function ScrollButton() {
         }
     };
     return (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-40">
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-30">
             <Button
                 variant="none"
                 onClick={handleClick}

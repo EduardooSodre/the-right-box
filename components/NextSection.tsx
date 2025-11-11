@@ -91,11 +91,11 @@ export default function NextSection() {
             </div>
 
             {/* CTA Section - Final Contact */}
-            <div className="w-full max-w-7xl mt-20 bg-zinc-900 rounded-sm shadow-xl px-10 md:px-16 py-12 md:py-16">
+            <div className="w-full max-w-7xl mt-20   px-10 ">
                 <div className="grid lg:grid-cols-[1.5fr_400px] gap-12 lg:gap-16 items-center">
                     {/* Left - Text */}
                     <div className="flex flex-col justify-center">
-                        <h3 className="font-['AmsiPro'] font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+                        <h3 className="font-['AmsiPro'] font-semibold text-3xl md:text-4xl lg:text-5xl text-black leading-tight">
                             Dê o primeiro passo para<br />
                             alinhar <span className="text-laranja-intenso">marketing e vendas.</span>
                         </h3>
@@ -104,7 +104,7 @@ export default function NextSection() {
                     {/* Right - Form */}
                     <div className="flex items-center justify-center lg:justify-end">
                         <div className="w-full max-w-md">
-                            <div className="bg-white rounded-sm p-5 shadow-lg border border-zinc-100">
+                            <div className="    ">
                                 <ContactForm />
                             </div>
                         </div>
