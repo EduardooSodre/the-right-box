@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
+/* AmsiPro Condensed Font Family */
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-Ultra.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmsiPro";
+  src: url("/fonts/AmsiProCond-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  /* TRBOX Color Palette */
+  --terracota: #b6400d;
+  --laranja-intenso: #e95009;
+  --laranja-chama: #ef751f;
+  --ciano: #00d9ff;
+  --lilas: #a78bfa;
+  --dourado: #fbbf24;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Custom TRBOX Colors */
+  --color-terracota: #b6400d;
+  --color-laranja-intenso: #e95009;
+  --color-laranja-chama: #ef751f;
+  --color-ciano: #00d9ff;
+  --color-lilas: #a78bfa;
+  --color-dourado: #fbbf24;
+
+  /* Font families */
+  --font-amsipro: "AmsiPro", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
