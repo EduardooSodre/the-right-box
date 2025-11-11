@@ -1,8 +1,29 @@
+import Image from "next/image";
+
 export default function BackgroundEffects() {
     return (
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
+            {/* Background luminous images */}
+            <div className="absolute inset-0 opacity-20">
+                <Image 
+                    src="/images/Raias luminosas em fundo negro.png"
+                    alt=""
+                    fill
+                    className="object-cover mix-blend-lighten"
+                    priority
+                />
+            </div>
+            <div className="absolute inset-0 opacity-10">
+                <Image 
+                    src="/images/Curvas Luminosas em Fundo Negro 2.png"
+                    alt=""
+                    fill
+                    className="object-cover mix-blend-screen"
+                />
+            </div>
+
             {/* Animated gradient curves */}
-            <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 opacity-20">
                 <div
                     className="absolute top-0 left-0 w-[150%] h-[150%] animate-[spin_40s_linear_infinite]"
                     style={{
