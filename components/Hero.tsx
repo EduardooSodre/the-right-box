@@ -78,33 +78,6 @@ export default function Hero({ content }: HeroProps) {
                     Identificamos e corrigimos os gargalos que impedem suas vendas
                 </p>
             </div>
-
-            {/* Scroll indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
-                <button
-                    onClick={() => {
-                        const nextSection = document.getElementById('next-section');
-                        if (nextSection) {
-                            nextSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }}
-                    className="flex flex-col items-center gap-2 text-laranja-intenso/60 hover:text-laranja-intenso transition-all duration-300 cursor-pointer group"
-                    aria-label="Scroll para próxima seção"
-                >
-                    <span className="text-xs uppercase tracking-wider text-white/50 group-hover:text-white/70 transition-colors">Role para baixo</span>
-                    <svg
-                        className="w-5 h-5 animate-bounce"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                    </svg>
-                </button>
-            </div>
         </section>
     );
 }

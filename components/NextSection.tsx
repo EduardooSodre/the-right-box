@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import ContactForm from './ContactForm';
 
 export default function NextSection() {
     return (
@@ -89,28 +90,27 @@ export default function NextSection() {
                 </div>
             </div>
 
-            {/* Scroll to top button */}
-            <button
-                onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="mt-12 flex flex-col items-center gap-2 text-laranja-intenso/70 hover:text-laranja-intenso transition-colors cursor-pointer animate-bounce"
-                aria-label="Voltar ao topo"
-            >
-                <span className="text-xs uppercase tracking-wider text-zinc-500 group-hover:text-zinc-700 transition-colors">Voltar ao topo</span>
-                <svg
-                    className="w-6 h-6 rotate-180"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                    <path className="rotate-180" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </button>
+            {/* CTA Section - Final Contact */}
+            <div className="w-full max-w-7xl mt-20 bg-zinc-900 rounded-sm shadow-xl px-10 md:px-16 py-12 md:py-16">
+                <div className="grid lg:grid-cols-[1.5fr_400px] gap-12 lg:gap-16 items-center">
+                    {/* Left - Text */}
+                    <div className="flex flex-col justify-center">
+                        <h3 className="font-['AmsiPro'] font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+                            Dê o primeiro passo para<br />
+                            alinhar <span className="text-laranja-intenso">marketing e vendas.</span>
+                        </h3>
+                    </div>
+
+                    {/* Right - Form */}
+                    <div className="flex items-center justify-center lg:justify-end">
+                        <div className="w-full max-w-md">
+                            <div className="bg-white rounded-sm p-5 shadow-lg border border-zinc-100">
+                                <ContactForm />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 }
