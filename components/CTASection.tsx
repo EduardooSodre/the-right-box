@@ -9,7 +9,7 @@ interface CTASectionProps {
 
 export default function CTASection({ ctaTitle }: CTASectionProps) {
     // Remove "marketing e vendas." do final se existir, pois vamos adicionar em laranja
-    const titleText = ctaTitle 
+    const titleText = ctaTitle
         ? ctaTitle.replace(/marketing e vendas\.?\s*$/i, '').trim()
         : "Dê o primeiro passo para alinhar";
 
