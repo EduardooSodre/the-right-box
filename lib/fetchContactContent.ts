@@ -2,12 +2,17 @@ import { client } from "@/lib/contentful";
 import type { ContactContent } from "@/types/contentful";
 
 export async function fetchContactContent(): Promise<ContactContent> {
-  // TODO: Replace 'contact' with the correct Contentful content type ID
-  const res = await client.getEntries({ content_type: "contact", limit: 1 });
-  const entry = res.items[0]?.fields;
+  const res = await client.getEntries({
+    content_type: "contactContent",
+    limit: 1,
+  });
+  const entry = res.items[0]?.fields as unknown as ContactContent;
   return {
-    formTitle: entry?.formTitle || "",
-    fields: entry?.fields || [],
-    successMessage: entry?.successMessage || "",
+    email: entry?.email || "",
+    phone: entry?.phone || "",
+    whatsapp: entry?.whatsapp || undefined,
+    address: entry?.address || undefined,
+    linkedin: entry?.linkedin || undefined,
+    instagram: entry?.instagram || undefined,
   };
 }

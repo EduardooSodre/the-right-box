@@ -2,10 +2,17 @@ import { client } from "@/lib/contentful";
 import type { Solution } from "@/types/contentful";
 
 export async function fetchSolutions(): Promise<Solution[]> {
-  // TODO: Replace 'solution' with the correct Contentful content type ID
-  const res = await client.getEntries({ content_type: "solution" });
-  return res.items.map((item: any) => ({
-    title: item.fields.title,
-    icon: item.fields.icon || undefined,
-  }));
+  const res = await client.getEntries({
+    content_type: "solution",
+    order: ["fields.order"],
+  });
+  return res.items.map((item: unknown) => {
+    const fields = (item as { fields: Solution }).fields;
+    return {
+      title: fields.title || "",
+      description: fields.description || "",
+      icon: fields.icon || undefined,
+      order: fields.order || 0,
+    };
+  });
 }

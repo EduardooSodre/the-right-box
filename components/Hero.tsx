@@ -13,7 +13,9 @@ export default function Hero({ content }: HeroProps) {
     // Use content from Contentful or fallback to default
     const headline = content?.headline || "Integramos marca, tráfego e operação comercial em um único sistema para transformar interesse em receita previsível sem achismo, sem ruído, sem desperdício.";
     const subheadline = content?.subheadline || "";
+    const tagline = content?.tagline || "Você não precisa \"pensar fora da caixa\". Precisa da Caixa Certa.";
     const ctaText = content?.cta || "Quero performar minhas vendas, não apenas anunciar";
+    const bottomTagline = content?.bottomTagline || "Identificamos e corrigimos os gargalos que impedem suas vendas";
 
     return (
         <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-center">
@@ -24,12 +26,20 @@ export default function Hero({ content }: HeroProps) {
                     {/* Left Content */}
                     <div className="flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6">
                         {/* Main headline */}
-                        <div className="space-y-3 md:space-y-4">
-                            <h1 className="font-['AmsiPro'] font-extralight italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-white/95">
-                                {headline}
+                        <div>
+                            <h1 className="font-['AmsiPro'] font-semibold italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-white/95">
+                                {headline.toLowerCase().includes("sem achismo") ? (
+                                    <>
+                                        {headline.split(/sem achismo/i)[0]}
+                                        <br />
+                                        <span className="text-laranja-intenso">{headline.split(/sem achismo/i)[1] ? `Sem achismo${headline.split(/sem achismo/i)[1]}` : "Sem achismo, sem ruído, sem desperdício."}</span>
+                                    </>
+                                ) : (
+                                    headline
+                                )}
                             </h1>
                             {subheadline && (
-                                <p className="font-['AmsiPro'] font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-laranja-intenso leading-tight">
+                                <p className="font-['AmsiPro'] font-black italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-laranja-intenso ">
                                     {subheadline}
                                 </p>
                             )}
@@ -38,8 +48,15 @@ export default function Hero({ content }: HeroProps) {
                         {/* H1 Tagline */}
                         <div className="pt-2 md:pt-4">
                             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-['AmsiPro'] font-light italic text-white/90 leading-tight">
-                                Você não precisa <span className="font-normal">&apos;pensar fora da caixa&apos;</span>.<br />
-                                Precisa da <span className="text-laranja-chama font-bold not-italic">Caixa Certa</span>.
+                                {tagline.includes("Caixa Certa") ? (
+                                    <>
+                                        {tagline.split("Caixa Certa")[0]}
+                                        <span className="text-laranja-intenso font-bold not-italic">Caixa Certa</span>
+                                        {tagline.split("Caixa Certa")[1]}
+                                    </>
+                                ) : (
+                                    tagline
+                                )}
                             </h2>
                         </div>
                     </div>
@@ -75,7 +92,7 @@ export default function Hero({ content }: HeroProps) {
                     />
                 </div>
                 <p className="text-sm lg:text-base font-['AmsiPro'] font-light text-white/80 leading-relaxed">
-                    Identificamos e corrigimos os gargalos que impedem suas vendas
+                    {bottomTagline}
                 </p>
             </div>
         </section>

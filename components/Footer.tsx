@@ -1,7 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { FooterContent, ContactContent } from "@/types/contentful";
 
-export default function Footer() {
+interface FooterProps {
+    content?: FooterContent;
+    contactContent?: ContactContent;
+}
+
+export default function Footer({ content, contactContent }: FooterProps) {
+    const tagline = content?.tagline || "Identificamos e corrigimos os gargalos que impedem suas vendas";
+    const contactTitle = content?.contactTitle || "CONTATO";
+    const socialTitle = content?.socialTitle || "REDES SOCIAIS";
+    const copyright = content?.copyright || "The Right Box. Todos os direitos reservados.";
+    const developedBy = content?.developedBy || "Eduardo Sodré";
+    const developedByUrl = content?.developedByUrl || "https://dev-eduardo-phi.vercel.app/";
+    
+    const email = contactContent?.email || "contato@therightbox.com.br";
+    const instagram = contactContent?.instagram || "https://instagram.com/therightbox";
+
     return (
         <footer className="relative bg-black text-white border-t border-white/10">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-8 sm:py-10 md:py-12 relative z-10">
@@ -17,18 +33,18 @@ export default function Footer() {
                             />
                         </div>
                         <p className="text-xs text-zinc-400 leading-relaxed max-w-xs">
-                            Identificamos e corrigimos os gargalos que impedem suas vendas
+                            {tagline}
                         </p>
                     </div>
 
                     {/* Contact Section */}
                     <div className="flex flex-col space-y-2 sm:space-y-3 items-center sm:items-start text-center sm:text-left">
                         <h4 className="font-['AmsiPro'] font-bold text-sm sm:text-base uppercase text-laranja-intenso tracking-wide">
-                            CONTATO
+                            {contactTitle}
                         </h4>
                         <div className="space-y-2">
                             <Link
-                                href="mailto:contato@therightbox.com.br"
+                                href={`mailto:${email}`}
                                 className="block text-xs text-zinc-300 hover:text-laranja-intenso transition-colors"
                             >
                                 EMAIL
@@ -39,11 +55,11 @@ export default function Footer() {
                     {/* Social Media - Instagram */}
                     <div className="flex flex-col space-y-2 sm:space-y-3 items-center sm:items-start text-center sm:text-left">
                         <h4 className="font-['AmsiPro'] font-bold text-sm sm:text-base uppercase text-white tracking-wide">
-                            REDES SOCIAIS
+                            {socialTitle}
                         </h4>
                         <div className="space-y-2">
                             <a
-                                href="https://instagram.com/therightbox"
+                                href={instagram}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block text-xs text-zinc-300 hover:text-laranja-intenso transition-colors"
@@ -61,17 +77,17 @@ export default function Footer() {
                 <div className="pt-4 sm:pt-6 border-t border-white/10">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-3">
                         <p className="text-xs text-zinc-500 text-center md:text-left">
-                            © {new Date().getFullYear()} The Right Box. Todos os direitos reservados.
+                            © {new Date().getFullYear()} {copyright}
                         </p>
                         <p className="text-xs text-zinc-500 text-center md:text-right">
                             Desenvolvido por{" "}
                             <Link
-                                href="https://dev-eduardo-phi.vercel.app/"
+                                href={developedByUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-laranja-intenso hover:text-laranja-chama transition-colors font-semibold"
                             >
-                                Eduardo Sodré
+                                {developedBy}
                             </Link>
                         </p>
                     </div>

@@ -1,28 +1,45 @@
-// Types for Contentful models (Hero, Aceleração Comercial, Soluções, Sobre Nós, Blog, Contato)
+// Types for Contentful models
 
 export interface HeroContent {
   headline: string;
   subheadline: string;
+  tagline: string;
   cta: string;
+  bottomTagline: string;
   backgroundImage?: string;
 }
 
-export interface Step {
+export interface Gargalo {
   title: string;
   description: string;
-  icon?: string;
+  order: number;
+}
+
+export interface MethodologyStep {
+  number: string;
+  title: string;
+  description: string;
+  order: number;
 }
 
 export interface Solution {
   title: string;
+  description: string;
   icon?: string;
+  order: number;
 }
 
 export interface AccelerationContent {
   title: string;
   subtitle: string;
-  steps: Step[];
-  solutions: Solution[];
+  mainTitle: string;
+  mainDescription: string;
+  solutionsSectionTitle: string;
+  solutionsSectionDescription: string;
+  ctaTitle: string;
+  finalNote: string;
+  gargalosTitle: string;
+  gargalosSubtitle: string;
 }
 
 export interface AboutContent {
@@ -41,12 +58,19 @@ export interface BlogPost {
 }
 
 export interface ContactContent {
-  formTitle: string;
-  fields: Array<{
-    label: string;
-    name: string;
-    type: string;
-    options?: string[];
-  }>;
-  successMessage: string;
+  email: string;
+  phone: string;
+  whatsapp?: string;
+  address?: string;
+  linkedin?: string;
+  instagram?: string;
+}
+
+export interface FooterContent {
+  tagline: string;
+  contactTitle: string;
+  socialTitle: string;
+  copyright: string;
+  developedBy: string;
+  developedByUrl: string;
 }
