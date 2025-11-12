@@ -66,8 +66,8 @@ export default function Header() {
                                 key={item.href}
                                 href={item.href}
                                 className={`font-['AmsiPro'] font-semibold text-base uppercase tracking-wide transition-colors ${item.href === "/"
-                                        ? "text-laranja-intenso hover:text-laranja-chama"
-                                        : "text-white/70 hover:text-white"
+                                    ? "text-laranja-intenso hover:text-laranja-chama"
+                                    : "text-white/70 hover:text-white"
                                     }`}
                             >
                                 {item.label}
@@ -130,8 +130,8 @@ export default function Header() {
                                             href={item.href}
                                             onClick={closeMenu}
                                             className={`font-['AmsiPro'] font-bold text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide transition-colors ${item.href === "/"
-                                                    ? "text-laranja-intenso hover:text-laranja-chama"
-                                                    : "text-white hover:text-laranja-intenso"
+                                                ? "text-laranja-intenso hover:text-laranja-chama"
+                                                : "text-white hover:text-laranja-intenso"
                                                 }`}
                                         >
                                             {item.label}
