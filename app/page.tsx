@@ -56,8 +56,45 @@ export default async function Home() {
     console.error("Error fetching content:", error);
   }
 
+  // JSON-LD Schema for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Right Box",
+    "alternateName": "TRBOX",
+    "url": "https://therightbox.com.br",
+    "logo": "https://therightbox.com.br/logo.png",
+    "description": "Aceleração Comercial - Integramos estratégia, tráfego, CRM e vendas em um único sistema",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://instagram.com/therightbox"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contato@therightbox.com.br",
+      "contactType": "customer service"
+    },
+    "offers": {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Aceleração Comercial",
+        "description": "Solução completa para problemas no funil de vendas e conversão de leads"
+      }
+    }
+  };
+
   return (
     <>
+      {/* JSON-LD Script */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      
       <Header />
       <Hero content={heroContent} />
       <NextSection
