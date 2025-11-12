@@ -80,7 +80,7 @@ export default function NextSection({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-center font-['AmsiPro'] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-zinc-900 mb-3 md:mb-4"
+                    className="text-center font-['AmsiPro'] font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-zinc-900 mb-3 md:mb-4"
                 >
                     {accelerationContent?.gargalosTitle || "Identificamos e corrigimos os gargalos que impedem suas vendas"}
                 </motion.h2>
@@ -88,11 +88,11 @@ export default function NextSection({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="text-center text-base md:text-lg text-zinc-600 mb-8 md:mb-12 max-w-3xl mx-auto px-4"
+                    className="text-center text-sm sm:text-base md:text-lg text-zinc-600 mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto px-4"
                 >
                     {accelerationContent?.gargalosSubtitle || "Do anúncio ao CRM  para que cada interação avance rumo ao sim."}
                 </motion.p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4 lg:gap-5">
+                <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
                     {gargalosData.map((item, idx) => (
                         <motion.div
                             key={idx}
@@ -100,10 +100,10 @@ export default function NextSection({
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 * idx }}
                             whileHover={{ scale: 1.05, y: -5 }}
-                            className="bg-white border-2 border-laranja-intenso/20 hover:border-laranja-intenso transition-all duration-300 p-4 md:p-5 rounded-sm flex flex-col items-start justify-start group"
+                            className="bg-white border-2 border-laranja-intenso/20 hover:border-laranja-intenso transition-all duration-300 p-3 sm:p-4 md:p-5 rounded-sm flex flex-col items-start justify-start group"
                         >
-                            <h3 className="font-['AmsiPro'] font-bold text-xs sm:text-sm uppercase mb-2 leading-tight text-laranja-intenso group-hover:text-laranja-chama transition-colors">{item.title}</h3>
-                            <p className="text-xs leading-relaxed text-zinc-600">{item.description}</p>
+                            <h3 className="font-['AmsiPro'] font-bold text-[10px] sm:text-xs md:text-sm uppercase mb-1 sm:mb-2 leading-tight text-laranja-intenso group-hover:text-laranja-chama transition-colors">{item.title}</h3>
+                            <p className="text-[9px] sm:text-xs leading-relaxed text-zinc-600">{item.description}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -111,34 +111,35 @@ export default function NextSection({
             {/* Card estilo V4 Company - Cantos retos, design fiel */}
             <div className="w-full max-w-7xl bg-zinc-950 shadow-2xl border-2 border-laranja-intenso overflow-hidden">
                 {/* Header do Card */}
-                <div className="relative px-6 sm:px-8 md:px-12 lg:px-16 pt-10 sm:pt-12 md:pt-14 pb-6 md:pb-8 border-b-2 border-laranja-intenso/30">
-                    <p className="text-xs sm:text-sm text-zinc-400 uppercase tracking-wider mb-2">
+                <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-6 sm:pt-8 md:pt-10 lg:pt-12 pb-4 sm:pb-6 md:pb-8 border-b-2 border-laranja-intenso/30">
+                    <p className="text-[10px] sm:text-xs md:text-sm text-zinc-400 uppercase tracking-wider mb-2">
                         Transforme o marketing da sua empresa em{" "}
                         <span className="text-laranja-intenso font-bold">APENAS 6 PASSOS</span>
                     </p>
-
-                    <div className="flex items-start gap-3 md:gap-4 mb-4">
-                        <span className="font-['AmsiPro'] font-black text-5xl sm:text-6xl text-laranja-intenso leading-none">
+                    <div className="flex items-start gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
+                        <span className="font-['AmsiPro'] font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-laranja-intenso leading-none">
                             01
                         </span>
                         <div className="flex-1">
-                            <h2 className="font-['AmsiPro'] font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-2 uppercase">
+                            <h2 className="font-['AmsiPro'] font-bold text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white mb-1 sm:mb-2 uppercase leading-tight">
                                 CONHEÇA A{" "}
                                 <span className="text-laranja-intenso">
                                     {(accelerationContent?.title || "ACELERAÇÃO COMERCIAL").toUpperCase()}
                                 </span>{" "}
-                                <span className="text-zinc-500">(O QUE FAZEMOS)</span>
+                                <span className="text-zinc-500 text-xs sm:text-sm md:text-base lg:text-lg">(O QUE FAZEMOS)</span>
                             </h2>
+
                         </div>
+
                     </div>
 
-                    <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-4xl">
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-300 leading-relaxed max-w-4xl">
                         {accelerationContent?.subtitle || "Uma engenharia operacional que integra dados, campanhas e CRM para formar um sistema de vendas ativo, inteligente e sustentável."}
                     </p>
                 </div>
 
                 {/* Área de conteúdo com slide ativo */}
-                <div className="relative min-h-[500px] md:min-h-[550px] bg-linear-to-b from-zinc-950 to-black">
+                <div className="relative min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] bg-linear-to-b from-zinc-950 to-black">
                     <AnimatePresence mode="wait">
                         {stepsData.map((step, idx) => {
                             const Icon = stepIcons[idx];
@@ -151,9 +152,9 @@ export default function NextSection({
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -50 }}
                                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                                    className="absolute inset-0 px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-16"
+                                    className="absolute inset-0 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-10 md:py-12 lg:py-16"
                                 >
-                                    <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 h-full">
+                                    <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12 xl:gap-16 h-full">
                                         {/* Ícone grande à esquerda */}
                                         <motion.div
                                             initial={{ scale: 0.8, opacity: 0 }}
@@ -161,8 +162,8 @@ export default function NextSection({
                                             transition={{ delay: 0.2, duration: 0.4 }}
                                             className="shrink-0"
                                         >
-                                            <div className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-linear-to-br from-laranja-intenso/20 to-transparent border-2 border-laranja-intenso/40 flex items-center justify-center backdrop-blur-sm">
-                                                <Icon className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 text-laranja-intenso" strokeWidth={1.5} />
+                                            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 bg-linear-to-br from-laranja-intenso/20 to-transparent border-2 border-laranja-intenso/40 flex items-center justify-center backdrop-blur-sm">
+                                                <Icon className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 text-laranja-intenso" strokeWidth={1.5} />
                                             </div>
                                         </motion.div>
 
@@ -171,17 +172,17 @@ export default function NextSection({
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 0.3, duration: 0.4 }}
-                                            className="flex-1 text-left max-w-2xl"
+                                            className="flex-1 text-center lg:text-left max-w-2xl"
                                         >
-                                            <div className="mb-6">
-                                                <span className="font-['AmsiPro'] font-black text-6xl md:text-7xl lg:text-8xl text-laranja-intenso/30 leading-none">
+                                            <div className="mb-4 sm:mb-6">
+                                                <span className="font-['AmsiPro'] font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-laranja-intenso/30 leading-none">
                                                     {step.number}
                                                 </span>
-                                                <span className="font-['AmsiPro'] font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white ml-4 uppercase">
+                                                <span className="font-['AmsiPro'] font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white ml-2 sm:ml-3 md:ml-4 uppercase">
                                                     {step.title}
                                                 </span>
                                             </div>
-                                            <p className="text-lg sm:text-xl md:text-2xl text-zinc-300 leading-relaxed">
+                                            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-zinc-300 leading-relaxed">
                                                 {step.description}
                                             </p>
                                         </motion.div>

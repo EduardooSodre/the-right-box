@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Target, Megaphone, Users, MessageSquare, BarChart3, Sparkles } from "lucide-react";
 import { useState } from "react";
-import SectionBackground from "./SectionBackground";
+import OrangeLineEffect from "./OrangeLineEffect";
 
 // Mapeamento de ícones Lucide por título
 const iconMap: Record<string, typeof Target> = {
@@ -120,28 +120,28 @@ function SolutionCard({ title, description, index }: SolutionCardProps) {
 
 export default function Solutions() {
     return (
-        <section className="relative bg-zinc-900 py-16 md:py-24 overflow-hidden">
-            <SectionBackground variant="dark" intensity="subtle" />
+        <section className="relative bg-zinc-900 py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+            <OrangeLineEffect />
 
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">{" "}
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">
                 {/* Título da seção */}
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-12 md:mb-16"
+                    className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
                 >
-                    <h2 className="font-['AmsiPro'] font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4">
+                    <h2 className="font-['AmsiPro'] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4">
                         Soluções
                     </h2>
-                    <p className="text-base md:text-lg text-zinc-400 max-w-3xl mx-auto">
+                    <p className="text-sm sm:text-base md:text-lg text-zinc-400 max-w-3xl mx-auto px-4">
                         Identificamos e corrigimos os gargalos que impedem suas vendas
                     </p>
                 </motion.div>
-
                 {/* Grid de cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                     {solutionsData.map((solution, index) => (
                         <SolutionCard
                             key={solution.title}

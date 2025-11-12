@@ -22,14 +22,14 @@ export default function Hero({ content }: HeroProps) {
         <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-center">
             <BackgroundEffects />
 
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full relative z-10 py-24 sm:py-28 md:py-32 lg:py-20">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] gap-8 md:gap-10 lg:gap-12 xl:gap-16 w-full items-center max-w-7xl mx-auto">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full relative z-10 py-16 sm:py-20 md:py-24 lg:py-20">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 w-full items-center max-w-7xl mx-auto">
                     {/* Left Content */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6"
+                        className="flex flex-col justify-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 text-center lg:text-left"
                     >
                         {/* Main headline */}
                         <div>
@@ -37,7 +37,7 @@ export default function Hero({ content }: HeroProps) {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
-                                className="font-['AmsiPro'] font-semibold italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-white/95"
+                                className="font-['AmsiPro'] font-semibold italic text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight tracking-tight text-white/95"
                             >
                                 {headline.toLowerCase().includes("sem achismo") ? (
                                     <>
@@ -61,7 +61,7 @@ export default function Hero({ content }: HeroProps) {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.4 }}
-                                    className="font-['AmsiPro'] font-black italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-laranja-intenso "
+                                    className="font-['AmsiPro'] font-black italic text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight tracking-tight text-laranja-intenso mt-2"
                                 >
                                     {subheadline}
                                 </motion.p>
@@ -73,9 +73,9 @@ export default function Hero({ content }: HeroProps) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.5 }}
-                            className="pt-2 md:pt-4"
+                            className="pt-1 sm:pt-2 md:pt-3"
                         >
-                            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-['AmsiPro'] font-light italic text-white/90 leading-tight">
+                            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-['AmsiPro'] font-light italic text-white/90 leading-tight">
                                 {tagline.includes("Caixa Certa") ? (
                                     <>
                                         {tagline.split("Caixa Certa")[0]}
@@ -94,19 +94,19 @@ export default function Hero({ content }: HeroProps) {
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="flex items-center justify-center lg:justify-end"
+                        className="flex items-center justify-center lg:justify-end mt-6 lg:mt-0"
                     >
-                        <div className="w-full max-w-sm space-y-3">
+                        <div className="w-full max-w-sm space-y-2 sm:space-y-3">
                             {/* Form Title Outside */}
                             <motion.div
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.5 }}
-                                className="flex justify-center items-center text-center lg:text-left "
+                                className="flex justify-center items-center text-center"
                             >
-                                <h3 className="text-lg md:text-xl lg:text-2xl font-['AmsiPro'] font-bold leading-tight pt-4">
+                                <h3 className="text-base sm:text-lg md:text-xl lg:text-xl font-['AmsiPro'] font-bold leading-snug pt-2 sm:pt-3">
                                     <span className="text-white">Quero</span> <span className="text-laranja-intenso opacity-50">performar minhas vendas</span><span className="text-white">,</span><br />
-                                    <span className="flex justify-center items-center text-center  text-white">{ctaText.split(",")[1]?.trim() || "não apenas anunciar"}</span>
+                                    <span className="flex justify-center items-center text-center text-white">{ctaText.split(",")[1]?.trim() || "não apenas anunciar"}</span>
                                 </h3>
                             </motion.div>
 
