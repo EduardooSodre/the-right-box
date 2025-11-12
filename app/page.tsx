@@ -1,13 +1,13 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import NextSection from "@/components/NextSection";
+import Solutions from "@/components/Solutions";
 import Footer from "@/components/Footer";
 import ScrollButton from "@/components/ScrollButton";
 import { fetchHeroContent } from "@/lib/fetchHeroContent";
 import { fetchAccelerationContent } from "@/lib/fetchAccelerationContent";
 import { fetchGargalos } from "@/lib/fetchGargalos";
 import { fetchMethodologySteps } from "@/lib/fetchMethodologySteps";
-import { fetchSolutions } from "@/lib/fetchSolutions";
 import { fetchFooterContent } from "@/lib/fetchFooterContent";
 import { fetchContactContent } from "@/lib/fetchContactContent";
 
@@ -16,15 +16,14 @@ export const revalidate = 60;
 
 export default async function Home() {
   // Fetch all content from Contentful
-  let heroContent, accelerationContent, gargalos, methodologySteps, solutions, footerContent, contactContent;
+  let heroContent, accelerationContent, gargalos, methodologySteps, footerContent, contactContent;
 
   try {
-    [heroContent, accelerationContent, gargalos, methodologySteps, solutions, footerContent, contactContent] = await Promise.all([
+    [heroContent, accelerationContent, gargalos, methodologySteps, footerContent, contactContent] = await Promise.all([
       fetchHeroContent(),
       fetchAccelerationContent(),
       fetchGargalos(),
       fetchMethodologySteps(),
-      fetchSolutions(),
       fetchFooterContent(),
       fetchContactContent(),
     ]);
@@ -40,8 +39,8 @@ export default async function Home() {
         accelerationContent={accelerationContent}
         gargalos={gargalos}
         methodologySteps={methodologySteps}
-        solutions={solutions}
       />
+      <Solutions />
       <Footer content={footerContent} contactContent={contactContent} />
       <ScrollButton />
     </>

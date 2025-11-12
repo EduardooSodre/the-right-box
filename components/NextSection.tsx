@@ -10,20 +10,18 @@ import {
     TrendingUp,
     Rocket
 } from 'lucide-react';
-import type { AccelerationContent, Gargalo, MethodologyStep, Solution } from '@/types/contentful';
+import type { AccelerationContent, Gargalo, MethodologyStep } from '@/types/contentful';
 
 interface NextSectionProps {
     accelerationContent?: AccelerationContent;
     gargalos?: Gargalo[];
     methodologySteps?: MethodologyStep[];
-    solutions?: Solution[];
 }
 
 export default function NextSection({
     accelerationContent,
     gargalos = [],
-    methodologySteps = [],
-    solutions = []
+    methodologySteps = []
 }: NextSectionProps) {
     const [activeStep, setActiveStep] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
@@ -46,20 +44,8 @@ export default function NextSection({
         { number: "06", title: "Escalar", description: "Replicamos o que funciona, ampliamos canais e volume com governança.", order: 6 }
     ];
 
-    const defaultSolutions = [
-        { title: "Gestão de mídia paga", description: "", order: 1 },
-        { title: "Criativos para anúncios", description: "", order: 2 },
-        { title: "Landing Pages de Alta Conversão", description: "", order: 3 },
-        { title: "Estratégia para anúncio", description: "", order: 4 },
-        { title: "Identidade Visual", description: "", order: 5 },
-        { title: "Campanhas de e-mail", description: "", order: 6 },
-        { title: "CRM & Automação", description: "", order: 7 },
-        { title: "Captação de Conteúdo", description: "", order: 8 }
-    ];
-
     const gargalosData = gargalos.length > 0 ? gargalos : defaultGargalos;
     const stepsData = methodologySteps.length > 0 ? methodologySteps : defaultSteps;
-    const solutionsData = solutions.length > 0 ? solutions : defaultSolutions;
 
     // Ícones para cada step
     const stepIcons = [Search, Network, RefreshCw, Navigation, TrendingUp, Rocket];
@@ -214,8 +200,8 @@ export default function NextSection({
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className={`relative px-4 py-3 md:px-6 md:py-4 transition-all duration-300 border-2 ${activeStep === idx
-                                        ? 'bg-laranja-intenso border-laranja-intenso text-white'
-                                        : 'bg-transparent border-zinc-700 text-zinc-400 hover:border-laranja-intenso/50 hover:text-white'
+                                    ? 'bg-laranja-intenso border-laranja-intenso text-white'
+                                    : 'bg-transparent border-zinc-700 text-zinc-400 hover:border-laranja-intenso/50 hover:text-white'
                                     }`}
                             >
                                 <div className="flex flex-col items-center gap-1">
@@ -239,21 +225,6 @@ export default function NextSection({
                             </motion.button>
                         ))}
                     </div>
-                </div>
-            </div>
-            <div className="w-full max-w-7xl text-center mt-12 md:mt-16 lg:mt-20">
-                <h4 className="font-['AmsiPro'] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-zinc-900 mb-3 md:mb-4">
-                    {accelerationContent?.solutionsSectionTitle || "Soluções"}
-                </h4>
-                <p className="text-base md:text-lg text-zinc-600 mb-8 md:mb-10 max-w-2xl mx-auto px-4">
-                    {accelerationContent?.solutionsSectionDescription || "Serviços integrados para transformar sua estratégia comercial em resultados concretos."}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 text-sm sm:text-base md:text-lg font-semibold text-zinc-900">
-                    {solutionsData.map((solution, idx) => (
-                        <div key={idx} className="bg-white border border-zinc-200 hover:border-laranja-intenso hover:shadow-md transition-all duration-300 p-4 md:p-6 rounded-sm group">
-                            <p className="group-hover:text-laranja-intenso transition-colors">{solution.title}</p>
-                        </div>
-                    ))}
                 </div>
             </div>
             <div className="w-full max-w-7xl mt-12 md:mt-16 lg:mt-20 px-4 sm:px-6 md:px-10">
