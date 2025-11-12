@@ -131,6 +131,7 @@ export default function Hero({ content }: HeroProps) {
                         src="/logos/LOGO-1A.png"
                         alt="The Right Box Logo"
                         fill
+                        sizes="(max-width: 1024px) 32px, 40px"
                         className="object-contain"
                     />
                 </div>

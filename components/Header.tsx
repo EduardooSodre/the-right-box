@@ -47,6 +47,8 @@ export default function Header() {
                                 alt="The Right Box Logo"
                                 fill
                                 priority
+                                loading="eager"
+                                sizes="(max-width: 640px) 48px, 64px"
                                 className="object-contain"
                             />
                         </div>

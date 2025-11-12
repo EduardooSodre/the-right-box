@@ -6,9 +6,9 @@ export async function fetchAboutContent(): Promise<AboutContent> {
   const res = await client.getEntries({ content_type: "about", limit: 1 });
   const entry = res.items[0]?.fields;
   return {
-    description: entry?.description || "",
-    mission: entry?.mission || "",
-    vision: entry?.vision || "",
-    philosophy: entry?.philosophy || "",
+    description: (entry?.description as string) || "",
+    mission: (entry?.mission as string) || "",
+    vision: (entry?.vision as string) || "",
+    philosophy: (entry?.philosophy as string) || "",
   };
 }

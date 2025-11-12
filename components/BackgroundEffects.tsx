@@ -9,8 +9,8 @@ export default function BackgroundEffects() {
                     src="/images/Raias luminosas em fundo negro.png"
                     alt=""
                     fill
+                    sizes="100vw"
                     className="object-cover mix-blend-lighten"
-                    priority
                 />
             </div>
             <div className="absolute inset-0 opacity-10">
@@ -18,6 +18,7 @@ export default function BackgroundEffects() {
                     src="/images/Curvas Luminosas em Fundo Negro 2.png"
                     alt=""
                     fill
+                    sizes="100vw"
                     className="object-cover mix-blend-screen"
                 />
             </div>

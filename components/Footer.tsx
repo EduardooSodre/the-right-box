@@ -44,6 +44,7 @@ export default function Footer({ content, contactContent }: FooterProps) {
                                 src="/logos/LOGO-1A.png"
                                 alt="The Right Box Logo"
                                 fill
+                                sizes="(max-width: 640px) 80px, 96px"
                                 className="object-contain"
                             />
                         </div>
