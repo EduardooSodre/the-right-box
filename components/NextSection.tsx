@@ -1,6 +1,15 @@
 ﻿"use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ContactForm from './ContactForm';
+import {
+    Search,
+    Network,
+    RefreshCw,
+    Navigation,
+    TrendingUp,
+    Rocket
+} from 'lucide-react';
 import type { AccelerationContent, Gargalo, MethodologyStep, Solution } from '@/types/contentful';
 
 interface NextSectionProps {
@@ -16,6 +25,9 @@ export default function NextSection({
     methodologySteps = [],
     solutions = []
 }: NextSectionProps) {
+    const [activeStep, setActiveStep] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
     const defaultGargalos = [
         { title: "Estratégia & Oferta", description: "Clarificamos posicionamento e encaixe de oferta por segmento e jornada.", order: 1 },
         { title: "Qualificação & Prioridade", description: "Definimos ICP, critérios de qualificação e score de intenção.", order: 2 },
@@ -49,46 +61,184 @@ export default function NextSection({
     const stepsData = methodologySteps.length > 0 ? methodologySteps : defaultSteps;
     const solutionsData = solutions.length > 0 ? solutions : defaultSolutions;
 
+    // Ícones para cada step
+    const stepIcons = [Search, Network, RefreshCw, Navigation, TrendingUp, Rocket];
+
+    // Auto-advance slides
+    useEffect(() => {
+        if (!isPaused) {
+            const interval = setInterval(() => {
+                setActiveStep((prev) => (prev + 1) % stepsData.length);
+            }, 5000); // 5 segundos
+            return () => clearInterval(interval);
+        }
+    }, [isPaused, stepsData.length]);
+
+    const handleStepClick = (index: number) => {
+        setActiveStep(index);
+        setIsPaused(true);
+        setTimeout(() => setIsPaused(false), 10000); // Retoma após 10s
+    };
+
     return (
         <section id="next-section" className="relative min-h-screen bg-zinc-50 text-zinc-900 flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
-            <div className="w-full max-w-7xl mb-12 md:mb-16">
-                <h2 className="text-center font-['AmsiPro'] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-zinc-900 mb-3 md:mb-4">
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-full max-w-7xl mb-12 md:mb-16"
+            >
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="text-center font-['AmsiPro'] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-zinc-900 mb-3 md:mb-4"
+                >
                     {accelerationContent?.gargalosTitle || "Identificamos e corrigimos os gargalos que impedem suas vendas"}
-                </h2>
-                <p className="text-center text-base md:text-lg text-zinc-600 mb-8 md:mb-12 max-w-3xl mx-auto px-4">
+                </motion.h2>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="text-center text-base md:text-lg text-zinc-600 mb-8 md:mb-12 max-w-3xl mx-auto px-4"
+                >
                     {accelerationContent?.gargalosSubtitle || "Do anúncio ao CRM  para que cada interação avance rumo ao sim."}
-                </p>
+                </motion.p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4 lg:gap-5">
                     {gargalosData.map((item, idx) => (
-                        <div key={idx} className="bg-white border-2 border-laranja-intenso/20 hover:border-laranja-intenso transition-all duration-300 p-4 md:p-5 rounded-sm flex flex-col items-start justify-start group">
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 * idx }}
+                            whileHover={{ scale: 1.05, y: -5 }}
+                            className="bg-white border-2 border-laranja-intenso/20 hover:border-laranja-intenso transition-all duration-300 p-4 md:p-5 rounded-sm flex flex-col items-start justify-start group"
+                        >
                             <h3 className="font-['AmsiPro'] font-bold text-xs sm:text-sm uppercase mb-2 leading-tight text-laranja-intenso group-hover:text-laranja-chama transition-colors">{item.title}</h3>
                             <p className="text-xs leading-relaxed text-zinc-600">{item.description}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-            </div>
-            <div className="w-full max-w-6xl bg-zinc-900 rounded-sm shadow-xl px-6 sm:px-8 md:px-10 lg:px-16 py-10 sm:py-12 md:py-14 lg:py-20 flex flex-col items-center text-white border border-zinc-800">
-                <div className="w-full text-center space-y-6 md:space-y-8">
-                    <h2 className="font-['AmsiPro'] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white tracking-tight">
-                        {accelerationContent?.title || "ACELERAÇÃO COMERCIAL"}
-                    </h2>
-                    <p className="text-base sm:text-lg md:text-xl text-zinc-300 font-light leading-relaxed max-w-4xl mx-auto px-4">
+            </motion.div>
+            {/* Card estilo V4 Company - Cantos retos, design fiel */}
+            <div className="w-full max-w-7xl bg-zinc-950 shadow-2xl border-2 border-laranja-intenso overflow-hidden">
+                {/* Header do Card */}
+                <div className="relative px-6 sm:px-8 md:px-12 lg:px-16 pt-10 sm:pt-12 md:pt-14 pb-6 md:pb-8 border-b-2 border-laranja-intenso/30">
+                    <p className="text-xs sm:text-sm text-zinc-400 uppercase tracking-wider mb-2">
+                        Transforme o marketing da sua empresa em{" "}
+                        <span className="text-laranja-intenso font-bold">APENAS 6 PASSOS</span>
+                    </p>
+
+                    <div className="flex items-start gap-3 md:gap-4 mb-4">
+                        <span className="font-['AmsiPro'] font-black text-5xl sm:text-6xl text-laranja-intenso leading-none">
+                            01
+                        </span>
+                        <div className="flex-1">
+                            <h2 className="font-['AmsiPro'] font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-2 uppercase">
+                                CONHEÇA A{" "}
+                                <span className="text-laranja-intenso">
+                                    {(accelerationContent?.title || "ACELERAÇÃO COMERCIAL").toUpperCase()}
+                                </span>{" "}
+                                <span className="text-zinc-500">(O QUE FAZEMOS)</span>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-4xl">
                         {accelerationContent?.subtitle || "Uma engenharia operacional que integra dados, campanhas e CRM para formar um sistema de vendas ativo, inteligente e sustentável."}
                     </p>
-                    <h3 className="font-['AmsiPro'] font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mt-8 md:mt-10 mb-4 md:mb-6 leading-tight px-4">
-                        {accelerationContent?.mainTitle || "A SOLUÇÃO DO MAIOR GARGALO DAS EMPRESAS QUE NÃO VENDEM"}
-                    </h3>
-                    <div className="text-left mx-auto max-w-4xl text-sm sm:text-base md:text-lg text-zinc-100 space-y-4 md:space-y-6 mt-6 md:mt-8">
+                </div>
+
+                {/* Área de conteúdo com slide ativo */}
+                <div className="relative min-h-[500px] md:min-h-[550px] bg-linear-to-b from-zinc-950 to-black">
+                    <AnimatePresence mode="wait">
+                        {stepsData.map((step, idx) => {
+                            const Icon = stepIcons[idx];
+                            if (activeStep !== idx) return null;
+
+                            return (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    className="absolute inset-0 px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-16"
+                                >
+                                    <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 h-full">
+                                        {/* Ícone grande à esquerda */}
+                                        <motion.div
+                                            initial={{ scale: 0.8, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{ delay: 0.2, duration: 0.4 }}
+                                            className="shrink-0"
+                                        >
+                                            <div className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-linear-to-br from-laranja-intenso/20 to-transparent border-2 border-laranja-intenso/40 flex items-center justify-center backdrop-blur-sm">
+                                                <Icon className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 text-laranja-intenso" strokeWidth={1.5} />
+                                            </div>
+                                        </motion.div>
+
+                                        {/* Conteúdo à direita */}
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.3, duration: 0.4 }}
+                                            className="flex-1 text-left max-w-2xl"
+                                        >
+                                            <div className="mb-6">
+                                                <span className="font-['AmsiPro'] font-black text-6xl md:text-7xl lg:text-8xl text-laranja-intenso/30 leading-none">
+                                                    {step.number}
+                                                </span>
+                                                <span className="font-['AmsiPro'] font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white ml-4 uppercase">
+                                                    {step.title}
+                                                </span>
+                                            </div>
+                                            <p className="text-lg sm:text-xl md:text-2xl text-zinc-300 leading-relaxed">
+                                                {step.description}
+                                            </p>
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </AnimatePresence>
+                </div>
+
+                {/* Bottom Navigation - Cantos retos, estilo V4 */}
+                <div className="border-t-2 border-laranja-intenso/30 bg-zinc-900 px-4 py-4">
+                    <div className="flex justify-center items-center gap-2 md:gap-3 max-w-5xl mx-auto flex-wrap">
                         {stepsData.map((step, idx) => (
-                            <div key={idx} className="leading-relaxed pb-3 md:pb-4 border-b border-zinc-800 last:border-0">
-                                <span className="font-semibold text-laranja-intenso text-base md:text-lg">{step.number}  {step.title}</span><br />
-                                <span className="text-zinc-400 text-sm md:text-base">{step.description}</span>
-                            </div>
+                            <motion.button
+                                key={idx}
+                                onClick={() => handleStepClick(idx)}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className={`relative px-4 py-3 md:px-6 md:py-4 transition-all duration-300 border-2 ${activeStep === idx
+                                        ? 'bg-laranja-intenso border-laranja-intenso text-white'
+                                        : 'bg-transparent border-zinc-700 text-zinc-400 hover:border-laranja-intenso/50 hover:text-white'
+                                    }`}
+                            >
+                                <div className="flex flex-col items-center gap-1">
+                                    <span className="text-sm md:text-base font-bold font-['AmsiPro']">
+                                        {step.number}
+                                    </span>
+                                    <span className="text-xs uppercase hidden sm:block font-semibold">
+                                        {step.title}
+                                    </span>
+                                </div>
+
+                                {/* Barra de progresso */}
+                                {activeStep === idx && !isPaused && (
+                                    <motion.div
+                                        className="absolute bottom-0 left-0 h-1 bg-white"
+                                        initial={{ width: "0%" }}
+                                        animate={{ width: "100%" }}
+                                        transition={{ duration: 5, ease: "linear" }}
+                                    />
+                                )}
+                            </motion.button>
                         ))}
                     </div>
-                    <p className="text-sm sm:text-base md:text-lg text-zinc-400 mt-8 md:mt-10 leading-relaxed max-w-3xl mx-auto px-4">
-                        {accelerationContent?.finalNote || "Uma operação única: jornada mapeada, conexões certas e pós-lead que não deixa oportunidades para trás."}
-                    </p>
                 </div>
             </div>
             <div className="w-full max-w-7xl text-center mt-12 md:mt-16 lg:mt-20">

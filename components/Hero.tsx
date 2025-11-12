@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 import BackgroundEffects from "./BackgroundEffects";
 import type { HeroContent } from "@/types/contentful";
@@ -24,29 +25,56 @@ export default function Hero({ content }: HeroProps) {
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full relative z-10 py-24 sm:py-28 md:py-32 lg:py-20">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] gap-8 md:gap-10 lg:gap-12 xl:gap-16 w-full items-center max-w-7xl mx-auto">
                     {/* Left Content */}
-                    <div className="flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6"
+                    >
                         {/* Main headline */}
                         <div>
-                            <h1 className="font-['AmsiPro'] font-semibold italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-white/95">
+                            <motion.h1
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="font-['AmsiPro'] font-semibold italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-white/95"
+                            >
                                 {headline.toLowerCase().includes("sem achismo") ? (
                                     <>
                                         {headline.split(/sem achismo/i)[0]}
                                         <br />
-                                        <span className="text-laranja-intenso">{headline.split(/sem achismo/i)[1] ? `Sem achismo${headline.split(/sem achismo/i)[1]}` : "Sem achismo, sem ruído, sem desperdício."}</span>
+                                        <motion.span
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ duration: 0.6, delay: 0.6 }}
+                                            className="text-laranja-intenso"
+                                        >
+                                            {headline.split(/sem achismo/i)[1] ? `Sem achismo${headline.split(/sem achismo/i)[1]}` : "Sem achismo, sem ruído, sem desperdício."}
+                                        </motion.span>
                                     </>
                                 ) : (
                                     headline
                                 )}
-                            </h1>
+                            </motion.h1>
                             {subheadline && (
-                                <p className="font-['AmsiPro'] font-black italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-laranja-intenso ">
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                    className="font-['AmsiPro'] font-black italic text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight tracking-tight text-laranja-intenso "
+                                >
                                     {subheadline}
-                                </p>
+                                </motion.p>
                             )}
                         </div>
 
                         {/* H1 Tagline */}
-                        <div className="pt-2 md:pt-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            className="pt-2 md:pt-4"
+                        >
                             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-['AmsiPro'] font-light italic text-white/90 leading-tight">
                                 {tagline.includes("Caixa Certa") ? (
                                     <>
@@ -58,26 +86,41 @@ export default function Hero({ content }: HeroProps) {
                                     tagline
                                 )}
                             </h2>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* Right Content - Contact Form */}
-                    <div className="flex items-center justify-center lg:justify-end">
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="flex items-center justify-center lg:justify-end"
+                    >
                         <div className="w-full max-w-sm space-y-3">
                             {/* Form Title Outside */}
-                            <div className="flex justify-center items-center text-center lg:text-left ">
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.5 }}
+                                className="flex justify-center items-center text-center lg:text-left "
+                            >
                                 <h3 className="text-lg md:text-xl lg:text-2xl font-['AmsiPro'] font-bold leading-tight pt-4">
                                     <span className="text-white">Quero</span> <span className="text-laranja-intenso opacity-50">performar minhas vendas</span><span className="text-white">,</span><br />
                                     <span className="flex justify-center items-center text-center  text-white">{ctaText.split(",")[1]?.trim() || "não apenas anunciar"}</span>
                                 </h3>
-                            </div>
+                            </motion.div>
 
                             {/* Form Card */}
-                            <div className="bg-white/95 backdrop-blur-sm rounded-sm p-4 sm:p-5 shadow-2xl">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.6, delay: 0.6 }}
+                                className="bg-white/95 backdrop-blur-sm rounded-sm p-4 sm:p-5 shadow-2xl"
+                            >
                                 <ContactForm />
-                            </div>
+                            </motion.div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 

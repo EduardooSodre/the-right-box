@@ -212,3 +212,13 @@ select option:hover {
     @apply bg-background text-foreground;
   }
 }
+
+/* Animação para barra de progresso dos slides */
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
