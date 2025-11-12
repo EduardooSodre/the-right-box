@@ -70,7 +70,7 @@ export default async function Home() {
       "addressCountry": "BR"
     },
     "sameAs": [
-      "https://instagram.com/therightbox"
+      "https://instagram.com/therightbox_"
     ],
     "contactPoint": {
       "@type": "ContactPoint",

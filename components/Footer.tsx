@@ -19,7 +19,6 @@ export default function Footer({ content, contactContent }: FooterProps) {
     const developedByUrl = content?.developedByUrl || "https://dev-eduardo-phi.vercel.app/";
 
     const email = contactContent?.email || "contato@therightbox.com.br";
-    const instagram = contactContent?.instagram || "https://www.instagram.com/therightbox_/";
 
     return (
         <footer className="relative bg-black text-white border-t border-white/10">
@@ -87,7 +86,7 @@ export default function Footer({ content, contactContent }: FooterProps) {
                         </h4>
                         <div className="space-y-2">
                             <a
-                                href={instagram}
+                                href="https://www.instagram.com/therightbox_/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block text-xs text-zinc-300 hover:text-laranja-intenso transition-colors uppercase"
