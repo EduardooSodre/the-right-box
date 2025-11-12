@@ -11,11 +11,47 @@ export default function ContactForm() {
         telefone: "",
         solucao: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        // TODO: Integrate with email service
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setSubmitStatus('success');
+                setFormData({
+                    nome: "",
+                    empresa: "",
+                    cidade: "",
+                    email: "",
+                    telefone: "",
+                    solucao: "",
+                });
+                
+                // Esconder mensagem de sucesso após 5 segundos
+                setTimeout(() => setSubmitStatus('idle'), 5000);
+            } else {
+                setSubmitStatus('error');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar formulário:', error);
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -132,11 +168,24 @@ export default function ContactForm() {
                 </select>
             </div>
 
+            {submitStatus === 'success' && (
+                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-sm text-sm">
+                    ✓ Formulário enviado com sucesso! Entraremos em contato em breve.
+                </div>
+            )}
+
+            {submitStatus === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-sm text-sm">
+                    ✗ Erro ao enviar formulário. Por favor, tente novamente.
+                </div>
+            )}
+
             <button
                 type="submit"
-                className="w-full bg-laranja-intenso hover:bg-laranja-chama text-white font-['AmsiPro'] font-bold text-sm uppercase tracking-wider py-2 px-6 rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-laranja-chama focus:ring-offset-2 mt-1"
+                disabled={isSubmitting}
+                className="w-full bg-laranja-intenso hover:bg-laranja-chama text-white font-['AmsiPro'] font-bold text-sm uppercase tracking-wider py-2 px-6 rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-laranja-chama focus:ring-offset-2 mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                Enviar
+                {isSubmitting ? 'Enviando...' : 'Enviar'}
             </button>
         </form>
     );
