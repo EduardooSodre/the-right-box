@@ -17,7 +17,7 @@ export const revalidate = 60;
 export default async function Home() {
   // Fetch all content from Contentful
   let heroContent, accelerationContent, gargalos, methodologySteps, solutions, footerContent, contactContent;
-  
+
   try {
     [heroContent, accelerationContent, gargalos, methodologySteps, solutions, footerContent, contactContent] = await Promise.all([
       fetchHeroContent(),
@@ -36,7 +36,7 @@ export default async function Home() {
     <>
       <Header />
       <Hero content={heroContent} />
-      <NextSection 
+      <NextSection
         accelerationContent={accelerationContent}
         gargalos={gargalos}
         methodologySteps={methodologySteps}

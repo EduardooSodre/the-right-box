@@ -10,11 +10,11 @@ interface NextSectionProps {
     solutions?: Solution[];
 }
 
-export default function NextSection({ 
-    accelerationContent, 
-    gargalos = [], 
-    methodologySteps = [], 
-    solutions = [] 
+export default function NextSection({
+    accelerationContent,
+    gargalos = [],
+    methodologySteps = [],
+    solutions = []
 }: NextSectionProps) {
     const defaultGargalos = [
         { title: "Estratégia & Oferta", description: "Clarificamos posicionamento e encaixe de oferta por segmento e jornada.", order: 1 },

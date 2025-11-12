@@ -14,7 +14,7 @@ export default function Footer({ content, contactContent }: FooterProps) {
     const copyright = content?.copyright || "The Right Box. Todos os direitos reservados.";
     const developedBy = content?.developedBy || "Eduardo Sodré";
     const developedByUrl = content?.developedByUrl || "https://dev-eduardo-phi.vercel.app/";
-    
+
     const email = contactContent?.email || "contato@therightbox.com.br";
     const instagram = contactContent?.instagram || "https://instagram.com/therightbox";
 
