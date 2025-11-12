@@ -2,15 +2,14 @@ import { client } from "@/lib/contentful";
 import type { AccelerationContent } from "@/types/contentful";
 
 export async function fetchAccelerationContent(): Promise<AccelerationContent> {
-  // TODO: Replace 'acceleration' with the correct Contentful content type ID
   const res = await client.getEntries({
-    content_type: "acceleration",
+    content_type: "accelerationContent",
     limit: 1,
   });
-  const entry = res.items[0]?.fields;
+  const entry = res.items[0]?.fields as any;
   return {
     title: entry?.title || "",
-    subtitle: entry?.subtitle || "",
+    subtitle: entry?.description || "",
     steps: entry?.steps || [],
     solutions: entry?.solutions || [],
   };

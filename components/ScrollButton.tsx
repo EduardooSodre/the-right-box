@@ -37,7 +37,7 @@ export default function ScrollButton() {
             <Button
                 variant="none"
                 onClick={handleClick}
-                className="flex flex-col items-center gap-2 transition-all duration-300 cursor-pointer group bg-none hover:scale-105 hover:text-laranja-intenso"
+                className="flex flex-col items-center gap-2 transition-all duration-300 cursor-pointer group bg-none text-laranja-intenso group-hover:text-laranja-chama hover:scale-110 "
                 aria-label={isAtBottom ? "Voltar ao topo" : "Scroll para baixo"}
             >
                 <span
