@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
+import SectionBackground from "./SectionBackground";
 
 interface CTASectionProps {
     ctaTitle?: string;
@@ -15,7 +16,9 @@ export default function CTASection({ ctaTitle }: CTASectionProps) {
 
     return (
         <section className="relative bg-white py-16 md:py-24 overflow-hidden">
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
+            <SectionBackground variant="light" intensity="medium" />
+
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_420px] xl:grid-cols-[1.5fr_450px] gap-8 md:gap-12 lg:gap-16 items-center">
                         {/* Texto CTA */}

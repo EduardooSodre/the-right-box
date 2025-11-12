@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Target, Megaphone, Users, MessageSquare, BarChart3, Sparkles } from "lucide-react";
 import { useState } from "react";
+import SectionBackground from "./SectionBackground";
 
 // Mapeamento de ícones Lucide por título
 const iconMap: Record<string, typeof Target> = {
@@ -120,7 +121,9 @@ function SolutionCard({ title, description, index }: SolutionCardProps) {
 export default function Solutions() {
     return (
         <section className="relative bg-zinc-900 py-16 md:py-24 overflow-hidden">
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
+            <SectionBackground variant="dark" intensity="subtle" />
+
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">{" "}
                 {/* Título da seção */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
