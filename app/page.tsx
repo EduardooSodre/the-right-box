@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import NextSection from "@/components/NextSection";
 import Solutions from "@/components/Solutions";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import ScrollButton from "@/components/ScrollButton";
 import { fetchHeroContent } from "@/lib/fetchHeroContent";
@@ -41,6 +42,7 @@ export default async function Home() {
         methodologySteps={methodologySteps}
       />
       <Solutions />
+      <CTASection ctaTitle={accelerationContent?.ctaTitle} />
       <Footer content={footerContent} contactContent={contactContent} />
       <ScrollButton />
     </>

@@ -1,7 +1,6 @@
 ﻿"use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ContactForm from './ContactForm';
 import {
     Search,
     Network,
@@ -224,22 +223,6 @@ export default function NextSection({
                                 )}
                             </motion.button>
                         ))}
-                    </div>
-                </div>
-            </div>
-            <div className="w-full max-w-7xl mt-12 md:mt-16 lg:mt-20 px-4 sm:px-6 md:px-10">
-                <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_380px] xl:grid-cols-[1.5fr_400px] gap-8 md:gap-12 lg:gap-16 items-center">
-                    <div className="flex flex-col justify-center text-center lg:text-left">
-                        <h3 className="font-['AmsiPro'] font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black leading-tight whitespace-pre-line">
-                            {accelerationContent?.ctaTitle || "Dê o primeiro passo para alinhar marketing e vendas."}
-                        </h3>
-                    </div>
-                    <div className="flex items-center justify-center lg:justify-end">
-                        <div className="w-full max-w-md">
-                            <div className="bg-white rounded-sm p-4 sm:p-5 shadow-lg border border-zinc-100">
-                                <ContactForm />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
