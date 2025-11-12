@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
@@ -9,14 +9,14 @@ export async function POST(request: Request) {
     // Validação básica
     if (!nome || !empresa || !cidade || !email || !telefone || !solucao) {
       return NextResponse.json(
-        { success: false, message: 'Todos os campos são obrigatórios' },
+        { success: false, message: "Todos os campos são obrigatórios" },
         { status: 400 }
       );
     }
 
     // Configuração do transportador de email
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD, // Senha de App do Google
@@ -24,10 +24,10 @@ export async function POST(request: Request) {
     });
 
     // Data formatada
-    const dataAtual = new Date().toLocaleString('pt-BR', {
-      timeZone: 'America/Sao_Paulo',
-      dateStyle: 'full',
-      timeStyle: 'medium',
+    const dataAtual = new Date().toLocaleString("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      dateStyle: "full",
+      timeStyle: "medium",
     });
 
     // Email para você (notificação de novo lead)
@@ -77,7 +77,10 @@ export async function POST(request: Request) {
               <div class="field">
                 <div class="label">📱 Telefone/WhatsApp:</div>
                 <div class="value">
-                  <a href="https://wa.me/${telefone.replace(/\D/g, '')}" style="color: #E95009;">${telefone}</a>
+                  <a href="https://wa.me/${telefone.replace(
+                    /\D/g,
+                    ""
+                  )}" style="color: #E95009;">${telefone}</a>
                 </div>
               </div>
               <div class="field">
@@ -99,7 +102,7 @@ export async function POST(request: Request) {
     const emailParaCliente = {
       from: process.env.GMAIL_USER,
       to: email,
-      subject: '✅ Recebemos seu contato - The Right Box',
+      subject: "✅ Recebemos seu contato - The Right Box",
       html: `
         <!DOCTYPE html>
         <html>
@@ -150,15 +153,14 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Email enviado com sucesso!',
+      message: "Email enviado com sucesso!",
     });
-
   } catch (error) {
-    console.error('Erro ao enviar email:', error);
+    console.error("Erro ao enviar email:", error);
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Erro ao enviar email. Tente novamente.' 
+      {
+        success: false,
+        message: "Erro ao enviar email. Tente novamente.",
       },
       { status: 500 }
     );

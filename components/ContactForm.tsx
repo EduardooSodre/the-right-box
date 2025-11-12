@@ -40,7 +40,7 @@ export default function ContactForm() {
                     telefone: "",
                     solucao: "",
                 });
-                
+
                 // Esconder mensagem de sucesso após 5 segundos
                 setTimeout(() => setSubmitStatus('idle'), 5000);
             } else {
