@@ -1,15 +1,15 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import NextSection from "@/components/NextSection";
+import GargalosSection from "@/components/GargalosSection";
+import AceleracaoSection from "@/components/AceleracaoSection";
+import DiagnosticoSection from "@/components/DiagnosticoSection";
+import PMEStatsSection from "@/components/PMEStatsSection";
 import Solutions from "@/components/Solutions";
-import CTASection from "@/components/CTASection";
-import FAQ from "@/components/FAQ";
+import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
 import ScrollButton from "@/components/ScrollButton";
 import { fetchHeroContent } from "@/lib/fetchHeroContent";
-import { fetchAccelerationContent } from "@/lib/fetchAccelerationContent";
 import { fetchGargalos } from "@/lib/fetchGargalos";
-import { fetchMethodologySteps } from "@/lib/fetchMethodologySteps";
 import { fetchFooterContent } from "@/lib/fetchFooterContent";
 import { fetchContactContent } from "@/lib/fetchContactContent";
 
@@ -41,14 +41,12 @@ export const metadata = {
 
 export default async function Home() {
   // Fetch all content from Contentful
-  let heroContent, accelerationContent, gargalos, methodologySteps, footerContent, contactContent;
+  let heroContent, gargalos, footerContent, contactContent;
 
   try {
-    [heroContent, accelerationContent, gargalos, methodologySteps, footerContent, contactContent] = await Promise.all([
+    [heroContent, gargalos, footerContent, contactContent] = await Promise.all([
       fetchHeroContent(),
-      fetchAccelerationContent(),
       fetchGargalos(),
-      fetchMethodologySteps(),
       fetchFooterContent(),
       fetchContactContent(),
     ]);
@@ -97,14 +95,12 @@ export default async function Home() {
 
       <Header />
       <Hero content={heroContent} />
-      <NextSection
-        accelerationContent={accelerationContent}
-        gargalos={gargalos}
-        methodologySteps={methodologySteps}
-      />
+      <GargalosSection gargalos={gargalos} />
+      <AceleracaoSection />
+      <DiagnosticoSection />
+      <PMEStatsSection />
       <Solutions />
-      <CTASection ctaTitle={accelerationContent?.ctaTitle} />
-      <FAQ />
+      <BlogSection />
       <Footer content={footerContent} contactContent={contactContent} />
       <ScrollButton />
     </>

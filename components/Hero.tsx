@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
-import BackgroundEffects from "./BackgroundEffects";
+import Image from "next/image";
 import type { HeroContent } from "@/types/contentful";
 
 interface HeroProps {
@@ -11,133 +10,115 @@ interface HeroProps {
 }
 
 export default function Hero({ content }: HeroProps) {
-    // Use content from Contentful or fallback to default
-    const headline = content?.headline || "Integramos marca, tráfego e operação comercial em um único sistema para transformar interesse em receita previsível sem achismo, sem ruído, sem desperdício.";
-    const subheadline = content?.subheadline || "";
-    const tagline = content?.tagline || "Você não precisa \"pensar fora da caixa\". Precisa da Caixa Certa.";
-    const ctaText = content?.cta || "Quero performar minhas vendas, não apenas anunciar";
-    const bottomTagline = content?.bottomTagline || "Identificamos e corrigimos os gargalos que impedem suas vendas";
+    const description =
+        content?.tagline ||
+        "integrados em um sistema único para transformar interesse em";
+    const highlight = content?.cta || "faturamento previsível.";
 
     return (
-        <section className="relative min-h-screen bg-black text-white overflow-hidden flex items-center">
-            <BackgroundEffects />
+        <section className="relative h-screen w-full overflow-hidden text-white">
 
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full relative z-10 py-16 sm:py-20 md:py-24 lg:py-20">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 w-full items-center max-w-7xl mx-auto">
-                    {/* Left Content */}
+            {/* BG original */}
+            <Image
+                src="/Hero.png"
+                alt="Hero Background"
+                fill
+                priority
+                className="object-cover object-center"
+            />
+
+            {/* Gradiente leve */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+
+            {/* Conteúdo */}
+            <div className="relative z-10 h-full flex items-center">
+                <div
+                    className="
+                        container mx-auto 
+                        px-6 lg:px-16
+                        grid grid-cols-1 lg:grid-cols-2
+                        gap-10
+                        items-center
+                        max-w-7xl
+                    "
+                >
+
+                    {/* LEFT */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="flex flex-col justify-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 text-center lg:text-left"
-                    >
-                        {/* Main headline */}
-                        <div>
-                            <motion.h1
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
-                                className="font-['AmsiPro'] font-semibold italic text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight tracking-tight text-white/95"
-                            >
-                                {headline.toLowerCase().includes("sem achismo") ? (
-                                    <>
-                                        {headline.split(/sem achismo/i)[0]}
-                                        <br />
-                                        <motion.span
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.6, delay: 0.6 }}
-                                            className="text-laranja-intenso"
-                                        >
-                                            {headline.split(/sem achismo/i)[1] ? `Sem achismo${headline.split(/sem achismo/i)[1]}` : "Sem achismo, sem ruído, sem desperdício."}
-                                        </motion.span>
-                                    </>
-                                ) : (
-                                    headline
-                                )}
-                            </motion.h1>
-                            {subheadline && (
-                                <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.4 }}
-                                    className="font-['AmsiPro'] font-black italic text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight tracking-tight text-laranja-intenso mt-2"
-                                >
-                                    {subheadline}
-                                </motion.p>
-                            )}
-                        </div>
-
-                        {/* H1 Tagline */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.8, delay: 0.5 }}
-                            className="pt-1 sm:pt-2 md:pt-3"
-                        >
-                            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-['AmsiPro'] font-light italic text-white/90 leading-tight">
-                                {tagline.includes("Caixa Certa") ? (
-                                    <>
-                                        {tagline.split("Caixa Certa")[0]}
-                                        <span className="text-laranja-intenso font-bold not-italic">Caixa Certa</span>
-                                        {tagline.split("Caixa Certa")[1]}
-                                    </>
-                                ) : (
-                                    tagline
-                                )}
-                            </h2>
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Right Content - Contact Form */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
+                        initial={{ opacity: 0, x: -40 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="flex items-center justify-center lg:justify-end mt-6 lg:mt-0"
+                        transition={{ duration: 0.6 }}
+                        className="max-w-lg space-y-6"
                     >
-                        <div className="w-full max-w-sm space-y-2 sm:space-y-3">
-                            {/* Form Title Outside */}
-                            <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.5 }}
-                                className="flex justify-center items-center text-center"
-                            >
-                                <h3 className="text-base sm:text-lg md:text-xl lg:text-xl font-['AmsiPro'] font-bold leading-snug pt-2 sm:pt-3">
-                                    <span className="text-white">Quero</span> <span className="text-laranja-intenso opacity-50">performar minhas vendas</span><span className="text-white">,</span><br />
-                                    <span className="flex justify-center items-center text-center text-white">{ctaText.split(",")[1]?.trim() || "não apenas anunciar"}</span>
-                                </h3>
-                            </motion.div>
+                        <h1 className="font-['AmsiPro'] text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-[0.95]">
+                            MARCA, <br />
+                            MARKETING & <br />
+                            <span className="block">TIME COMERCIAL</span>
+                        </h1>
 
-                            {/* Form Card */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6, delay: 0.6 }}
-                                className="bg-white/95 backdrop-blur-sm rounded-sm p-4 sm:p-5 shadow-2xl"
-                            >
+                        <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-white/90">
+                            {description}{" "}
+                            <span className="text-laranja-intenso font-bold">
+                                {highlight}
+                            </span>
+                        </p>
+
+                        <span
+                            className="font-['AmsiProCond'] text-base uppercase tracking-[0.15em] font-bold inline-block"
+                            style={{
+                                backgroundImage:
+                                    "linear-gradient(90deg,#d5a03d,#f1d77c,#f9ed9d,#d5a03d,#e4c269,#f9ed9d)",
+                                WebkitBackgroundClip: "text",
+                                color: "transparent",
+                            }}
+                        >
+                            SEM ACHISMO, SEM RUÍDO, SEM DESPERDÍCIO.
+                        </span>
+                    </motion.div>
+
+                    {/* RIGHT – CARD */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="flex justify-center lg:justify-end pr-4"
+                    >
+                        <div
+                            className="
+                                w-full 
+                                max-w-[370px]        
+                                h-[540px]            /* Altura exata do design */
+                                rounded-2xl 
+                                border border-white/20 
+                                backdrop-blur-xl 
+                                bg-white/10 
+                                p-6
+                                shadow-[0_8px_30px_rgba(0,0,0,0.45)]
+                                flex flex-col gap-4
+                            "
+                        >
+                            {/* Título dentro do card – espaçamento correto */}
+                            <div className="text-center space-y-1 mt-2 mb-2">
+                                <h3 className="font-['AmsiProCond'] text-[22px] font-black uppercase leading-tight">
+                                    <span className="text-white">QUERO </span>
+                                    <span className="text-[#E95009]">
+                                        ESCALAR MINHAS VENDAS,
+                                    </span>
+                                </h3>
+
+                                <p className="font-['AmsiProCond'] text-[22px] font-black text-white uppercase leading-tight">
+                                    NÃO APENAS ANUNCIAR
+                                </p>
+                            </div>
+
+                            {/* FORM com inputs finos no tamanho da arte */}
+                            <div className="flex-1">
                                 <ContactForm />
-                            </motion.div>
+                            </div>
                         </div>
                     </motion.div>
-                </div>
-            </div>
 
-            {/* Bottom tagline - Hidden on mobile, visible on desktop */}
-            <div className="hidden lg:flex absolute bottom-6 lg:bottom-8 left-6 lg:left-12 xl:left-16 z-10 items-center gap-3 lg:gap-4 max-w-md xl:max-w-xl">
-                <div className="w-8 h-8 lg:w-10 lg:h-10 relative shrink-0">
-                    <Image
-                        src="/logos/LOGO-1A.png"
-                        alt="The Right Box Logo"
-                        fill
-                        sizes="(max-width: 1024px) 32px, 40px"
-                        className="object-contain"
-                    />
                 </div>
-                <p className="text-sm lg:text-base font-['AmsiPro'] font-light text-white/80 leading-relaxed">
-                    {bottomTagline}
-                </p>
             </div>
         </section>
     );
