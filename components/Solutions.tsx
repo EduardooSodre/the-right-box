@@ -8,7 +8,7 @@ import Image from "next/image";
 const solutionsData = [
     {
         title: "Identidade Visual",
-        image: "/images/Idebtidade-Visual.png",
+        image: "/images/Identidade-Visual.png",
     },
     {
         title: "Estratégia para anúncio",
@@ -24,7 +24,7 @@ const solutionsData = [
     },
     {
         title: "Criativos para anúncios",
-        image: "/images/Cirativos-para-anuncios.png",
+        image: "/images/Criativos-para-anuncios.png",
     },
 ];
 

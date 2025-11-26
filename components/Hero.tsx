@@ -10,114 +10,101 @@ interface HeroProps {
 }
 
 export default function Hero({ content }: HeroProps) {
-    const description =
-        content?.tagline ||
-        "integrados em um sistema único para transformar interesse em";
+    const description1 = "integrados em um sistema único";
+    const description2 = "para transformar interesse em";
     const highlight = content?.cta || "faturamento previsível.";
 
     return (
-        <section className="relative h-screen w-full overflow-hidden text-white">
+        <section className="relative min-h-screen w-full overflow-hidden text-white pt-10">
 
-            {/* BG original */}
+            {/* BG */}
             <Image
                 src="/Hero.png"
                 alt="Hero Background"
                 fill
                 priority
-                className="object-cover object-center"
+                className="object-cover object-center md:object-right opacity-60"
             />
 
-            {/* Gradiente leve */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+            {/* Gradiente para melhorar legibilidade */}
+            <div className="absolute inset-0" />
 
-            {/* Conteúdo */}
-            <div className="relative z-10 h-full flex items-center">
-                <div
-                    className="
-                        container mx-auto 
-                        px-6 lg:px-16
-                        grid grid-cols-1 lg:grid-cols-2
-                        gap-10
-                        items-center
-                        max-w-7xl
-                    "
-                >
+            <div className="relative z-10 min-h-screen flex items-center py-12 md:py-16">
+                <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-                    {/* LEFT */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -40 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-lg space-y-6"
-                    >
-                        <h1 className="font-['AmsiPro'] text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-[0.95]">
-                            MARCA, <br />
-                            MARKETING & <br />
-                            <span className="block">TIME COMERCIAL</span>
-                        </h1>
+                        {/* LEFT TEXT */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -40 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="space-y-6 text-center lg:text-left"
+                        >
+                            <h1 className="font-['AmsiPro'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95]">
+                                MARCA, <br />
+                                MARKETING & <br />
+                                <span className="block">TIME COMERCIAL</span>
+                            </h1>
 
-                        <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-white/90">
-                            {description}{" "}
-                            <span className="text-laranja-intenso font-bold">
-                                {highlight}
+                            <p className="font-['AmsiPro'] font-semibold text-base sm:text-lg md:text-xl lg:text-3xl text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                {description1}
+                                <br />
+                                {description2}
+                                <br />
+                                <span className="text-laranja-intenso font-bold">
+                                    {highlight}
+                                </span>
+                            </p>
+
+                            <span
+                                className="font-['AmsiPro'] text-sm sm:text-lg uppercase tracking-[0.15em] font-black inline-block"
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(90deg,#d5a03d,#f1d77c,#f9ed9d,#d5a03d,#e4c269,#f9ed9d)",
+                                    WebkitBackgroundClip: "text",
+                                    color: "transparent",
+                                }}
+                            >
+                                SEM ACHISMO, SEM RUÍDO, SEM DESPERDÍCIO.
                             </span>
-                        </p>
+                        </motion.div>
 
-                        <span
-                            className="font-['AmsiProCond'] text-base uppercase tracking-[0.15em] font-bold inline-block"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(90deg,#d5a03d,#f1d77c,#f9ed9d,#d5a03d,#e4c269,#f9ed9d)",
-                                WebkitBackgroundClip: "text",
-                                color: "transparent",
-                            }}
+                        {/* RIGHT SIDE (TITLE + CARD) */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="flex flex-col items-center lg:items-end w-full"
                         >
-                            SEM ACHISMO, SEM RUÍDO, SEM DESPERDÍCIO.
-                        </span>
-                    </motion.div>
 
-                    {/* RIGHT – CARD */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 40 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="flex justify-center lg:justify-end pr-4"
-                    >
-                        <div
-                            className="
-                                w-full 
-                                max-w-[370px]        
-                                h-[540px]            /* Altura exata do design */
-                                rounded-2xl 
-                                border border-white/20 
-                                backdrop-blur-xl 
-                                bg-white/10 
-                                p-6
-                                shadow-[0_8px_30px_rgba(0,0,0,0.45)]
-                                flex flex-col gap-4
-                            "
-                        >
-                            {/* Título dentro do card – espaçamento correto */}
-                            <div className="text-center space-y-1 mt-2 mb-2">
-                                <h3 className="font-['AmsiProCond'] text-[22px] font-black uppercase leading-tight">
+                            {/* TÍTULO FORA DO CARD */}
+                            <div className="text-center mb-4 w-full max-w-[400px]">
+                                <h3 className="font-['AmsiPro'] text-lg sm:text-xl md:text-[22px] font-black uppercase leading-tight">
                                     <span className="text-white">QUERO </span>
-                                    <span className="text-[#E95009]">
-                                        ESCALAR MINHAS VENDAS,
-                                    </span>
+                                    <span className="text-[#E95009]">ESCALAR MINHAS VENDAS,</span>
                                 </h3>
-
-                                <p className="font-['AmsiProCond'] text-[22px] font-black text-white uppercase leading-tight">
+                                <p className="font-['AmsiPro'] text-lg sm:text-xl md:text-[22px] font-black text-white uppercase leading-tight">
                                     NÃO APENAS ANUNCIAR
                                 </p>
                             </div>
 
-                            {/* FORM com inputs finos no tamanho da arte */}
-                            <div className="flex-1">
+                            {/* CARD CINZA */}
+                            <div
+                                className="
+                                    w-full 
+                                    max-w-[400px]
+                                    bg-[#CFCFCF]/90
+                                    border border-white/20
+                                    rounded-2xl
+                                    p-5 sm:p-6 md:p-8
+                                    shadow-[0_4px_20px_rgba(0,0,0,0.45)]
+                                "
+                            >
                                 <ContactForm />
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
 
+                    </div>
                 </div>
             </div>
         </section>

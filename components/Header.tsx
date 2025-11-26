@@ -62,7 +62,7 @@ export default function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`relative font-['AmsiProCond'] font-bold uppercase tracking-wide transition-all duration-300 ${item.isButton
+                                className={`relative font-['AmsiPro'] font-bold uppercase tracking-wide transition-all duration-300 ${item.isButton
                                     ? "px-6 py-2 border-2 border-laranja-intenso rounded-full text-white hover:bg-laranja-intenso hover:text-black shadow-sm"
                                     : "text-white/90 hover:text-white after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-0 after:bg-laranja-intenso after:transition-all after:duration-300 hover:after:w-full"
                                     }`}
@@ -118,11 +118,12 @@ export default function Header() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.3, delay: i * 0.1 }}
+                                        className="text-center"
                                     >
                                         <Link
                                             href={item.href}
                                             onClick={() => setIsMenuOpen(false)}
-                                            className={`font-['AmsiProCond'] font-bold text-3xl uppercase tracking-wide ${item.isButton
+                                            className={`font-['AmsiPro'] font-bold text-3xl uppercase tracking-wide inline-block ${item.isButton
                                                 ? "text-laranja-intenso border-2 border-laranja-intenso px-6 py-2 rounded-full hover:bg-laranja-intenso hover:text-black"
                                                 : "text-white hover:text-laranja-intenso"
                                                 }`}
