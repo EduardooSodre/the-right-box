@@ -43,9 +43,9 @@ export default function Header() {
                     <Link
                         href="/"
                         aria-label="Voltar para a página inicial"
-                        className="flex items-center transition-transform hover:scale-105"
+                        className={`flex items-center  hover:scale-105 transition-all duration-300 ${isScrolled ? 'sm:w-24 sm:h-24  ' : 'sm:w-36 sm:h-36'}`}
                     >
-                        <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+                        <div className="relative w-24 h-24 sm:w-36 sm:h-36 ">
                             <Image
                                 src="/logos/logo.png"
                                 alt="Logo The Right Box"

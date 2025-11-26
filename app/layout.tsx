@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     description: "Integramos estratégia, tráfego, CRM e vendas em um único sistema. Aceleração Comercial é sobre resultado previsível, não apenas cliques.",
     images: [
       {
-        url: "/logos/LOGO-1C.png",
+        url: "/logos/Logo.png",
         width: 1200,
         height: 630,
         alt: "The Right Box - Aceleração Comercial",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Right Box - Aceleração Comercial",
     description: "Transforme leads em vendas com processos automatizados e comunicação personalizada",
-    images: ["/logos/LOGO-1C.png"],
+    images: ["/logos/Logo.png"],
   },
   robots: {
     index: true,
@@ -76,8 +76,8 @@ export const metadata: Metadata = {
     google: "seu-codigo-google-search-console",
   },
   icons: {
-    icon: "/logos/LOGO-1C.png",
-    apple: "/logos/LOGO-1C.png",
+    icon: "/logos/Logo.png",
+    apple: "/logos/Logo.png",
   },
 };
 

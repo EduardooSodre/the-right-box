@@ -144,7 +144,7 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-black text-white font-bold text-sm uppercase py-2 mt-4 hover:bg-zinc-800 transition"
+                className="w-full rounded-sm bg-black text-white font-bold text-sm uppercase py-2 mt-4 hover:bg-zinc-800 transition"
             >
                 {isSubmitting ? "Enviando..." : "Enviar"}
             </button>

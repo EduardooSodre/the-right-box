@@ -4,21 +4,10 @@ import { motion } from "framer-motion";
 
 export default function GargalosSection() {
     return (
-        <section className="relative text-white pt-20 pb-28 overflow-hidden">
+        <section className="relative text-white pt-20 pb-20 overflow-hidden">
 
             {/* Fundo escuro leve vindo da hero */}
             <div className="absolute inset-0 bg-black/85 z-0" />
-
-            {/* Fundo da próxima section1.png (suave) */}
-            <div
-                className="
-                    absolute inset-0 
-                    bg-[url('/section1.png')] 
-                    bg-cover bg-center 
-                    opacity-[0.18]
-                    z-0
-                "
-            />
 
             <div className="relative z-10 container mx-auto px-6 lg:px-12 max-w-7xl">
 
@@ -30,7 +19,7 @@ export default function GargalosSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="font-['AmsiPro'] font-semibold text-3xl sm:text-4xl lg:text-5xl uppercase leading-tight"> IDENTIFICAMOS E CORRIGIMOS OS<br /> <span className="text-laranja-intenso"> GARGALOS QUE IMPEDEM AS SUAS VENDAS </span> </h2> </motion.div>
+                    <h2 className="font-['AmsiPro'] font-semibold text-3xl sm:text-4xl  uppercase leading-tight"> IDENTIFICAMOS E CORRIGIMOS OS<br /> <span className="text-laranja-intenso"> GARGALOS QUE IMPEDEM AS SUAS VENDAS </span> </h2> </motion.div>
 
                 {/* GRID */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
