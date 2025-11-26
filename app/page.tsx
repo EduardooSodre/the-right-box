@@ -9,7 +9,6 @@ import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
 import ScrollButton from "@/components/ScrollButton";
 import { fetchHeroContent } from "@/lib/fetchHeroContent";
-import { fetchGargalos } from "@/lib/fetchGargalos";
 import { fetchFooterContent } from "@/lib/fetchFooterContent";
 import { fetchContactContent } from "@/lib/fetchContactContent";
 
@@ -41,12 +40,11 @@ export const metadata = {
 
 export default async function Home() {
   // Fetch all content from Contentful
-  let heroContent, gargalos, footerContent, contactContent;
+  let heroContent, footerContent, contactContent;
 
   try {
-    [heroContent, gargalos, footerContent, contactContent] = await Promise.all([
+    [heroContent, footerContent, contactContent] = await Promise.all([
       fetchHeroContent(),
-      fetchGargalos(),
       fetchFooterContent(),
       fetchContactContent(),
     ]);
@@ -95,7 +93,7 @@ export default async function Home() {
 
       <Header />
       <Hero content={heroContent} />
-      <GargalosSection gargalos={gargalos} />
+      <GargalosSection />
       <AceleracaoSection />
       <DiagnosticoSection />
       <PMEStatsSection />
