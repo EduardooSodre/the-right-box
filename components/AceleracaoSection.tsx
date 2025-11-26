@@ -33,46 +33,44 @@ export default function AceleracaoSection() {
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(1);
 
-    // Auto-play
-    const handleNext = () => {
+    const nextCard = () => {
         setDirection(1);
         setIndex((prev) => (prev + 1) % cards.length);
     };
 
     useEffect(() => {
-        const timer = setInterval(() => handleNext(), 5000);
+        const timer = setInterval(() => nextCard(), 5000);
         return () => clearInterval(timer);
     }, [index]);
 
     return (
-        <section className="relative w-full text-white py-24 overflow-hidden">
+        <section className="relative w-full text-white pt-10 pb-10 overflow-hidden">
 
-            {/* Background */}
-            <Image
-                src="/sectionAceleracao.png"
-                alt="Background"
-                fill
-                className="object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-black/70" />
-
+            {/* BG APLICADO CORRETAMENTE */}
+            <div className="absolute inset-0">
+                <Image
+                    src="/sectionAceleracao.png"
+                    alt="Aceleração Background"
+                    fill
+                    className="object-top z-10 "
+                />
+            </div>
             <div className="relative z-10 max-w-5xl mx-auto px-6">
 
-                {/* TITLE */}
-                <h2 className="font-['AmsiPro'] font-black text-center  text-4xl sm:text-5xl lg:text-6xl  leading-tight">
+                {/* Título Principal */}
+                <h2 className="text-center font-['AmsiPro'] font-black text-4xl sm:text-5xl lg:text-6xl leading-tight">
                     Conheça a <br />
                     <span className="text-laranja-intenso uppercase">ACELERAÇÃO COMERCIAL</span>
                 </h2>
 
-                <p className="font-['AmsiPro-Italic'] text-center mt-4 text-lg sm:text-xl text-white/85 leading-relaxed max-w-3xl mx-auto">
+                <p className="text-center mt-4 text-lg sm:text-xl max-w-3xl mx-auto text-white/85 leading-relaxed">
                     Acelere suas vendas com um sistema que integra CRM, anúncios, <br />
                     e-mails e jornada do cliente para gerar{" "}
                     <span className="text-laranja-intenso">receita previsível.</span>
                 </p>
 
-                {/* SLIDER CONTAINER */}
+                {/* SLIDER */}
                 <div className="relative mt-20 flex justify-center">
-
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={index}
@@ -101,35 +99,34 @@ export default function AceleracaoSection() {
                                 },
                             }}
                             className="
-                                relative
-                                bg-[#f3f0eb]
-                                text-black
-                                rounded-xl
-                                shadow-xl
-                                px-14 py-14
-                                max-w-[820px]
+                                relative 
+                                rounded-2xl 
+                                shadow-xl 
+                                px-12 py-14 
+                                max-w-[820px] 
                                 w-full
                                 text-center
                             "
+                            style={{
+                                background: "linear-gradient(90deg,#ede2d5,#ffffff,#ede2d5)"
+                            }}
                         >
-                            <h3 className="text-3xl font-black uppercase mb-6">
+                            <h3 className="text-3xl font-black uppercase mb-6 text-black">
                                 {cards[index].title}
                             </h3>
 
                             {cards[index].text.map((t, i) => (
-                                <p
-                                    key={i}
-                                    className="text-[17px] text-zinc-800 leading-relaxed mb-3"
-                                >
+                                <p key={i} className="text-[17px] text-zinc-800 leading-relaxed mb-4">
                                     {t}
                                 </p>
                             ))}
 
-                            {/* BUTTON LARANJA QUE SOBREPÕE O CARD */}
+                            {/* BOTÃO LARANJA SOB O CARD */}
                             <button
                                 className="
-                                    absolute left-1/2 -translate-x-1/2 
-                                    bottom-[-28px]
+                                    absolute 
+                                    left-1/2 -translate-x-1/2
+                                    bottom-[-32px]
                                     bg-laranja-intenso 
                                     text-white 
                                     font-black 
@@ -144,76 +141,52 @@ export default function AceleracaoSection() {
                             </button>
                         </motion.div>
                     </AnimatePresence>
-
                 </div>
 
-                {/* --- SLIDER BAR EXACTLY LIKE DESIGN --- */}
-                <div className="relative w-full max-w-[1100px] mx-auto mt-20 flex items-center">
+                {/* BARRA DE NAVEGAÇÃO */}
+                <div className="relative w-full max-w-[1200px] mx-auto mt-24 flex items-center">
 
                     {/* Linha esquerda */}
-                    <div className="flex-1 h-[7px] bg-[#ff7700] rounded-full" />
+                    <div className="flex-1 h-[8px] bg-laranja-intenso rounded-full" />
 
-                    {/* SETA LONGA, FINA, IDENTICA AO DESIGN */}
+                    {/* SETA LONGA, FINA, PUXADA À DIREITA */}
                     <button
-                        onClick={handleNext}
+                        onClick={nextCard}
                         className="
-            ml-2
-            mr-2
-            relative
-            h-[20px]
-            px-6
-            flex items-center justify-center 
-            rounded-full
-            border-[3px]
-            border-white
-            bg-transparent
-        "
-                        style={{
-                            minWidth: "150px",     // largura longa como no design
-                        }}
+                            mx-4
+                            relative
+                            h-[34px]
+                            px-10
+                            flex items-center 
+                            justify-center
+                            border-[3px]
+                            border-white
+                            rounded-full
+                            bg-transparent
+                        "
+                        style={{ minWidth: "210px" }}
                     >
-                        {/* linha branca interna */}
-                        <span
-                            className="
-                absolute left-6 right-10 top-1/2 
-                -translate-y-1/2 
-                h-[4px] 
-                bg-white 
-                rounded-full
-            "
-                        />
+                        {/* linha interna */}
+                        <span className="absolute left-6 right-12 top-1/2 -translate-y-1/2 h-[4px] bg-white rounded-full" />
 
-                        {/* flecha branca estilizada */}
-                        <span className="absolute right-6 text-white">
-                            <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                                <path
-                                    d="M0 10 H30"
-                                    stroke="white"
-                                    strokeWidth="3"
-                                    strokeLinecap="round"
-                                />
-                                <path
-                                    d="M25 5 L32 10 L25 15"
-                                    stroke="white"
-                                    strokeWidth="3"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
+                        {/* flecha */}
+                        <span className="absolute right-6">
+                            <svg width="46" height="22" viewBox="0 0 46 22" fill="none">
+                                <path d="M2 11H33" stroke="white" strokeWidth="3" strokeLinecap="round" />
+                                <path d="M30 5L39 11L30 17" stroke="white" strokeWidth="3" strokeLinecap="round" />
                             </svg>
                         </span>
                     </button>
 
                     {/* Linha direita */}
-                    <div className="flex-1 h-[7px] bg-[#ff7700] rounded-full" />
-
+                    <div className="flex-1 h-[8px] bg-laranja-intenso rounded-full" />
                 </div>
 
-                {/* FINAL PHRASE */}
-                <p className="mt-10 text-center text-xl italic text-white/90">
+                {/* FRASE FINAL */}
+                <p className="mt-12 text-center text-xl italic text-white/90">
                     Jornada mapeada, conexões certas e pós-lead{" "}
                     <span className="text-laranja-intenso">que não deixa oportunidades para trás.</span>
                 </p>
-
             </div>
         </section>
     );
