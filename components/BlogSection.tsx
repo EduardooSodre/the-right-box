@@ -52,8 +52,8 @@ export default function BlogSection() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer ${post.featured
-                                    ? "bg-laranja-intenso text-white"
-                                    : "bg-white"
+                                ? "bg-laranja-intenso text-white"
+                                : "bg-white"
                                 }`}
                         >
                             {/* Image */}
