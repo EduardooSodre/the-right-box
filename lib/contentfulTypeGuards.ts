@@ -8,8 +8,13 @@ import type {
   ContactContent,
 } from "@/types/contentful";
 
-export function isHeroContent(entry: any): entry is HeroContent {
+function isRecord(entry: unknown): entry is Record<string, unknown> {
+  return typeof entry === "object" && entry !== null;
+}
+
+export function isHeroContent(entry: unknown): entry is HeroContent {
   return (
+    isRecord(entry) &&
     typeof entry.headline === "string" &&
     typeof entry.subheadline === "string" &&
     typeof entry.cta === "string"
@@ -17,9 +22,10 @@ export function isHeroContent(entry: any): entry is HeroContent {
 }
 
 export function isAccelerationContent(
-  entry: any
+  entry: unknown
 ): entry is AccelerationContent {
   return (
+    isRecord(entry) &&
     typeof entry.title === "string" &&
     typeof entry.subtitle === "string" &&
     Array.isArray(entry.steps) &&
@@ -27,12 +33,13 @@ export function isAccelerationContent(
   );
 }
 
-export function isSolution(entry: any): entry is Solution {
-  return typeof entry.title === "string";
+export function isSolution(entry: unknown): entry is Solution {
+  return isRecord(entry) && typeof entry.title === "string";
 }
 
-export function isAboutContent(entry: any): entry is AboutContent {
+export function isAboutContent(entry: unknown): entry is AboutContent {
   return (
+    isRecord(entry) &&
     typeof entry.description === "string" &&
     typeof entry.mission === "string" &&
     typeof entry.vision === "string" &&
@@ -40,8 +47,9 @@ export function isAboutContent(entry: any): entry is AboutContent {
   );
 }
 
-export function isBlogPost(entry: any): entry is BlogPost {
+export function isBlogPost(entry: unknown): entry is BlogPost {
   return (
+    isRecord(entry) &&
     typeof entry.title === "string" &&
     typeof entry.slug === "string" &&
     typeof entry.excerpt === "string" &&
@@ -49,8 +57,9 @@ export function isBlogPost(entry: any): entry is BlogPost {
   );
 }
 
-export function isContactContent(entry: any): entry is ContactContent {
+export function isContactContent(entry: unknown): entry is ContactContent {
   return (
+    isRecord(entry) &&
     typeof entry.formTitle === "string" &&
     Array.isArray(entry.fields) &&
     typeof entry.successMessage === "string"

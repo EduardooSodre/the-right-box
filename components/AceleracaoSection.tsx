@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
 export default function AceleracaoSection() {
     const cards = [
@@ -39,22 +38,37 @@ export default function AceleracaoSection() {
     };
 
     useEffect(() => {
-        const timer = setInterval(() => nextCard(), 5000);
+        const timer = setInterval(() => {
+            setDirection(1);
+            setIndex((prev) => (prev + 1) % cards.length);
+        }, 5000);
         return () => clearInterval(timer);
-    }, [index]);
+    }, [cards.length]);
 
     return (
-        <section className="relative w-full text-white pt-10 pb-10 overflow-hidden">
-
-            {/* BG APLICADO CORRETAMENTE */}
-            <div className="absolute inset-0">
-                <Image
-                    src="/sectionAceleracao.png"
-                    alt="Aceleração Background"
-                    fill
-                    className="object-top z-10 "
-                />
-            </div>
+        <section className="relative w-full text-white pt-10 pb-10 overflow-hidden bg-[#0b0b0f]">
+            <div
+                className="absolute inset-0 opacity-90"
+                style={{
+                    backgroundImage: "url('/sectionAceleracao.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center top",
+                }}
+                aria-hidden
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/30 to-[#0b0b0f]" aria-hidden />
+            <div
+                className="absolute inset-0"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(90deg, rgba(255,98,41,0.18) 1px, transparent 1px), " +
+                        "linear-gradient(180deg, rgba(255,98,41,0.12) 1px, transparent 1px)",
+                    backgroundSize: "180px 180px, 200px 200px",
+                    backgroundPosition: "center",
+                    mixBlendMode: "screen",
+                }}
+                aria-hidden
+            />
             <div className="relative z-10 max-w-5xl mx-auto px-6">
 
                 {/* Título Principal */}

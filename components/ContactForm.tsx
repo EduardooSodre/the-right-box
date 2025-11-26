@@ -148,6 +148,13 @@ export default function ContactForm() {
             >
                 {isSubmitting ? "Enviando..." : "Enviar"}
             </button>
+
+            {submitStatus === "success" && (
+                <p className="text-green-700 text-sm font-semibold">Mensagem enviada com sucesso!</p>
+            )}
+            {submitStatus === "error" && (
+                <p className="text-red-700 text-sm font-semibold">Não foi possível enviar. Tente novamente.</p>
+            )}
         </form>
     );
 }

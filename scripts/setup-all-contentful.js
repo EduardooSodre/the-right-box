@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Script COMPLETO para configurar TODOS os Content Models e Conteúdos do Contentful
  * Executa: node scripts/setup-all-contentful.js
@@ -56,7 +57,7 @@ async function setupAllContent() {
       const updatedHero = await heroType.update();
       await updatedHero.publish();
       console.log("✅ Hero Content Model atualizado!\n");
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Hero Content já existe, pulando...\n");
     }
 
@@ -80,7 +81,7 @@ async function setupAllContent() {
       });
       await gargaloType.publish();
       console.log("✅ Gargalo criado!\n");
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Gargalo já existe, pulando...\n");
     }
 
@@ -108,7 +109,7 @@ async function setupAllContent() {
       );
       await methodologyType.publish();
       console.log("✅ Methodology Step criado!\n");
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Methodology Step já existe, pulando...\n");
     }
 
@@ -229,7 +230,7 @@ async function setupAllContent() {
         await updatedAcc.publish();
         console.log("✅ Acceleration Content Model atualizado!\n");
       }
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Erro ao atualizar Acceleration:", e.message, "\n");
     }
 
@@ -279,7 +280,7 @@ async function setupAllContent() {
       );
       await footerType.publish();
       console.log("✅ Footer Content criado!\n");
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Footer Content já existe, pulando...\n");
     }
 
@@ -312,7 +313,7 @@ async function setupAllContent() {
       } else {
         console.log("ℹ️  Nenhum Hero Content encontrado para atualizar\n");
       }
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Erro ao atualizar Hero:", e.message, "\n");
     }
 
@@ -362,7 +363,7 @@ async function setupAllContent() {
         });
         await entry.publish();
         console.log(`✅ ${gargalo.title} publicado!\n`);
-      } catch (e) {
+      } catch (_e) {
         console.log(`ℹ️  ${gargalo.title} pode já existir, pulando...\n`);
       }
     }
@@ -420,7 +421,7 @@ async function setupAllContent() {
         });
         await entry.publish();
         console.log(`✅ ${step.title} publicado!\n`);
-      } catch (e) {
+      } catch (_e) {
         console.log(`ℹ️  ${step.title} pode já existir, pulando...\n`);
       }
     }
@@ -476,7 +477,7 @@ async function setupAllContent() {
           "ℹ️  Nenhum Acceleration Content encontrado para atualizar\n"
         );
       }
-    } catch (e) {
+    } catch (_e) {
       console.log(
         "ℹ️  Erro ao atualizar Acceleration Content:",
         e.message,
@@ -504,7 +505,7 @@ async function setupAllContent() {
       });
       await footerEntry.publish();
       console.log("✅ Footer Content publicado!\n");
-    } catch (e) {
+    } catch (_e) {
       console.log("ℹ️  Footer Content pode já existir, pulando...\n");
     }
 
@@ -531,7 +532,7 @@ async function setupAllContent() {
       if (solution.isPublished()) {
         try {
           await solution.unpublish();
-        } catch (e) {
+        } catch (_e) {
           console.log(`ℹ️  Erro ao despublicar solution: ${e.message}`);
         }
       }
@@ -553,7 +554,7 @@ async function setupAllContent() {
         const updated = await solution.update();
         await updated.publish();
         console.log(`✅ Solution "${solutionsList[i]}" atualizada!\n`);
-      } catch (e) {
+      } catch (_e) {
         console.log(`ℹ️  Erro ao atualizar solution: ${e.message}\n`);
       }
     }

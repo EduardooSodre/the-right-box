@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Script para remover entradas duplicadas no Contentful
  * Executa: node scripts/cleanup-duplicates.js

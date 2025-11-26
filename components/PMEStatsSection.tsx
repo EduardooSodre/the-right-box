@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export default function PMEStatsSection() {
     return (
@@ -45,7 +44,7 @@ export default function PMEStatsSection() {
                     >
                         <div>
                             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-                                <span className="text-laranja-intenso">70%</span> dos PME'S fazem<br />
+                                <span className="text-laranja-intenso">70%</span> dos PME&apos;s fazem<br />
                                 <span className="font-bold">publicidade e não marketing</span>
                             </h2>
                         </div>

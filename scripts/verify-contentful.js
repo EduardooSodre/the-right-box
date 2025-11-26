@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Script para verificar o status atual do Contentful
  * Executa: node scripts/verify-contentful.js
@@ -59,7 +60,7 @@ async function verifyContentful() {
       limit: 100,
     });
     console.log(`\n✅ Methodology Steps: ${steps.items.length} entrada(s)`);
-    steps.items.forEach((item, idx) => {
+    steps.items.forEach((item) => {
       console.log(
         `   ${item.fields.number?.["en-US"]}. ${item.fields.title?.["en-US"]}`
       );
