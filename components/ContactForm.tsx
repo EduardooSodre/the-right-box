@@ -131,7 +131,7 @@ export default function ContactForm() {
                 </label>
                 <input
                     type="text"
-                    name="cidade"
+                    name="cargo"
                     required
                     value={formData.cidade}
                     onChange={(e) =>
