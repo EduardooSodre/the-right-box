@@ -40,7 +40,7 @@ export default function Footer({ content, contactContent }: FooterProps) {
                     >
                         <div className="w-20 h-20 sm:w-24 sm:h-24 relative">
                             <Image
-                                src="/logos/LOGO-1A.png"
+                                src="/logos/LogoFooter.png"
                                 alt="The Right Box Logo"
                                 fill
                                 sizes="(max-width: 640px) 80px, 96px"
