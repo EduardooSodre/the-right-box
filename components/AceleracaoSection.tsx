@@ -46,29 +46,13 @@ export default function AceleracaoSection() {
     }, [cards.length]);
 
     return (
-        <section className="relative w-full text-white pt-10 pb-10 overflow-hidden bg-[#0b0b0f]">
+        <section className="relative w-full text-white pt-50 overflow-hidden">
+            {/* Background sem animação */}
             <div
-                className="absolute inset-0 opacity-90"
-                style={{
-                    backgroundImage: "url('/sectionAceleracao.png')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center top",
-                }}
-                aria-hidden
+                className="absolute inset-0 bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat"
+                aria-hidden="true"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/30 to-[#0b0b0f]" aria-hidden />
-            <div
-                className="absolute inset-0"
-                style={{
-                    backgroundImage:
-                        "linear-gradient(90deg, rgba(255,98,41,0.18) 1px, transparent 1px), " +
-                        "linear-gradient(180deg, rgba(255,98,41,0.12) 1px, transparent 1px)",
-                    backgroundSize: "180px 180px, 200px 200px",
-                    backgroundPosition: "center",
-                    mixBlendMode: "screen",
-                }}
-                aria-hidden
-            />
+
             <div className="relative z-10 max-w-5xl mx-auto px-6">
 
                 {/* Título Principal */}
@@ -120,10 +104,8 @@ export default function AceleracaoSection() {
                                 max-w-[820px] 
                                 w-full
                                 text-center
+                                bg-[linear-gradient(90deg,#ede2d5,#ffffff,#ede2d5)]
                             "
-                            style={{
-                                background: "linear-gradient(90deg,#ede2d5,#ffffff,#ede2d5)"
-                            }}
                         >
                             <h3 className="text-3xl font-black uppercase mb-6 text-black">
                                 {cards[index].title}
@@ -140,7 +122,7 @@ export default function AceleracaoSection() {
                                 className="
                                     absolute 
                                     left-1/2 -translate-x-1/2
-                                    bottom-[-32px]
+                                    -bottom-8
                                     bg-laranja-intenso 
                                     text-white 
                                     font-black 
@@ -161,7 +143,7 @@ export default function AceleracaoSection() {
                 <div className="relative w-full max-w-[1200px] mx-auto mt-24 flex items-center">
 
                     {/* Linha esquerda */}
-                    <div className="flex-1 h-[8px] bg-laranja-intenso rounded-full" />
+                    <div className="flex-1 h-2 bg-laranja-intenso rounded-full" />
 
                     {/* SETA LONGA, FINA, PUXADA À DIREITA */}
                     <button
@@ -177,11 +159,11 @@ export default function AceleracaoSection() {
                             border-white
                             rounded-full
                             bg-transparent
+                            min-w-[210px]
                         "
-                        style={{ minWidth: "210px" }}
                     >
                         {/* linha interna */}
-                        <span className="absolute left-6 right-12 top-1/2 -translate-y-1/2 h-[4px] bg-white rounded-full" />
+                        <span className="absolute left-6 right-12 top-1/2 -translate-y-1/2 h-1 bg-white rounded-full" />
 
                         {/* flecha */}
                         <span className="absolute right-6">
@@ -193,7 +175,7 @@ export default function AceleracaoSection() {
                     </button>
 
                     {/* Linha direita */}
-                    <div className="flex-1 h-[8px] bg-laranja-intenso rounded-full" />
+                    <div className="flex-1 h-2 bg-laranja-intenso rounded-full" />
                 </div>
 
                 {/* FRASE FINAL */}

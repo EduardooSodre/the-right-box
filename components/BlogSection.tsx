@@ -27,7 +27,7 @@ const blogPosts = [
 
 export default function BlogSection() {
     return (
-        <section className="relative bg-gradient-to-b from-white to-zinc-50 text-black py-16 sm:py-20 md:py-24 lg:py-28">
+        <section className="relative bg-linear-to-b from-white to-zinc-50 text-black py-16 sm:py-20 md:py-24 lg:py-28">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
                 {/* Title */}
                 <motion.div
@@ -57,7 +57,7 @@ export default function BlogSection() {
                                 }`}
                         >
                             {/* Image */}
-                            <div className="relative aspect-[4/3] overflow-hidden">
+                            <div className="relative aspect-4/3 overflow-hidden">
                                 <Image
                                     src={post.image}
                                     alt={post.title}

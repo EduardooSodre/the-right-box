@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import GargalosSection from "@/components/GargalosSection";
 import AceleracaoSection from "@/components/AceleracaoSection";
-import DiagnosticoSection from "@/components/DiagnosticoSection";
 import PMEStatsSection from "@/components/PMEStatsSection";
 import Solutions from "@/components/Solutions";
 import BlogSection from "@/components/BlogSection";
@@ -95,7 +94,7 @@ export default async function Home() {
       <Hero content={heroContent} />
       <GargalosSection />
       <AceleracaoSection />
-      <DiagnosticoSection />
+
       <PMEStatsSection />
       <Solutions />
       <BlogSection />

@@ -6,7 +6,7 @@ export default function ContactForm() {
     const [formData, setFormData] = useState({
         nome: "",
         empresa: "",
-        cidade: "",
+        cargo: "",
         email: "",
         telefone: "",
         solucao: "",
@@ -34,7 +34,7 @@ export default function ContactForm() {
                 setFormData({
                     nome: "",
                     empresa: "",
-                    cidade: "",
+                    cargo: "",
                     email: "",
                     telefone: "",
                     solucao: "",
@@ -57,11 +57,12 @@ export default function ContactForm() {
 
             {/* Nome */}
             <div>
-                <label className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
+                <label htmlFor="nome" className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
                     Nome *
                 </label>
                 <input
                     type="text"
+                    id="nome"
                     name="nome"
                     required
                     value={formData.nome}
@@ -74,11 +75,12 @@ export default function ContactForm() {
 
             {/* Email */}
             <div>
-                <label className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
+                <label htmlFor="email" className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
                     Email *
                 </label>
                 <input
                     type="email"
+                    id="email"
                     name="email"
                     required
                     value={formData.email}
@@ -91,13 +93,13 @@ export default function ContactForm() {
 
             {/* Telefone */}
             <div>
-                <label className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
+                <label htmlFor="telefone" className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
                     Telefone *
                 </label>
                 <input
                     type="tel"
+                    id="telefone"
                     name="telefone"
-                    placeholder="BR +55"
                     required
                     value={formData.telefone}
                     onChange={(e) =>
@@ -107,13 +109,14 @@ export default function ContactForm() {
                 />
             </div>
 
-            {/* Empresa */}
+            {/* Nome da Empresa */}
             <div>
-                <label className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
+                <label htmlFor="empresa" className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
                     Nome da Empresa *
                 </label>
                 <input
                     type="text"
+                    id="empresa"
                     name="empresa"
                     required
                     value={formData.empresa}
@@ -126,16 +129,18 @@ export default function ContactForm() {
 
             {/* Cargo */}
             <div>
-                <label className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
+                <label htmlFor="cargo" className="text-[11px] text-zinc-700 uppercase font-bold mb-1 block">
                     Cargo *
                 </label>
                 <input
                     type="text"
+                    id="cargo"
                     name="cargo"
+                    title="Cargo"
                     required
-                    value={formData.cidade}
+                    value={formData.cargo}
                     onChange={(e) =>
-                        setFormData({ ...formData, cidade: e.target.value })
+                        setFormData({ ...formData, cargo: e.target.value })
                     }
                     className={inputClass}
                 />
@@ -149,12 +154,16 @@ export default function ContactForm() {
                 {isSubmitting ? "Enviando..." : "Enviar"}
             </button>
 
-            {submitStatus === "success" && (
-                <p className="text-green-700 text-sm font-semibold">Mensagem enviada com sucesso!</p>
-            )}
-            {submitStatus === "error" && (
-                <p className="text-red-700 text-sm font-semibold">Não foi possível enviar. Tente novamente.</p>
-            )}
-        </form>
+            {
+                submitStatus === "success" && (
+                    <p className="text-green-700 text-sm font-semibold">Mensagem enviada com sucesso!</p>
+                )
+            }
+            {
+                submitStatus === "error" && (
+                    <p className="text-red-700 text-sm font-semibold">Não foi possível enviar. Tente novamente.</p>
+                )
+            }
+        </form >
     );
 }
