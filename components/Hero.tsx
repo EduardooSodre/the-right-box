@@ -26,6 +26,9 @@ export default function Hero({ content }: HeroProps) {
                 className="object-cover object-center md:object-right opacity-60"
             />
 
+            {/* Blur laranja atrás do formulário */}
+            <div className="absolute top-[20%] right-[0%] w-[400px] h-[400px] bg-[#eb5313] rounded-full blur-[120px] opacity-30 z-0" />
+
             {/* Gradiente para melhorar legibilidade */}
             <div className="absolute inset-0" />
 
