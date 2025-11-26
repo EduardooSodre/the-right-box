@@ -59,13 +59,13 @@ export default function AceleracaoSection() {
             <div className="relative z-10 max-w-5xl mx-auto px-6">
 
                 {/* TITLE */}
-                <h2 className="text-center font-['AmsiPro'] font-black text-4xl sm:text-5xl lg:text-6xl uppercase leading-tight">
+                <h2 className="font-['AmsiPro'] font-black text-center  text-4xl sm:text-5xl lg:text-6xl  leading-tight">
                     Conheça a <br />
-                    <span className="text-laranja-intenso">ACELERAÇÃO COMERCIAL</span>
+                    <span className="text-laranja-intenso uppercase">ACELERAÇÃO COMERCIAL</span>
                 </h2>
 
-                <p className="text-center mt-4 text-lg sm:text-xl text-white/85 leading-relaxed max-w-3xl mx-auto">
-                    Acelere suas vendas com um sistema que integra CRM, anúncios,
+                <p className="font-['AmsiPro-Italic'] text-center mt-4 text-lg sm:text-xl text-white/85 leading-relaxed max-w-3xl mx-auto">
+                    Acelere suas vendas com um sistema que integra CRM, anúncios, <br />
                     e-mails e jornada do cliente para gerar{" "}
                     <span className="text-laranja-intenso">receita previsível.</span>
                 </p>
