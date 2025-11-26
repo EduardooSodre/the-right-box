@@ -136,8 +136,8 @@ export default function Solutions() {
                             key={index}
                             onClick={() => goToSlide(index)}
                             className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                                    ? "w-8 bg-laranja-intenso"
-                                    : "w-2 bg-zinc-700 hover:bg-zinc-600"
+                                ? "w-8 bg-laranja-intenso"
+                                : "w-2 bg-zinc-700 hover:bg-zinc-600"
                                 }`}
                             aria-label={`Ir para slide ${index + 1}`}
                         />
