@@ -184,9 +184,9 @@ export default function AceleracaoSection() {
                 </div>
 
                 {/* FRASE FINAL */}
-                <p className="mt-12 text-center text-xl italic text-white/90">
-                    Jornada mapeada, conexões certas e pós-lead{" "}
-                    <span className="text-laranja-intenso">que não deixa oportunidades para trás.</span>
+                <p className="font-['AmsiPro-Italic'] mt-20 mb-3 text-center text-2xl sm:text-3xl lg:text-4xl text-white/90">
+                    Jornada mapeada, conexões certas e pós-lead <br />
+                    que não deixa oportunidades para trás.
                 </p>
             </div>
         </section>
