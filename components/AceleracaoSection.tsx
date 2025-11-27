@@ -46,14 +46,9 @@ export default function AceleracaoSection() {
     }, [cards.length]);
 
     return (
-        <section className="relative w-full text-white pt-50 overflow-hidden">
-            {/* Background sem animação */}
-            <div
-                className="absolute inset-0 bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat"
-                aria-hidden="true"
-            />
+        <section className="relative w-full text-white  overflow-hidden bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat">
 
-            <div className="relative z-10 max-w-5xl mx-auto px-6">
+            <div className="relative pt-50 max-w-5xl mx-auto px-6">
 
                 {/* Título Principal */}
                 <h2 className="text-center font-['AmsiPro'] font-black text-4xl sm:text-5xl lg:text-6xl leading-tight">
@@ -68,7 +63,7 @@ export default function AceleracaoSection() {
                 </p>
 
                 {/* SLIDER */}
-                <div className="relative mt-20 flex justify-center">
+                <div className="relative mt-20 flex justify-center min-h-[300px]">
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={index}
@@ -97,14 +92,19 @@ export default function AceleracaoSection() {
                                 },
                             }}
                             className="
-                                relative 
+                                absolute
+                                top-0
                                 rounded-2xl 
                                 shadow-xl 
                                 px-12 py-14 
                                 max-w-[820px] 
                                 w-full
+                                min-h-[250px]
                                 text-center
                                 bg-[linear-gradient(90deg,#ede2d5,#ffffff,#ede2d5)]
+                                flex
+                                flex-col
+                                justify-center
                             "
                         >
                             <h3 className="text-3xl font-black uppercase mb-6 text-black">
@@ -118,23 +118,23 @@ export default function AceleracaoSection() {
                             ))}
 
                             {/* BOTÃO LARANJA SOB O CARD */}
-                            <button
-                                className="
-                                    absolute 
-                                    left-1/2 -translate-x-1/2
-                                    -bottom-8
-                                    bg-laranja-intenso 
-                                    text-white 
-                                    font-black 
-                                    text-sm 
-                                    px-12 py-3 
-                                    rounded-md 
-                                    uppercase 
-                                    tracking-wide
-                                "
-                            >
-                                {cards[index].button}
-                            </button>
+                            <div className="absolute left-1/2 -translate-x-1/2 -bottom-6">
+                                <button
+                                    className="
+                                        bg-laranja-intenso 
+                                        text-white 
+                                        font-black 
+                                        text-sm 
+                                        px-12 py-3 
+                                        rounded-md 
+                                        uppercase 
+                                        tracking-wide
+                                        whitespace-nowrap
+                                    "
+                                >
+                                    {cards[index].button}
+                                </button>
+                            </div>
                         </motion.div>
                     </AnimatePresence>
                 </div>
@@ -143,7 +143,7 @@ export default function AceleracaoSection() {
                 <div className="relative w-full max-w-[1200px] mx-auto mt-24 flex items-center">
 
                     {/* Linha esquerda */}
-                    <div className="flex-1 h-2 bg-laranja-intenso rounded-full" />
+                    <div className="flex-3 h-1 bg-laranja-intenso rounded-full" />
 
                     {/* SETA LONGA, FINA, PUXADA À DIREITA */}
                     <button
@@ -151,7 +151,7 @@ export default function AceleracaoSection() {
                         className="
                             mx-4
                             relative
-                            h-[34px]
+                            h-8
                             px-10
                             flex items-center 
                             justify-center
@@ -159,7 +159,7 @@ export default function AceleracaoSection() {
                             border-white
                             rounded-full
                             bg-transparent
-                            min-w-[210px]
+                            min-w-[130px]
                         "
                     >
                         {/* linha interna */}
@@ -175,7 +175,7 @@ export default function AceleracaoSection() {
                     </button>
 
                     {/* Linha direita */}
-                    <div className="flex-1 h-2 bg-laranja-intenso rounded-full" />
+                    <div className="flex-1 h-1 bg-laranja-intenso rounded-full" />
                 </div>
 
                 {/* FRASE FINAL */}

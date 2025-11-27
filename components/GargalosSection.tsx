@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function GargalosSection() {
     return (
-        <section className="relative text-white   overflow-hidden">
+        <section className="relative text-white  overflow-hidden">
 
             {/* Fundo escuro leve vindo da hero */}
             <div className="absolute inset-0" />
