@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export default function AceleracaoSection() {
     const cards = [
@@ -160,18 +161,22 @@ export default function AceleracaoSection() {
                             rounded-full
                             bg-transparent
                             min-w-[130px]
+                            cursor-pointer  
+                            hover:bg-white/10
+                            transition-all
+                            duration-300
+                            group
                         "
+                        aria-label="Próximo card"
                     >
-                        {/* linha interna */}
-                        <span className="absolute left-6 right-12 top-1/2 -translate-y-1/2 h-1 bg-white rounded-full" />
+                        {/* Linha horizontal */}
+                        <span className="absolute left-8 right-8 h-1 bg-white" />
 
-                        {/* flecha */}
-                        <span className="absolute right-6">
-                            <svg width="46" height="22" viewBox="0 0 46 22" fill="none">
-                                <path d="M2 11H33" stroke="white" strokeWidth="3" strokeLinecap="round" />
-                                <path d="M30 5L39 11L30 17" stroke="white" strokeWidth="3" strokeLinecap="round" />
-                            </svg>
-                        </span>
+                        {/* Seta */}
+                        <ArrowRight
+                            className="absolute right-6 w-8 h-8 text-white transition-transform group-hover:translate-x-1"
+                            strokeWidth={3}
+                        />
                     </button>
 
                     {/* Linha direita */}
