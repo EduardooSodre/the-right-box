@@ -42,7 +42,7 @@ export default function AceleracaoSection() {
         const timer = setInterval(() => {
             setDirection(1);
             setIndex((prev) => (prev + 1) % cards.length);
-        }, 5000);
+        }, 8000); // Muda a cada 8 segundos
         return () => clearInterval(timer);
     }, [cards.length]);
 
@@ -72,23 +72,23 @@ export default function AceleracaoSection() {
                             initial={{
                                 x: direction > 0 ? 350 : -350,
                                 opacity: 0,
-                                scale: 0.92
+                                scale: 0.95,
                             }}
                             animate={{
                                 x: 0,
                                 opacity: 1,
                                 scale: 1,
                                 transition: {
-                                    duration: 0.55,
+                                    duration: 1.5,
                                     ease: [0.22, 1, 0.36, 1],
                                 },
                             }}
                             exit={{
                                 x: direction < 0 ? 350 : -350,
                                 opacity: 0,
-                                scale: 0.92,
+                                scale: 0.95,
                                 transition: {
-                                    duration: 0.45,
+                                    duration: 1.0,
                                     ease: [0.22, 1, 0.36, 1],
                                 },
                             }}

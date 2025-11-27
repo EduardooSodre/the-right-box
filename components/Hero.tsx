@@ -26,9 +26,6 @@ export default function Hero({ content }: HeroProps) {
                 className="object-cover object-right md:object-right scale-125"
             />
 
-            {/* Blur laranja atrás do formulário */}
-            <div className="absolute top-[20%] right-[5%] w-[400px] h-[400px] bg-[#b83801] rounded-full blur-[120px] opacity-30 z-0" />
-
             {/* Gradiente para melhorar legibilidade */}
             <div className="absolute inset-0" />
 
@@ -60,7 +57,13 @@ export default function Hero({ content }: HeroProps) {
                             </p>
 
                             <span
-                                className="font-['AmsiPro'] text-sm sm:text-lg uppercase tracking-[0.15em] font-black inline-block bg-[linear-gradient(90deg,#d5a03d,#f1d77c,#f9ed9d,#d5a03d,#e4c269,#f9ed9d)] bg-clip-text text-transparent"
+                                className="font-['AmsiPro'] text-sm sm:text-lg uppercase tracking-[0.15em] font-black inline-block"
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(90deg,#d5a03d,#f1d77c,#f9ed9d,#d5a03d,#e4c269,#f9ed9d)",
+                                    WebkitBackgroundClip: "text",
+                                    color: "transparent",
+                                }}
                             >
                                 SEM ACHISMO, SEM RUÍDO, SEM DESPERDÍCIO.
                             </span>
