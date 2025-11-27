@@ -139,19 +139,19 @@ export default function AceleracaoSection() {
         <section className="relative w-full text-white overflow-hidden bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat">
             <div className="relative pt-50 max-w-5xl mx-auto px-6">
                 {/* Título Principal */}
-                <h2 className="text-center font-['AmsiPro'] font-black text-4xl sm:text-5xl lg:text-6xl leading-tight">
+                <h2 className="text-center font-['AmsiPro'] font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
                     Conheça a <br />
                     <span className="text-laranja-intenso uppercase">ACELERAÇÃO COMERCIAL</span>
                 </h2>
 
-                <p className="text-center mt-4 text-lg sm:text-xl max-w-3xl mx-auto text-white/85 leading-relaxed">
-                    Acelere suas vendas com um sistema que integra CRM, anúncios, <br />
+                <p className="text-center mt-4 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-white/85 leading-relaxed">
+                    Acelere suas vendas com um sistema que integra CRM, anúncios,
                     e-mails e jornada do cliente para gerar{" "}
                     <span className="text-laranja-intenso">receita previsível.</span>
                 </p>
 
                 {/* SLIDER */}
-                <div className="relative mt-20 flex justify-center min-h-[300px]">
+                <div className="relative mt-12 sm:mt-16 md:mt-20 flex justify-center min-h-[400px] sm:min-h-[350px] md:min-h-[300px]">
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={index}
@@ -181,38 +181,38 @@ export default function AceleracaoSection() {
                             }}
                             className="
                                 absolute top-0
-                                rounded-2xl 
+                                rounded-xl md:rounded-2xl 
                                 shadow-xl 
-                                px-12 py-8 
+                                px-4 sm:px-8 md:px-12 py-6 sm:py-7 md:py-8 
                                 max-w-[820px] 
                                 w-full
-                                min-h-[250px]
+                                min-h-[280px] sm:min-h-[260px] md:min-h-[250px]
                                 text-center
                                 bg-[linear-gradient(90deg,#ede2d5,#ffffff,#ede2d5)]
                                 flex flex-col justify-center
                             "
                         >
-                            <h3 className="text-3xl font-black uppercase mb-6 text-black">
+                            <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase mb-4 sm:mb-5 md:mb-6 text-black">
                                 {cards[index].title}
                             </h3>
 
                             {cards[index].text.map((t, i) => (
                                 <p
                                     key={i}
-                                    className="text-[17px] text-[#5c5c5c] leading-relaxed mb-4"
+                                    className="text-sm sm:text-base md:text-[17px] text-[#5c5c5c] leading-relaxed mb-3 sm:mb-4"
                                     dangerouslySetInnerHTML={{ __html: t }}
                                 />
                             ))}
 
                             {/* BOTÃO LARANJA SOB O CARD */}
-                            <div className="absolute left-1/2 -translate-x-1/2 -bottom-6">
+                            <div className="absolute left-1/2 -translate-x-1/2 -bottom-5 sm:-bottom-6">
                                 <button
                                     className="
                                         bg-laranja-intenso 
                                         text-white 
                                         font-black 
-                                        text-sm 
-                                        px-12 py-3 
+                                        text-[10px] sm:text-xs md:text-sm 
+                                        px-4 sm:px-8 md:px-12 py-2 sm:py-2.5 md:py-3 
                                         rounded-md 
                                         uppercase 
                                         tracking-wide
@@ -232,23 +232,23 @@ export default function AceleracaoSection() {
                     <button
                         onClick={nextCard}
                         className="
-                            mx-4 relative h-8 px-10
+                            mx-2 sm:mx-3 md:mx-4 relative h-6 sm:h-7 md:h-8 px-6 sm:px-8 md:px-10
                             flex items-center justify-center
-                            border-[3px] border-white rounded-full
-                            bg-transparent min-w-[130px]
+                            border-2 sm:border-[3px] border-white rounded-full
+                            bg-transparent min-w-[90px] sm:min-w-[110px] md:min-w-[130px]
                             cursor-pointer  
                             hover:bg-white/10
                             transition-all duration-300 group
                         "
                         aria-label="Próximo card"
                     >
-                        <span className="absolute left-8 right-8 h-1 bg-white" />
+                        <span className="absolute left-4 right-4 sm:left-6 sm:right-6 md:left-8 md:right-8 h-0.5 sm:h-1 bg-white" />
                         <ArrowRight
-                            className="absolute right-6 w-8 h-8 text-white transition-transform group-hover:translate-x-1"
+                            className="absolute right-3 sm:right-4 md:right-6 w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white transition-transform group-hover:translate-x-1"
                             strokeWidth={3}
                         />
                     </button>
-                    <div className="flex-1 h-1 bg-laranja-intenso rounded-full" />
+                    <div className="flex-1 h-0.5 sm:h-1 bg-laranja-intenso rounded-full" />
                 </div>
 
                 {/* FRASE FINAL */}
