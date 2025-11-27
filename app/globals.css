@@ -60,6 +60,15 @@
   font-display: swap;
 }
 
+/* Previne zoom no IOS ao focar nos inputs */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
 :root {
   /* TRBOX Color Palette */
   --terracota: #b6400d;

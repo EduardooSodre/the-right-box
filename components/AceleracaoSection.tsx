@@ -115,19 +115,25 @@ export default function AceleracaoSection() {
 
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(1);
+    const [resetTimer, setResetTimer] = useState(0); // <- NOVO
 
     const nextCard = () => {
         setDirection(1);
         setIndex((prev) => (prev + 1) % cards.length);
+        setResetTimer((r) => r + 1); // <- REINICIA O TIMER AO CLICAR
     };
 
     useEffect(() => {
         const timer = setInterval(() => {
             setDirection(1);
             setIndex((prev) => (prev + 1) % cards.length);
-        }, 10000); // a cada 10s
+        }, 8000);
+
         return () => clearInterval(timer);
-    }, [cards.length]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [resetTimer]);
+
 
     return (
         <section className="relative w-full text-white overflow-hidden bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat">
