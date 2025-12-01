@@ -64,7 +64,7 @@ export default function Header() {
                                 href={item.href}
                                 className={`relative font-['AmsiPro'] font-bold uppercase tracking-wide transition-all duration-300 ${item.isButton
                                     ? "px-6 py-2 border-2 border-laranja-intenso rounded-full text-white hover:bg-laranja-intenso hover:text-black shadow-sm"
-                                    : "text-white/90 hover:text-white after:absolute after:left-0 after:bottom-[-4px] after:h-[2px] after:w-0 after:bg-laranja-intenso after:transition-all after:duration-300 hover:after:w-full"
+                                    : "text-white/90 hover:text-white after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-laranja-intenso after:transition-all after:duration-300 hover:after:w-full"
                                     }`}
                             >
                                 {item.label}
@@ -108,7 +108,7 @@ export default function Header() {
                         transition={{ duration: 0.4, ease: "easeInOut" }}
                         className="fixed inset-0 z-40 bg-black lg:hidden"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 to-black opacity-95" />
+                        <div className="absolute inset-0 bg-linear-to-b from-zinc-950 to-black opacity-95" />
 
                         <div className="relative h-full flex flex-col items-center justify-center px-6">
                             <nav className="flex flex-col items-center gap-8">

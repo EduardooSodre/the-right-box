@@ -82,7 +82,7 @@ export default function Solutions() {
                             className="group relative bg-zinc-900 rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300"
                         >
                             {/* Image Container */}
-                            <div className="relative aspect-[3/4] overflow-hidden">
+                            <div className="relative aspect-3/4 overflow-hidden">
                                 <Image
                                     src={solution.image}
                                     alt={solution.title}
@@ -91,7 +91,7 @@ export default function Solutions() {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
                                 />
                                 {/* Dark gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                                <div className="absolute inset-0 bbg-linear-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                             </div>
 
                             {/* Title overlay at bottom */}
@@ -108,7 +108,7 @@ export default function Solutions() {
                 <div className="md:hidden relative max-w-sm mx-auto">
                     <div className="relative bg-zinc-900 rounded-2xl overflow-hidden">
                         {/* Image */}
-                        <div className="relative aspect-[3/4] overflow-hidden">
+                        <div className="relative aspect-3/4 overflow-hidden">
                             <Image
                                 src={solutionsData[currentIndex].image}
                                 alt={solutionsData[currentIndex].title}
@@ -117,7 +117,7 @@ export default function Solutions() {
                                 sizes="(max-width: 640px) 90vw, 400px"
                             />
                             {/* Dark gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-60" />
                         </div>
 
                         {/* Title overlay */}
