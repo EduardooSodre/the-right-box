@@ -72,29 +72,16 @@ export default function BlogSection() {
     };
 
     return (
-        <section className="relative bg-white overflow-hidden pb-12 sm:pb-16 md:pb-20">
+        <section className="relative overflow-hidden pb-12 sm:pb-16 md:pb-20 bg-[#f7f7f7]">
             {/* Title */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-8 sm:mb-12"
-            >
-                <h2 className="font-[AmsiPro] bg-black container mx-auto max-w-full px-10 sm:px-16 lg:px-22 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black lowercase text-">
-                    blog
-                </h2>
-            </motion.div>
+            <h2 className="font-[AmsiPro] bg-black container mx-auto max-w-full px-10 sm:px-16 lg:px-22 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black lowercase mb-14 sm:mb-16 md:mb-20 text-white py-4">
+                blog
+            </h2>
+
 
             {/* Cards Container */}
-            <motion.div
-                className="relative max-w-7xl mx-auto px-4 cursor-grab active:cursor-grabbing"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                onDragEnd={handleDragEnd}
-            >
-                <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-6 lg:gap-8 max-w-7xl mx-auto relative">
+            <div className="relative mx-auto overflow-visible">
+                <div className="flex flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8 mx-auto relative px-4 md:px-0 max-w-7xl">
                     <AnimatePresence mode="popLayout" custom={direction}>
                         {getVisibleCards().map(({ post, index, position }) => {
                             const isCenter = position === 'center';
@@ -103,6 +90,10 @@ export default function BlogSection() {
                                 <motion.article
                                     key={`${index}-${position}`}
                                     custom={direction}
+                                    drag="x"
+                                    dragConstraints={{ left: 0, right: 0 }}
+                                    dragElastic={0.2}
+                                    onDragEnd={handleDragEnd}
                                     initial={{
                                         x: direction > 0 ? 400 : -400,
                                         opacity: 0,
@@ -130,7 +121,13 @@ export default function BlogSection() {
                                         transition: { duration: 0.3 },
                                     }}
                                     onClick={() => handleCardClick(index)}
-                                    className="relative cursor-pointer w-full md:w-[340px] lg:w-[380px] shrink-0"
+                                    className={`
+                                        relative cursor-grab active:cursor-grabbing shrink-0
+                                        ${isCenter 
+                                            ? 'w-[85%] sm:w-[80%] md:w-[340px] lg:w-[380px] z-10' 
+                                            : 'w-[30%] sm:w-[25%] md:w-[340px] lg:w-[380px] z-0'
+                                        }
+                                    `}
                                     style={{ perspective: 1000 }}
                                 >
                                     {/* iOS-style 3D Card - Horizontal Layout */}
@@ -203,7 +200,7 @@ export default function BlogSection() {
                         />
                     ))}
                 </div>
-            </motion.div>
+            </div>
         </section>
     );
 }
