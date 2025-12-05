@@ -33,7 +33,7 @@ export default function Header() {
     return (
         <>
             <header
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+                className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${isScrolled
                     ? "bg-black/90 backdrop-blur-md shadow-lg shadow-black/40"
                     : "bg-transparent"
                     }`}
@@ -43,9 +43,12 @@ export default function Header() {
                     <Link
                         href="/"
                         aria-label="Voltar para a página inicial"
-                        className={`flex items-center  hover:scale-105 transition-all duration-300 ${isScrolled ? 'sm:w-24 sm:h-24  ' : 'sm:w-36 sm:h-36'}`}
+                        className="flex items-center hover:scale-105 transition-all duration-300"
                     >
-                        <div className="relative w-24 h-24 sm:w-36 sm:h-36 ">
+                        <div className={`relative transition-all duration-300 ${isScrolled
+                            ? 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24'
+                            : 'w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32'
+                            }`}>
                             <Image
                                 src="/logos/logo.png"
                                 alt="Logo The Right Box"
