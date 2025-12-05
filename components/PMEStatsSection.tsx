@@ -63,7 +63,7 @@ function AnimatedArcWithDot() {
 
                 <motion.circle r={6} fill="#FF6B35" cx={cx} cy={cy} />
             </svg>
-            
+
             {/* Animated percentage text */}
             <div className="absolute inset-0 flex items-center justify-center mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-18 text-center">
                 <span className="text-xl sm:text-4xl font-bold text-gray-400">
