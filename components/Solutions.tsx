@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // Dados das soluções com imagens correspondentes
 const solutionsData = [
@@ -15,7 +16,7 @@ const solutionsData = [
         image: "/images/Estrategia-para-anuncio.png",
     },
     {
-        title: "Criação de site",
+        title: "Criação de site e Landing Page de Conversão",
         image: "/images/Criacao-de-site.png",
     },
     {
@@ -29,29 +30,22 @@ const solutionsData = [
 ];
 
 export default function Solutions() {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(2); // Start with middle card
 
-    // Auto-advance carousel
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % solutionsData.length);
-        }, 5000);
-
-        return () => clearInterval(timer);
-    }, []);
-
-    const goToSlide = (index: number) => {
-        setCurrentIndex(index);
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % solutionsData.length);
     };
 
-    // Calculate visible slides (5 at a time on desktop)
-    const getVisibleSlides = () => {
-        const slides = [];
-        for (let i = 0; i < 5; i++) {
-            const index = (currentIndex + i) % solutionsData.length;
-            slides.push({ ...solutionsData[index], key: `${index}-${i}` });
-        }
-        return slides;
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + solutionsData.length) % solutionsData.length);
+    };
+
+    // Get card position relative to center
+    const getCardPosition = (index: number) => {
+        const diff = index - currentIndex;
+        if (diff > 2) return diff - solutionsData.length;
+        if (diff < -2) return diff + solutionsData.length;
+        return diff;
     };
 
     return (
@@ -64,77 +58,96 @@ export default function Solutions() {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-12 sm:mb-16"
             >
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-laranja-intenso">
+                <h2 className="font-[AmsiPro] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase text-laranja-intenso">
                     SOLUÇÕES
                 </h2>
             </motion.div>
 
-            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative z-10">
-                {/* Desktop - 5 cards grid */}
-                <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 max-w-7xl mx-auto">
-                    {getVisibleSlides().map((solution, idx) => (
-                        <motion.div
-                            key={solution.key}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: idx * 0.1 }}
-                            className="group relative bg-zinc-900 rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300"
-                        >
-                            {/* Image Container */}
-                            <div className="relative aspect-3/4 overflow-hidden">
-                                <Image
-                                    src={solution.image}
-                                    alt={solution.title}
-                                    fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                                />
-                                {/* Dark gradient overlay */}
-                                <div className="absolute inset-0 bbg-linear-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                            </div>
+            {/* Carousel Container */}
+            <div className="relative h-[450px] md:h-[550px] max-w-6xl mx-auto px-4">
+                {/* Cards Stack */}
+                <div className="relative w-full h-full flex items-center justify-center perspective-[2000px]">
+                    <AnimatePresence mode="sync">
+                        {solutionsData.map((solution, index) => {
+                            const position = getCardPosition(index);
+                            const isCenter = position === 0;
 
-                            {/* Title overlay at bottom */}
-                            <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                                <h3 className="text-sm lg:text-base font-bold text-white drop-shadow-lg">
-                                    {solution.title}
-                                </h3>
-                            </div>
-                        </motion.div>
-                    ))}
+                            return (
+                                <motion.div
+                                    key={index}
+                                    initial={{ scale: 0.8, x: 0, opacity: 0, rotateY: 0, z: -200 }}
+                                    animate={{
+                                        scale: isCenter ? 1 : 0.82 - Math.abs(position) * 0.08,
+                                        x: position * 200,
+                                        z: isCenter ? 0 : -Math.abs(position) * 100,
+                                        opacity: Math.abs(position) > 2 ? 0 : 1 - Math.abs(position) * 0.15,
+                                        rotateY: position * -12,
+                                        filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 1}px)`,
+                                    }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.25, 0.46, 0.45, 0.94],
+                                    }}
+                                    style={{
+                                        position: 'absolute',
+                                        zIndex: 10 - Math.abs(position),
+                                        transformStyle: 'preserve-3d',
+                                    }}
+                                    className={`w-60 md:w-[300px] ${isCenter ? 'cursor-default' : 'cursor-pointer'}`}
+                                    onClick={() => !isCenter && setCurrentIndex(index)}
+                                >
+                                    {/* Card */}
+                                    <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]">
+                                        {/* Image Container - 100% fill */}
+                                        <div className="relative aspect-3/4">
+                                            <Image
+                                                src={solution.image}
+                                                alt={solution.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="300px"
+                                                priority={isCenter}
+                                            />
+                                            {/* Gradient overlay */}
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
+                                        </div>
+
+                                        {/* Title overlay at bottom */}
+                                        <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                                            <h3 className="font-[AmsiPro] text-sm md:text-base font-bold text-white drop-shadow-lg leading-tight">
+                                                {solution.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </AnimatePresence>
                 </div>
 
-                {/* Mobile - Single card carousel */}
-                <div className="md:hidden relative max-w-sm mx-auto">
-                    <div className="relative bg-zinc-900 rounded-2xl overflow-hidden">
-                        {/* Image */}
-                        <div className="relative aspect-3/4 overflow-hidden">
-                            <Image
-                                src={solutionsData[currentIndex].image}
-                                alt={solutionsData[currentIndex].title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 640px) 90vw, 400px"
-                            />
-                            {/* Dark gradient overlay */}
-                            <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-60" />
-                        </div>
+                {/* Navigation Arrows - positioned next to center card */}
+                <button
+                    onClick={prevSlide}
+                    className="carousel-nav-button absolute left-[calc(53%-200px)] md:left-[calc(53%-240px)] top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-50 hover:opacity-100 cursor-pointer"
+                    aria-label="Anterior"
+                >
+                    <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
+                </button>
 
-                        {/* Title overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-                            <h3 className="text-xl font-bold text-white drop-shadow-lg">
-                                {solutionsData[currentIndex].title}
-                            </h3>
-                        </div>
-                    </div>
-                </div>
+                <button
+                    onClick={nextSlide}
+                    className="carousel-nav-button absolute right-[calc(53%-200px)] md:right-[calc(53%-240px)] top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-50 hover:opacity-100 cursor-pointer"
+                    aria-label="Próximo"
+                >
+                    <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
+                </button>
 
                 {/* Navigation indicators */}
-                <div className="flex justify-center gap-2 mt-8">
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex justify-center gap-2 z-50">
                     {solutionsData.map((_, index) => (
                         <button
                             key={index}
-                            onClick={() => goToSlide(index)}
+                            onClick={() => setCurrentIndex(index)}
                             className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
                                 ? "w-8 bg-laranja-intenso"
                                 : "w-2 bg-zinc-700 hover:bg-zinc-600"

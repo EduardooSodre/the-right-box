@@ -302,3 +302,12 @@ select option:hover {
     filter: blur(25px);
   }
 }
+
+/* Solutions carousel navigation buttons */
+.carousel-nav-button {
+  background-color: #ff7608;
+}
+
+.carousel-nav-button:hover {
+  background-color: rgba(255, 118, 8, 0.85);
+}
