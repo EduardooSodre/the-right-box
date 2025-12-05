@@ -49,22 +49,22 @@ export default function Solutions() {
     };
 
     return (
-        <section className="relative bg-black text-white py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden">
+        <section className="relative bg-black text-white py-12 sm:py-16 md:py-20 overflow-hidden">
             {/* Title */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12 sm:mb-16"
+                className="text-center mb-8 sm:mb-12"
             >
-                <h2 className="font-[AmsiPro] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase text-laranja-intenso">
+                <h2 className="font-[AmsiPro] font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl  uppercase text-laranja-intenso">
                     SOLUÇÕES
                 </h2>
             </motion.div>
 
             {/* Carousel Container */}
-            <div className="relative h-[450px] md:h-[550px] max-w-6xl mx-auto px-4">
+            <div className="relative h-[380px] md:h-[480px] max-w-6xl mx-auto px-4">
                 {/* Cards Stack */}
                 <div className="relative w-full h-full flex items-center justify-center perspective-[2000px]">
                     <AnimatePresence mode="sync">
@@ -78,11 +78,11 @@ export default function Solutions() {
                                     initial={{ scale: 0.8, x: 0, opacity: 0, rotateY: 0, z: -200 }}
                                     animate={{
                                         scale: isCenter ? 1 : 0.82 - Math.abs(position) * 0.08,
-                                        x: position * 200,
+                                        x: position * (typeof window !== 'undefined' && window.innerWidth < 768 ? 140 : 200),
                                         z: isCenter ? 0 : -Math.abs(position) * 100,
-                                        opacity: Math.abs(position) > 2 ? 0 : 1 - Math.abs(position) * 0.15,
+                                        opacity: Math.abs(position) > 2 ? 0 : 1 - Math.abs(position) * 0.1,
                                         rotateY: position * -12,
-                                        filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 1}px)`,
+                                        filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 0.8}px)`,
                                     }}
                                     transition={{
                                         duration: 0.5,
@@ -128,22 +128,22 @@ export default function Solutions() {
                 {/* Navigation Arrows - positioned next to center card */}
                 <button
                     onClick={prevSlide}
-                    className="carousel-nav-button absolute left-[calc(53%-200px)] md:left-[calc(53%-240px)] top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-50 hover:opacity-100 cursor-pointer"
+                    className="carousel-nav-button absolute left-20 sm:left-[calc(48%-140px)] md:left-[calc(48%-180px)] top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-90 hover:opacity-100 cursor-pointer"
                     aria-label="Anterior"
                 >
-                    <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
+                    <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
                 </button>
 
                 <button
                     onClick={nextSlide}
-                    className="carousel-nav-button absolute right-[calc(53%-200px)] md:right-[calc(53%-240px)] top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-50 hover:opacity-100 cursor-pointer"
+                    className="carousel-nav-button absolute right-20 sm:right-[calc(48%-140px)] md:right-[calc(48%-180px)] top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-90 hover:opacity-100 cursor-pointer"
                     aria-label="Próximo"
                 >
-                    <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
+                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
                 </button>
 
                 {/* Navigation indicators */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex justify-center gap-2 z-50">
+                <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex justify-center gap-2 z-50">
                     {solutionsData.map((_, index) => (
                         <button
                             key={index}
