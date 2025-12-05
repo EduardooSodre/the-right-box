@@ -123,8 +123,8 @@ export default function BlogSection() {
                                     onClick={() => handleCardClick(index)}
                                     className={`
                                         relative cursor-grab active:cursor-grabbing shrink-0
-                                        ${isCenter 
-                                            ? 'w-[85%] sm:w-[80%] md:w-[340px] lg:w-[380px] z-10' 
+                                        ${isCenter
+                                            ? 'w-[85%] sm:w-[80%] md:w-[340px] lg:w-[380px] z-10'
                                             : 'w-[30%] sm:w-[25%] md:w-[340px] lg:w-[380px] z-0'
                                         }
                                     `}
