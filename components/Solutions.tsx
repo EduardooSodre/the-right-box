@@ -64,7 +64,15 @@ export default function Solutions() {
             </motion.div>
 
             {/* Carousel Container */}
-            <div className="relative h-[380px] md:h-[480px] max-w-6xl mx-auto px-4">
+            <div className="relative h-[480px] md:h-[580px] max-w-6xl mx-auto px-4">
+                {/* Lateral blur fade effect */}
+                <div className="absolute inset-0 pointer-events-none z-40">
+                    {/* Left fade */}
+                    <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-linear-to-r from-black via-black/50 to-transparent" />
+                    {/* Right fade */}
+                    <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-linear-to-l from-black via-black/50 to-transparent" />
+                </div>
+
                 {/* Cards Stack */}
                 <div className="relative w-full h-full flex items-center justify-center perspective-[2000px]">
                     <AnimatePresence mode="sync">
@@ -82,7 +90,7 @@ export default function Solutions() {
                                         z: isCenter ? 0 : -Math.abs(position) * 100,
                                         opacity: Math.abs(position) > 2 ? 0 : 1 - Math.abs(position) * 0.1,
                                         rotateY: position * -12,
-                                        filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 0.8}px)`,
+                                        filter: isCenter ? 'blur(0px)' : `blur(${Math.abs(position) * 0.5}px)`,
                                     }}
                                     transition={{
                                         duration: 0.5,
