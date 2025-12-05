@@ -4,10 +4,10 @@ import nodemailer from "nodemailer";
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const { nome, empresa, cidade, email, telefone, solucao } = data;
+    const { nome, empresa, cargo, email, telefone, solucao } = data;
 
     // Validação básica
-    if (!nome || !empresa || !cidade || !email || !telefone || !solucao) {
+    if (!nome || !empresa || !cargo || !email || !telefone || !solucao) {
       return NextResponse.json(
         { success: false, message: "Todos os campos são obrigatórios" },
         { status: 400 }
@@ -67,8 +67,8 @@ export async function POST(request: Request) {
                 <div class="value">${empresa}</div>
               </div>
               <div class="field">
-                <div class="label">📍 Cidade:</div>
-                <div class="value">${cidade}</div>
+                <div class="label">💼 Cargo:</div>
+                <div class="value">${cargo}</div>
               </div>
               <div class="field">
                 <div class="label">📧 Email:</div>
@@ -129,7 +129,7 @@ export async function POST(request: Request) {
               <p><strong>Resumo do seu contato:</strong></p>
               <ul>
                 <li>Empresa: ${empresa}</li>
-                <li>Cidade: ${cidade}</li>
+                <li>Cargo: ${cargo}</li>
                 <li>Solução: ${solucao}</li>
               </ul>
               <p>Enquanto isso, conheça mais sobre nossas soluções:</p>
