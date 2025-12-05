@@ -64,7 +64,7 @@ export default function Solutions() {
             </motion.div>
 
             {/* Carousel Container */}
-            <div className="relative h-[480px] md:h-[580px] max-w-6xl mx-auto px-4">
+            <div className="relative h-[360px] md:h-[460px] max-w-6xl mx-auto px-4">
                 {/* Lateral blur fade effect */}
                 <div className="absolute inset-0 pointer-events-none z-40">
                     {/* Left fade */}
@@ -136,7 +136,7 @@ export default function Solutions() {
                 {/* Navigation Arrows - positioned next to center card */}
                 <button
                     onClick={prevSlide}
-                    className="carousel-nav-button absolute left-20 sm:left-[calc(48%-140px)] md:left-[calc(48%-180px)] top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-90 hover:opacity-100 cursor-pointer"
+                    className="carousel-nav-button absolute left-20 sm:left-[calc(48%-140px)] md:left-[calc(48%-180px)] top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-50 hover:opacity-100 cursor-pointer"
                     aria-label="Anterior"
                 >
                     <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
@@ -144,7 +144,7 @@ export default function Solutions() {
 
                 <button
                     onClick={nextSlide}
-                    className="carousel-nav-button absolute right-20 sm:right-[calc(48%-140px)] md:right-[calc(48%-180px)] top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-90 hover:opacity-100 cursor-pointer"
+                    className="carousel-nav-button absolute right-20 sm:right-[calc(48%-140px)] md:right-[calc(48%-180px)] top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition-all duration-300 flex items-center justify-center opacity-50 hover:opacity-100 cursor-pointer"
                     aria-label="Próximo"
                 >
                     <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-black" strokeWidth={2.5} />
