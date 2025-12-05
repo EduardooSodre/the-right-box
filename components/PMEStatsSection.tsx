@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function AnimatedArcWithDot() {
     // Arc params
@@ -14,6 +14,7 @@ function AnimatedArcWithDot() {
     const percent = 0.7; // animate to 70%
 
     const progress = useMotionValue(0);
+    const [displayPercentage, setDisplayPercentage] = useState(0);
     const angle = useTransform(
         progress,
         [0, 1],
@@ -24,36 +25,52 @@ function AnimatedArcWithDot() {
 
     const ref = useRef<SVGSVGElement | null>(null);
 
-    return (
-        <svg viewBox="0 0 120 60" ref={ref} className="w-full h-full">
-            <path
-                d="M10 60 A50 50 0 0 1 110 60"
-                fill="none"
-                stroke="#e5e7eb"
-                strokeWidth="4"
-                strokeLinecap="round"
-            />
-            <motion.path
-                d="M10 60 A50 50 0 0 1 110 60"
-                fill="none"
-                stroke="#FF6B35"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: percent }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                viewport={{ once: true }}
-                onUpdate={(latest) => {
-                    if (typeof latest.pathLength === "number") {
-                        // avoid division by zero
-                        const p = Math.max(0, Math.min(latest.pathLength / percent, 1));
-                        progress.set(p);
-                    }
-                }}
-            />
+    useEffect(() => {
+        const unsubscribe = progress.on("change", (latest) => {
+            setDisplayPercentage(Math.round(latest * 70));
+        });
+        return () => unsubscribe();
+    }, [progress]);
 
-            <motion.circle r={6} fill="#FF6B35" cx={cx} cy={cy} />
-        </svg>
+    return (
+        <>
+            <svg viewBox="0 0 120 60" ref={ref} className="w-full h-full">
+                <path
+                    d="M10 60 A50 50 0 0 1 110 60"
+                    fill="none"
+                    stroke="#e5e7eb"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                />
+                <motion.path
+                    d="M10 60 A50 50 0 0 1 110 60"
+                    fill="none"
+                    stroke="#FF6B35"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: percent }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    onUpdate={(latest) => {
+                        if (typeof latest.pathLength === "number") {
+                            // avoid division by zero
+                            const p = Math.max(0, Math.min(latest.pathLength / percent, 1));
+                            progress.set(p);
+                        }
+                    }}
+                />
+
+                <motion.circle r={6} fill="#FF6B35" cx={cx} cy={cy} />
+            </svg>
+            
+            {/* Animated percentage text */}
+            <div className="absolute inset-0 flex items-center justify-center mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-18 text-center">
+                <span className="text-xl sm:text-4xl font-bold text-gray-400">
+                    {displayPercentage}%
+                </span>
+            </div>
+        </>
     );
 }
 
@@ -115,10 +132,6 @@ export default function PMEStatsSection() {
                         {/* Semicírculo 70% */}
                         <div className="relative w-32 h-16 sm:w-40 sm:h-20 md:w-48 md:h-24 lg:w-56 lg:h-28 xl:w-64 xl:h-32">
                             <AnimatedArcWithDot />
-
-                            <div className="absolute inset-0 flex items-center justify-center mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-18 text-center">
-                                <span className="text-xl sm:text-4xl font-bold text-gray-200">70%</span>
-                            </div>
                         </div>
 
                         <p className="font-[AmsiPro-Italic] text-sm sm:text-base md:text-lg text-black font-semibold leading-relaxed text-center ">
