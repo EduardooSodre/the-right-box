@@ -61,16 +61,11 @@ export default function PMEStatsSection() {
     return (
         <section className="relative w-full bg-white">
 
-            {/* BLUR 3D NO TOPO (efeito de transição de section) */}
-            <div
-                className="
-                    pointer-events-none
-                    absolute inset-x-2
-                    h-16 md:h-20
-                    bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.9)_0,rgba(0,0,0,0.7)_20%,transparent_70%)]
-                    opacity-85
-                "
-            />
+            {/* 3D depth shadow effect - creates the "sunken" appearance */}
+            <div className="section-depth-shadow" />
+
+
+
 
             {/* GRID 2x2 */}
             <div className="grid grid-cols-1 md:grid-cols-2 w-full auto-rows-[380px] md:auto-rows-[450px]">

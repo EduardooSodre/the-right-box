@@ -96,6 +96,7 @@ export default function Header() {
                         </div>
                     </button>
                 </nav>
+                {/* header bottom anchor removed to let per-section overlays define the subtle transition */}
             </header>
 
             {/* Mobile Menu */}
