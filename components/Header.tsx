@@ -8,14 +8,38 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState("/");
 
     useEffect(() => {
-        // Verifica a posição inicial ao carregar
-        setIsScrolled(window.scrollY > 50);
-
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
+
+            // Track active section
+            const sections = [
+                { id: "hero", path: "/" },
+                { id: "sobre-nos", path: "#sobre-nos" },
+                { id: "aceleracao", path: "#aceleracao" },
+                { id: "servicos", path: "#servicos" },
+                { id: "blog", path: "#blog" },
+            ];
+
+            // Find which section is currently in view
+            let currentSection = "/";
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const element = document.getElementById(sections[i].id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // Section is active when its top is near or above the viewport top
+                    if (rect.top <= 200) {
+                        currentSection = sections[i].path;
+                        break;
+                    }
+                }
+            }
+            setActiveSection(currentSection);
         };
+
+        handleScroll(); // Run once on mount
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -25,13 +49,35 @@ export default function Header() {
     }, [isMenuOpen]);
 
     const menuItems = [
-        { href: "/", label: "HOME" },
-        { href: "/sobre-nos", label: "SOBRE NÓS" },
-        { href: "/aceleracao-comercial", label: "ACELERAÇÃO COMERCIAL" },
-        { href: "/servicos", label: "SERVIÇOS" },
-        { href: "/blog", label: "BLOG" },
+        { href: "/", label: "HOME", section: "/" },
+        { href: "#sobre-nos", label: "SOBRE NÓS", section: "#sobre-nos" },
+        { href: "#aceleracao", label: "ACELERAÇÃO COMERCIAL", section: "#aceleracao" },
+        { href: "#servicos", label: "SERVIÇOS", section: "#servicos" },
+        { href: "#blog", label: "BLOG", section: "#blog" },
         { href: "#contato", label: "CONTATO", isButton: true },
     ];
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith("#")) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const element = document.getElementById(targetId);
+            if (element) {
+                let headerHeight = 120; // Default header height
+                if (targetId === "aceleracao") {
+                    headerHeight = 0; // Adjusted offset to land on "Conheça a ACELERAÇÃO COMERCIAL"
+                }
+
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+    };
 
     return (
         <>
@@ -65,18 +111,22 @@ export default function Header() {
 
                     {/* Desktop Menu */}
                     <div className="hidden lg:flex items-center gap-10">
-                        {menuItems.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={`relative font-['AmsiPro'] font-bold uppercase tracking-wide transition-all duration-300 ${item.isButton
-                                    ? "px-6 py-2 border-2 border-laranja-intenso rounded-full text-white hover:bg-laranja-intenso hover:text-black shadow-sm"
-                                    : "text-white/90 hover:text-white after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-laranja-intenso after:transition-all after:duration-300 hover:after:w-full"
-                                    }`}
-                            >
-                                {item.label}
-                            </Link>
-                        ))}
+                        {menuItems.map((item) => {
+                            const isActive = !item.isButton && item.section === activeSection;
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    onClick={(e) => handleNavClick(e, item.href)}
+                                    className={`relative font-['AmsiPro'] font-bold uppercase tracking-wide transition-all duration-300 ${item.isButton
+                                        ? "px-6 py-2 border-2 border-laranja-intenso rounded-full text-white hover:bg-laranja-intenso hover:text-black shadow-sm"
+                                        : `text-white/90 hover:text-white after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:transition-all after:duration-300 ${isActive ? 'after:bg-laranja-intenso after:opacity-100' : 'after:bg-laranja-intenso/30 after:opacity-100 hover:after:bg-laranja-intenso'}`
+                                        }`}
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -130,7 +180,10 @@ export default function Header() {
                                     >
                                         <Link
                                             href={item.href}
-                                            onClick={() => setIsMenuOpen(false)}
+                                            onClick={(e) => {
+                                                handleNavClick(e, item.href);
+                                                setIsMenuOpen(false);
+                                            }}
                                             className={`font-['AmsiPro'] font-bold text-3xl uppercase tracking-wide inline-block ${item.isButton
                                                 ? "text-laranja-intenso border-2 border-laranja-intenso px-6 py-2 rounded-full hover:bg-laranja-intenso hover:text-black"
                                                 : "text-white hover:text-laranja-intenso"

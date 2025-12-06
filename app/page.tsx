@@ -159,13 +159,23 @@ export default async function Home() {
       />
 
       <Header />
-      <Hero content={heroContent} />
-      <GargalosSection />
-      <AceleracaoSection />
+      <section id="hero">
+        <Hero content={heroContent} />
+      </section>
+      <section id="sobre-nos">
+        <GargalosSection />
+      </section>
+      <section id="aceleracao">
+        <AceleracaoSection />
+      </section>
 
-      <PMEStatsSection />
-      <Solutions />
-      <BlogSection />
+      <section id="servicos">
+        <PMEStatsSection />
+        <Solutions />
+      </section>
+      <section id="blog">
+        <BlogSection />
+      </section>
       <Footer content={footerContent} contactContent={contactContent} />
       <ScrollButton />
     </>
