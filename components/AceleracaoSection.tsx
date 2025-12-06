@@ -136,7 +136,7 @@ export default function AceleracaoSection() {
 
 
     return (
-        <section className="relative w-full text-white overflow-hidden bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat">
+        <section className="relative w-full mt-[-220px] text-white overflow-hidden bg-[url('/sectionAceleracao.png')] bg-cover bg-center bg-no-repeat">
             <div className="relative pt-50 max-w-5xl mx-auto px-6">
                 {/* Título Principal */}
                 <h2 className="text-center font-['AmsiPro'] font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
@@ -151,7 +151,7 @@ export default function AceleracaoSection() {
                 </p>
 
                 {/* SLIDER */}
-                <div className="relative mt-12 sm:mt-16 md:mt-20 flex justify-center min-h-[400px] sm:min-h-[350px] md:min-h-[300px]">
+                <div className="relative mt-12 sm:mt-16 md:mt-20 flex justify-center min-h-[340px] sm:min-h-[340px] md:min-h-[280px]">
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={index}
@@ -199,7 +199,7 @@ export default function AceleracaoSection() {
                             {cards[index].text.map((t, i) => (
                                 <p
                                     key={i}
-                                    className="text-sm sm:text-base md:text-[17px] text-[#5c5c5c] leading-relaxed mb-3 sm:mb-4"
+                                    className="text-xs sm:text-base md:text-[17px] text-[#5c5c5c] leading-relaxed mb-3 sm:mb-4"
                                     dangerouslySetInnerHTML={{ __html: t }}
                                 />
                             ))}
@@ -227,7 +227,7 @@ export default function AceleracaoSection() {
                 </div>
 
                 {/* BARRA + SETA (seu código original) */}
-                <div className="relative w-full max-w-[1200px] mx-auto mt-24 flex items-center">
+                <div className="relative w-full max-w-[1200px] mx-auto  sm:mt-24 flex items-center">
                     <div className="flex-3 h-1 bg-laranja-intenso rounded-full" />
                     <button
                         onClick={nextCard}

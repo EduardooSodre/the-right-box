@@ -10,6 +10,9 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
+        // Verifica a posição inicial ao carregar
+        setIsScrolled(window.scrollY > 50);
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
@@ -54,6 +57,7 @@ export default function Header() {
                                 alt="Logo The Right Box"
                                 fill
                                 priority
+                                sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, 128px"
                                 className="object-contain"
                             />
                         </div>

@@ -74,7 +74,7 @@ export default function BlogSection() {
     return (
         <section className="relative overflow-hidden pb-12 sm:pb-16 md:pb-20 bg-[#f7f7f7]">
             {/* Title */}
-            <h2 className="font-[AmsiPro] bg-black container mx-auto max-w-full px-5 sm:px-18 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black lowercase mb-14 sm:mb-16 md:mb-20 text-white">
+            <h2 className="font-[AmsiPro] bg-black container mx-auto max-w-full px-5 sm:px-36 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black lowercase mb-14 sm:mb-16 md:mb-20 text-white">
                 blog
             </h2>
 
