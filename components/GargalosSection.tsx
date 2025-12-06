@@ -15,7 +15,7 @@ export default function GargalosSection() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
                     className="text-center mb-8 sm:mb-12 md:mb-14 lg:mb-16"
                 >
@@ -32,7 +32,7 @@ export default function GargalosSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6 }}
                         className="
                             p-4 sm:p-5 md:p-6 lg:p-8 rounded-sm flex flex-col text-center justify-center
@@ -45,7 +45,7 @@ export default function GargalosSection() {
                         <motion.p
                             initial={{ opacity: 0, x: -40 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
                             className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium"
                         >
@@ -62,7 +62,7 @@ export default function GargalosSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.15 }}
                         className="
                             p-4 sm:p-5 md:p-6 lg:p-8 rounded-sm flex flex-col text-center justify-center
@@ -75,7 +75,7 @@ export default function GargalosSection() {
                         <motion.p
                             initial={{ opacity: 0, x: -40 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
                             className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium"
                         >
@@ -94,7 +94,7 @@ export default function GargalosSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="
                             p-4 sm:p-5 md:p-6 lg:p-8 rounded-sm flex flex-col text-center justify-center
@@ -108,7 +108,7 @@ export default function GargalosSection() {
                         <motion.p
                             initial={{ opacity: 0, x: -40 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
                             className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium"
                         >

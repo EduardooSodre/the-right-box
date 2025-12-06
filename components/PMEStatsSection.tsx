@@ -91,7 +91,7 @@ export default function PMEStatsSection() {
                     <motion.h2
                         initial={{ opacity: 0, y: -80 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "0px" }}
+                        viewport={{ once: true, margin: "-150px" }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                         className="text-laranja-intenso text-3xl sm:text-4xl font-black leading-snug"
                     >
@@ -132,7 +132,7 @@ export default function PMEStatsSection() {
                     <motion.h2
                         initial={{ opacity: 0, y: -80 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "0px" }}
+                        viewport={{ once: true, margin: "-150px" }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                         className="text-black text-2xl sm:text-3xl font-black leading-tight text-center"
                     >
@@ -149,7 +149,7 @@ export default function PMEStatsSection() {
                         <motion.p
                             initial={{ opacity: 0, y: -80 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "0px" }}
+                            viewport={{ once: true, margin: "-150px" }}
                             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                             className="font-[AmsiPro-Italic] text-sm sm:text-base md:text-lg text-black font-semibold leading-relaxed text-center "
                         >
