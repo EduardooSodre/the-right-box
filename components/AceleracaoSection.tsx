@@ -228,7 +228,7 @@ export default function AceleracaoSection() {
 
                 {/* BARRA + SETA (seu código original) */}
                 <div className="relative w-full max-w-[1200px] mx-auto  sm:mt-24 flex items-center">
-                    <div className="flex-3 h-1 bg-laranja-intenso rounded-full" />
+                    <div className="flex-3 h-1 bg-laranja-intenso rounded-full animate-pulse-fast" />
                     <button
                         onClick={nextCard}
                         className="
@@ -248,7 +248,7 @@ export default function AceleracaoSection() {
                             strokeWidth={3}
                         />
                     </button>
-                    <div className="flex-1 h-0.5 sm:h-1 bg-laranja-intenso rounded-full" />
+                    <div className="flex-1 h-0.5 sm:h-1 bg-laranja-intenso rounded-full animate-pulse-fast" />
                 </div>
 
                 {/* FRASE FINAL */}

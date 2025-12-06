@@ -88,11 +88,17 @@ export default function PMEStatsSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 w-full auto-rows-[380px] md:auto-rows-[450px]">
                 {/* ========== QUADRANTE 1 ========== */}
                 <div className="flex flex-col items-center justify-center text-center px-6 bg-[linear-gradient(90deg,#ffffff,#f6f1eb)]">
-                    <h2 className="text-laranja-intenso text-3xl sm:text-4xl font-black leading-snug">
+                    <motion.h2
+                        initial={{ opacity: 0, y: -80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "0px" }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-laranja-intenso text-3xl sm:text-4xl font-black leading-snug"
+                    >
                         Dê o primeiro passo para alinhar
                         <br />
                         <span className="text-black">marketing e vendas.</span>
-                    </h2>
+                    </motion.h2>
 
                     <button className="mt-6 bg-black text-laranja-intenso font-bold px-8 py-3 rounded-sm">
                         FALAR COM A TRBOX
@@ -123,10 +129,16 @@ export default function PMEStatsSection() {
 
                 {/* ========== QUADRANTE 4 ========== */}
                 <div className="flex flex-col justify-center items-center px-6 bg-[linear-gradient(270deg,#f6f1eb,#ffffff)]">
-                    <h2 className="text-black text-2xl sm:text-3xl font-black leading-tight text-center">
+                    <motion.h2
+                        initial={{ opacity: 0, y: -80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "0px" }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-black text-2xl sm:text-3xl font-black leading-tight text-center"
+                    >
                         <span className="text-black">70%</span> dos PME&apos;s fazem
                         <br /> publicidade e não marketing
-                    </h2>
+                    </motion.h2>
 
                     <div className="flex flex-col sm:flex-row items-center gap-8 mt-6">
                         {/* Semicírculo 70% */}
@@ -134,9 +146,15 @@ export default function PMEStatsSection() {
                             <AnimatedArcWithDot />
                         </div>
 
-                        <p className="font-[AmsiPro-Italic] text-sm sm:text-base md:text-lg text-black font-semibold leading-relaxed text-center ">
+                        <motion.p
+                            initial={{ opacity: 0, y: -80 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "0px" }}
+                            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                            className="font-[AmsiPro-Italic] text-sm sm:text-base md:text-lg text-black font-semibold leading-relaxed text-center "
+                        >
                             Transformamos anúncios em resultados <br /> reais, conectando sua marca às pessoas <br /> certas e aumentando seu faturamento de <br /> forma consistente.
-                        </p>
+                        </motion.p>
                     </div>
                 </div>
             </div>

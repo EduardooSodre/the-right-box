@@ -42,14 +42,20 @@ export default function GargalosSection() {
                             min-h-[180px] sm:min-h-[200px] md:min-h-[220px]
                         "
                     >
-                        <p className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium">
+                        <motion.p
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+                            className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium"
+                        >
                             Organizamos o posicionamento e o
                             encaixe da oferta por segmento e
                             etapa da jornada, para que{" "}
                             <span className="font-bold bg-[linear-gradient(135deg,#ff7700,#ff4200,#f33c00)] bg-clip-text text-transparent">
                                 cada interação contribua para venda
                             </span>
-                        </p>
+                        </motion.p>
                     </motion.div>
 
                     {/* CARD 2 */}
@@ -66,7 +72,13 @@ export default function GargalosSection() {
                             min-h-[180px] sm:min-h-[200px] md:min-h-[220px]
                         "
                     >
-                        <p className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium">
+                        <motion.p
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
+                            className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium"
+                        >
                             Estruturamos cadências multicanal
                             com comunicações adequadas a
                             cada estágio e comportamento do
@@ -75,7 +87,7 @@ export default function GargalosSection() {
                                 reduzindo o risco de
                                 esfriamento.
                             </span>
-                        </p>
+                        </motion.p>
                     </motion.div>
 
                     {/* CARD 3 */}
@@ -93,7 +105,13 @@ export default function GargalosSection() {
                             sm:col-span-2 md:col-span-1
                         "
                     >
-                        <p className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium">
+                        <motion.p
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+                            className="text-sm sm:text-[15px] md:text-base text-zinc-900 leading-relaxed font-medium"
+                        >
                             <span className="font-bold bg-[linear-gradient(135deg,#ff7700,#ff4200,#f33c00)] bg-clip-text text-transparent">
                                 Integramos
                             </span>{" "}
@@ -103,7 +121,7 @@ export default function GargalosSection() {
                                 {" "}para manter o contexto da
                                 jornada.
                             </span>
-                        </p>
+                        </motion.p>
                     </motion.div>
 
                 </div>
