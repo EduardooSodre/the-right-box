@@ -28,8 +28,9 @@ export default function ScrollButton() {
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-            // Scroll down one viewport height
-            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+            // Scroll down 80% of viewport for better pacing
+            const scrollAmount = window.innerHeight * 0.8;
+            window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
         }
     };
     return (
