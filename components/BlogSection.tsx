@@ -4,40 +4,40 @@ import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 
-const blogPosts = [
-    {
-        title: "Take a Rowing Lesson",
-        excerpt: "Learn the art of rowing like a Venetian from a local instructor while navigating the city's intricate network of canals.",
-        image: "/images/blog.png",
-    },
-    {
-        title: "Take a Rowing Lesson",
-        excerpt: "Learn the art of rowing like a Venetian from a local instructor while navigating the city's intricate network of canals.",
-        image: "/images/blog.png",
-    },
-    {
-        title: "Take a Rowing Lesson",
-        excerpt: "Learn the art of rowing like a Venetian from a local instructor while navigating the city's intricate network of canals.",
-        image: "/images/blog.png",
-    },
-    {
-        title: "Take a Rowing Lesson",
-        excerpt: "Learn the art of rowing like a Venetian from a local instructor while navigating the city's intricate network of canals.",
-        image: "/images/blog.png",
-    },
-    {
-        title: "Take a Rowing Lesson",
-        excerpt: "Learn the art of rowing like a Venetian from a local instructor while navigating the city's intricate network of canals.",
-        image: "/images/blog.png",
-    },
-    {
-        title: "Take a Rowing Lesson",
-        excerpt: "Learn the art of rowing like a Venetian from a local instructor while navigating the city's intricate network of canals.",
-        image: "/images/blog.png",
-    },
-];
+interface BlogPost {
+    title: string;
+    excerpt: string;
+    image: string;
+    date?: string;
+    author?: string;
+    category?: string;
+}
 
-export default function BlogSection() {
+interface BlogSectionProps {
+    posts?: BlogPost[];
+}
+
+export default function BlogSection({ posts }: BlogSectionProps) {
+    // Fallback para dados estáticos se não houver posts do Contentful
+    const defaultPosts: BlogPost[] = [
+        {
+            title: "Acelere Suas Vendas",
+            excerpt: "Descubra estratégias comprovadas para aumentar suas vendas e conquistar mais clientes no mercado atual.",
+            image: "/images/blog.png",
+        },
+        {
+            title: "CRM Eficiente",
+            excerpt: "Aprenda como um CRM bem implementado pode transformar seu processo comercial e otimizar resultados.",
+            image: "/images/blog.png",
+        },
+        {
+            title: "Gargalos de Vendas",
+            excerpt: "Identifique e elimine os principais obstáculos que impedem o crescimento da sua empresa.",
+            image: "/images/blog.png",
+        },
+    ];
+
+    const blogPosts = posts && posts.length > 0 ? posts : defaultPosts;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
 

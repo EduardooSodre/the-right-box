@@ -10,6 +10,7 @@ import ScrollButton from "@/components/ScrollButton";
 import { fetchHeroContent } from "@/lib/fetchHeroContent";
 import { fetchFooterContent } from "@/lib/fetchFooterContent";
 import { fetchContactContent } from "@/lib/fetchContactContent";
+import { fetchBlogPosts } from "@/lib/fetchBlogPosts";
 
 // Enable ISR with 60 second revalidation
 export const revalidate = 60;
@@ -107,13 +108,14 @@ export const metadata = {
 
 export default async function Home() {
   // Fetch all content from Contentful
-  let heroContent, footerContent, contactContent;
+  let heroContent, footerContent, contactContent, blogPosts;
 
   try {
-    [heroContent, footerContent, contactContent] = await Promise.all([
+    [heroContent, footerContent, contactContent, blogPosts] = await Promise.all([
       fetchHeroContent(),
       fetchFooterContent(),
       fetchContactContent(),
+      fetchBlogPosts(),
     ]);
   } catch (error) {
     console.error("Error fetching content:", error);
@@ -174,7 +176,7 @@ export default async function Home() {
         <Solutions />
       </section>
       <section id="blog">
-        <BlogSection />
+        <BlogSection posts={blogPosts} />
       </section>
       <Footer content={footerContent} contactContent={contactContent} />
       <ScrollButton />
