@@ -6,6 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategoryByTag } from "@/lib/blogCategories";
+import Footer from "@/components/Footer";
+import { fetchFooterContent } from "@/lib/fetchFooterContent";
+import { fetchContactContent } from "@/lib/fetchContactContent";
 
 interface BlogPostFields {
     title: string;
@@ -212,154 +215,172 @@ export default async function BlogPostPage({
         day: "numeric",
     });
 
+    // Buscar footer content
+    let footerContent, contactContent;
+    try {
+        [footerContent, contactContent] = await Promise.all([
+            fetchFooterContent(),
+            fetchContactContent(),
+        ]);
+    } catch (error) {
+        console.error("Error fetching footer content:", error);
+    }
+
     return (
-        <article className="min-h-screen bg-white">
-            {/* Hero Section com Imagem */}
-            <div className="relative w-full h-[50vh] md:h-[60vh] bg-zinc-900">
-                {imageUrl && (
-                    <Image
-                        src={`https:${imageUrl}`}
-                        alt={post.title}
-                        fill
-                        className="object-cover opacity-80"
-                        priority
-                        sizes="100vw"
-                    />
-                )}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+        <>
+            <article className="min-h-screen bg-white">
+                {/* Hero Section com Imagem */}
+                <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] bg-zinc-900">
+                    {imageUrl && (
+                        <Image
+                            src={`https:${imageUrl}`}
+                            alt={post.title}
+                            fill
+                            className="object-cover opacity-80"
+                            priority
+                            sizes="100vw"
+                        />
+                    )}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
-                {/* Breadcrumb e Voltar */}
-                <div className="absolute top-8 left-0 right-0 container mx-auto px-6 md:px-12">
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center gap-2 text-white hover:text-laranja-intenso transition-colors text-sm md:text-base font-medium"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
+                    {/* Breadcrumb e Voltar */}
+                    <div className="absolute top-4 sm:top-6 md:top-8 left-0 right-0 container mx-auto px-4 sm:px-6 md:px-12 z-10">
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 text-white hover:text-laranja-intenso transition-colors text-sm md:text-base font-medium bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg"
                         >
-                            <path
-                                fillRule="evenodd"
-                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                        Voltar ao Blog
-                    </Link>
-                </div>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                            Voltar ao Blog
+                        </Link>
+                    </div>
 
-                {/* Título e Meta */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-                    <div className="container mx-auto max-w-4xl">
-                        {/* Tags com Cores */}
-                        {post.tags && post.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {post.tags.map((tag, index) => {
-                                    const category = getCategoryByTag(tag);
-                                    return (
-                                        <span
-                                            key={index}
-                                            className={`px-3 py-1 ${category.color} text-white text-xs md:text-sm font-bold rounded-full uppercase tracking-wide shadow-lg`}
+                    {/* Título e Meta */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12">
+                        <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
+                            <div className="max-w-5xl mx-auto">
+                                {/* Tags com Cores */}
+                                {post.tags && post.tags.length > 0 && (
+                                    <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+                                        {post.tags.map((tag, index) => {
+                                            const category = getCategoryByTag(tag);
+                                            return (
+                                                <span
+                                                    key={index}
+                                                    className={`px-2.5 py-1 sm:px-3 ${category.color} text-white text-xs sm:text-sm font-bold rounded-full uppercase tracking-wide shadow-lg`}
+                                                >
+                                                    {category.label}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+
+                                <h1 className="font-[AmsiPro] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-3 sm:mb-4 leading-tight">
+                                    {post.title}
+                                </h1>
+
+                                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-white/90 text-xs sm:text-sm md:text-base">
+                                    <span className="flex items-center gap-2">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-5 w-5"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
-                                            {category.label}
-                                        </span>
-                                    );
-                                })}
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                        {post.author || "The Right Box"}
+                                    </span>
+                                    <span className="flex items-center gap-2">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-5 w-5"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                        {formattedDate}
+                                    </span>
+                                </div>
                             </div>
-                        )}
-
-                        <h1 className="font-[AmsiPro] text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-                            {post.title}
-                        </h1>
-
-                        <div className="flex items-center gap-4 text-white/90 text-sm md:text-base">
-                            <span className="flex items-center gap-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                {post.author || "The Right Box"}
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                {formattedDate}
-                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Conteúdo */}
-            <div className="container mx-auto px-6 md:px-12 py-16 md:py-24 max-w-4xl">
-                {/* Excerpt destacado */}
-                <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed mb-12 font-medium border-l-4 border-laranja-intenso pl-6 py-2">
-                    {post.excerpt}
-                </p>
+                {/* Conteúdo */}
+                <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 lg:py-24">
+                    <div className="max-w-4xl mx-auto">
+                        {/* Excerpt destacado */}
+                        <div className="text-lg sm:text-xl md:text-2xl text-zinc-600 leading-relaxed mb-10 sm:mb-12 font-medium border-l-4 border-laranja-intenso pl-4 sm:pl-6 py-2">
+                            {post.excerpt}
+                        </div>
 
-                {/* Rich Text Content */}
-                <div className="prose prose-lg max-w-none">
-                    {post.content && documentToReactComponents(post.content, richTextOptions)}
+                        {/* Rich Text Content */}
+                        <div className="prose prose-base sm:prose-lg max-w-none prose-headings:font-[AmsiPro] prose-headings:text-zinc-900 prose-p:text-zinc-700 prose-a:text-laranja-intenso prose-strong:text-zinc-900 prose-img:rounded-xl">
+                            {post.content && documentToReactComponents(post.content, richTextOptions)}
+                        </div>
+
+                        {/* CTA Final */}
+                        <div className="mt-12 sm:mt-16 p-6 sm:p-8 md:p-10 bg-linear-to-br from-zinc-900 to-black rounded-2xl sm:rounded-3xl text-white text-center">
+                            <h3 className="font-[AmsiPro] text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">
+                                Quer acelerar suas vendas?
+                            </h3>
+                            <p className="text-base sm:text-lg mb-5 sm:mb-6 opacity-90 max-w-2xl mx-auto">
+                                Agende uma conversa com nossos especialistas e descubra como podemos ajudar.
+                            </p>
+                            <Link
+                                href="/"
+                                className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-laranja-intenso text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-xl shadow-laranja-intenso/30 text-base sm:text-lg"
+                            >
+                                Falar com Especialista
+                            </Link>
+                        </div>
+
+                        {/* Voltar ao Blog */}
+                        <div className="mt-10 sm:mt-12 text-center">
+                            <Link
+                                href="/blog"
+                                className="inline-flex items-center gap-2 text-laranja-intenso hover:underline font-medium text-base sm:text-lg"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                                Ver todos os posts
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-
-                {/* CTA Final */}
-                <div className="mt-16 p-8 bg-linear-to-br from-zinc-900 to-black rounded-3xl text-white text-center">
-                    <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold mb-4">
-                        Quer acelerar suas vendas?
-                    </h3>
-                    <p className="text-lg mb-6 opacity-90">
-                        Agende uma conversa com nossos especialistas e descubra como podemos ajudar.
-                    </p>
-                    <Link
-                        href="/"
-                        className="inline-block px-8 py-4 bg-laranja-intenso text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-xl shadow-laranja-intenso/30 text-lg"
-                    >
-                        Falar com Especialista
-                    </Link>
-                </div>
-
-                {/* Voltar ao Blog */}
-                <div className="mt-12 text-center">
-                    <Link
-                        href="/#blog"
-                        className="inline-flex items-center gap-2 text-laranja-intenso hover:underline font-medium text-lg"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                        Ver todos os posts
-                    </Link>
-                </div>
-            </div>
-        </article>
+            </article>
+            <Footer content={footerContent} contactContent={contactContent} />
+        </>
     );
 }
