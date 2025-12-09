@@ -53,7 +53,7 @@ export default function Header() {
         { href: "#sobre-nos", label: "SOBRE NÓS", section: "#sobre-nos" },
         { href: "#aceleracao", label: "ACELERAÇÃO COMERCIAL", section: "#aceleracao" },
         { href: "#servicos", label: "SERVIÇOS", section: "#servicos" },
-        { href: "#blog", label: "BLOG", section: "#blog" },
+        { href: "/blog", label: "BLOG", section: "/blog" },
         { href: "#contato", label: "CONTATO", isButton: true },
     ];
 

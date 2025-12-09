@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface BlogPost {
@@ -11,6 +12,7 @@ interface BlogPost {
     date?: string;
     author?: string;
     category?: string;
+    slug: string;
 }
 
 interface BlogSectionProps {
@@ -24,16 +26,19 @@ export default function BlogSection({ posts }: BlogSectionProps) {
             title: "Acelere Suas Vendas",
             excerpt: "Descubra estratégias comprovadas para aumentar suas vendas e conquistar mais clientes no mercado atual.",
             image: "/images/blog.png",
+            slug: "acelere-suas-vendas",
         },
         {
             title: "CRM Eficiente",
             excerpt: "Aprenda como um CRM bem implementado pode transformar seu processo comercial e otimizar resultados.",
             image: "/images/blog.png",
+            slug: "crm-eficiente",
         },
         {
             title: "Gargalos de Vendas",
             excerpt: "Identifique e elimine os principais obstáculos que impedem o crescimento da sua empresa.",
             image: "/images/blog.png",
+            slug: "gargalos-de-vendas",
         },
     ];
 
@@ -124,8 +129,8 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                                     className={`
                                         relative cursor-grab active:cursor-grabbing shrink-0
                                         ${isCenter
-                                            ? 'w-[85%] sm:w-[80%] md:w-[340px] lg:w-[380px] z-10'
-                                            : 'w-[30%] sm:w-[25%] md:w-[340px] lg:w-[380px] z-0'
+                                            ? 'w-[85%] sm:w-[80%] md:w-[400px] lg:w-[440px] z-10'
+                                            : 'w-[30%] sm:w-[25%] md:w-[400px] lg:w-[440px] z-0'
                                         }
                                     `}
                                     style={{ perspective: 1000 }}
@@ -133,47 +138,55 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                                     {/* iOS-style 3D Card - Horizontal Layout */}
                                     <div
                                         className={`
-                                        relative rounded-3xl overflow-hidden
-                                        ${isCenter
+                                            relative rounded-3xl overflow-hidden transition-all duration-300
+                                            ${isCenter
                                                 ? 'blog-card-active'
                                                 : 'blog-card-inactive'
                                             }
-                                    `}
+                                        `}
                                     >
                                         {/* Horizontal Layout: Image Left + Content Right */}
-                                        <div className="flex flex-row items-stretch p-3 pb-2">
-                                            {/* Image Container - Left Side with Rounded Effect */}
-                                            <div className="relative w-[140px] h-[140px] overflow-hidden rounded-2xl shrink-0">
+                                        <div className="flex flex-row items-stretch p-4 pb-3">
+                                                {/* Image Container - Left Side with Rounded Effect */}
+                                                <div className="relative w-[160px] h-[160px] overflow-hidden rounded-2xl shrink-0">
                                                 <Image
                                                     src={post.image}
                                                     alt={post.title}
                                                     fill
                                                     className="object-cover"
-                                                    sizes="140px"
+                                                    sizes="160px"
                                                     priority={isCenter}
                                                 />
-                                            </div>
+                                                </div>
 
-                                            {/* Content - Right Side */}
-                                            <div className="flex-1 pl-4 pr-2 py-2 flex flex-col justify-center">
-                                                <h3 className={`
-                                                font-[AmsiPro] text-xl md:text-2xl font-bold mb-2 leading-tight
-                                                transition-colors duration-300
-                                                ${isCenter ? 'text-white' : 'text-zinc-900'}
-                                            `}>
-                                                    {post.title}
-                                                </h3>
+                                                {/* Content - Right Side */}
+                                                <div className="flex-1 pl-5 pr-3 py-2 flex flex-col justify-center min-h-[160px]">
+                                                    <h3 className={`
+                                                    font-[AmsiPro] text-xl md:text-2xl font-bold mb-3 leading-tight
+                                                    transition-colors duration-300 line-clamp-2
+                                                    ${isCenter ? 'text-white' : 'text-zinc-900'}
+                                                `}>
+                                                        {post.title}
+                                                    </h3>
 
-                                                <p className={`
-                                                text-[11px] md:text-xs leading-snug line-clamp-4
-                                                transition-colors duration-300
-                                                ${isCenter ? 'text-white/90' : 'text-zinc-700'}
-                                            `}>
-                                                    {post.excerpt}
-                                                </p>
+                                                    <p className={`
+                                                    text-xs md:text-sm leading-relaxed line-clamp-3
+                                                    transition-colors duration-300
+                                                    ${isCenter ? 'text-white/90' : 'text-zinc-700'}
+                                                `}>
+                                                        {post.excerpt}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        {/* Link only for center card */}
+                                        {isCenter && (
+                                            <Link 
+                                                href={`/blog/${post.slug}`} 
+                                                className="absolute inset-0 z-10"
+                                                aria-label={`Ler mais sobre ${post.title}`}
+                                            />
+                                        )}
                                 </motion.article>
                             );
                         })}
@@ -199,6 +212,28 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                             aria-label={`Ir para post ${index + 1}`}
                         />
                     ))}
+                </div>
+
+                {/* Ver Todos os Posts */}
+                <div className="text-center mt-12">
+                    <Link
+                        href="/blog"
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-laranja-intenso text-white font-bold rounded-full hover:bg-orange-600 transition-all duration-300 hover:gap-5 shadow-lg hover:shadow-xl hover:shadow-laranja-intenso/30"
+                    >
+                        Ver Todos os Posts
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                    </Link>
                 </div>
             </div>
         </section>

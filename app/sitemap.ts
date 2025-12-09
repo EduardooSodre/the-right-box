@@ -1,7 +1,21 @@
 import { MetadataRoute } from "next";
+import { client } from "@/lib/contentful";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://therightbox.com.br";
+
+  // Buscar posts do blog
+  const entries = await client.getEntries({
+    content_type: "blogPost",
+    limit: 1000,
+  });
+
+  const blogPosts = entries.items.map((item) => ({
+    url: `${baseUrl}/blog/${(item.fields as { slug: string }).slug}`,
+    lastModified: new Date((item.fields as { publishedDate: string }).publishedDate),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   return [
     {
@@ -11,28 +25,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/sobre-nos`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/aceleracao-comercial`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/servicos`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 0.7,
+      priority: 0.8,
     },
+    ...blogPosts,
   ];
 }

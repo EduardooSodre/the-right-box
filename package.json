@@ -13,6 +13,8 @@
     "test:contentful": "node scripts/test-connection.js"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.1.6",
+    "@contentful/rich-text-types": "^17.2.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@heroui/react": "^2.8.5",
