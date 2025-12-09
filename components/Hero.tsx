@@ -23,11 +23,14 @@ export default function Hero({ content }: HeroProps) {
                 alt="Hero Background"
                 fill
                 priority
-                className="object-cover object-right md:object-right scale-125"
+                className="object-cover object-center md:object-right scale-110 md:scale-125"
             />
 
-            {/* Gradiente para melhorar legibilidade */}
-            <div className="absolute inset-0" />
+            {/* Gradientes sobrepostos para melhorar legibilidade e profundidade */}
+            {/* Mobile: gradiente mais forte para legibilidade */}
+            <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/70 to-black/40 md:from-black/70 md:via-black/50 md:to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/70 md:from-black/40 md:to-black/60" />
+            <div className="absolute inset-0 bg-linear-to-tr from-black/70 via-transparent to-transparent md:from-black/60" />
 
             <div className="relative z-10 min-h-screen flex items-center py-12 md:py-16">
                 <div className="container mx-auto max-w-8xl px-4 sm:px-6 lg:px-18">

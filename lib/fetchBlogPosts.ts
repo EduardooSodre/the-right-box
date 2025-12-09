@@ -1,5 +1,5 @@
 import { client } from "@/lib/contentful";
-import type { Asset } from "contentful";
+import type { Asset, EntrySkeletonType } from "contentful";
 
 interface BlogPostFields {
   title: string;
@@ -9,6 +9,11 @@ interface BlogPostFields {
   publishedDate: string;
   author?: string;
   tags?: string[];
+}
+
+interface BlogPostSkeleton extends EntrySkeletonType {
+  contentTypeId: "blogPost";
+  fields: BlogPostFields;
 }
 
 interface BlogPost {
@@ -23,7 +28,7 @@ interface BlogPost {
 
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
-    const entries = await client.getEntries<{ fields: BlogPostFields }>({
+    const entries = await client.getEntries<BlogPostSkeleton>({
       content_type: "blogPost",
       order: ["-fields.publishedDate"], // Mais recentes primeiro
       limit: 10,

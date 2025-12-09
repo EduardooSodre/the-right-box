@@ -4,45 +4,52 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("/");
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
 
-            // Track active section
-            const sections = [
-                { id: "hero", path: "/" },
-                { id: "sobre-nos", path: "#sobre-nos" },
-                { id: "aceleracao", path: "#aceleracao" },
-                { id: "servicos", path: "#servicos" },
-                { id: "blog", path: "#blog" },
-            ];
+            // Only track sections on home page
+            if (pathname === "/") {
+                const sections = [
+                    { id: "hero", path: "/" },
+                    { id: "sobre-nos", path: "#sobre-nos" },
+                    { id: "aceleracao", path: "#aceleracao" },
+                    { id: "servicos", path: "#servicos" },
+                    { id: "blog", path: "#blog" },
+                ];
 
-            // Find which section is currently in view
-            let currentSection = "/";
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const element = document.getElementById(sections[i].id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // Section is active when its top is near or above the viewport top
-                    if (rect.top <= 200) {
-                        currentSection = sections[i].path;
-                        break;
+                // Find which section is currently in view
+                let currentSection = "/";
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const element = document.getElementById(sections[i].id);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        // Section is active when its top is near or above the viewport top
+                        if (rect.top <= 200) {
+                            currentSection = sections[i].path;
+                            break;
+                        }
                     }
                 }
+                setActiveSection(currentSection);
+            } else if (pathname.startsWith("/blog")) {
+                // Set blog as active when on blog pages
+                setActiveSection("#blog");
             }
-            setActiveSection(currentSection);
         };
 
         handleScroll(); // Run once on mount
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [pathname]);
 
     useEffect(() => {
         document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
@@ -50,15 +57,16 @@ export default function Header() {
 
     const menuItems = [
         { href: "/", label: "HOME", section: "/" },
-        { href: "#sobre-nos", label: "SOBRE NÓS", section: "#sobre-nos" },
-        { href: "#aceleracao", label: "ACELERAÇÃO COMERCIAL", section: "#aceleracao" },
-        { href: "#servicos", label: "SERVIÇOS", section: "#servicos" },
-        { href: "#blog", label: "BLOG", section: "#blog" },
-        { href: "#contato", label: "CONTATO", isButton: true },
+        { href: "/#sobre-nos", label: "SOBRE NÓS", section: "#sobre-nos" },
+        { href: "/#aceleracao", label: "ACELERAÇÃO COMERCIAL", section: "#aceleracao" },
+        { href: "/#servicos", label: "SERVIÇOS", section: "#servicos" },
+        { href: "/#blog", label: "BLOG", section: "#blog" },
+        { href: "/#contato", label: "CONTATO", isButton: true },
     ];
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        if (href.startsWith("#")) {
+        // Only handle hash navigation on home page
+        if (href.startsWith("#") && pathname === "/") {
             e.preventDefault();
             const targetId = href.substring(1);
             const element = document.getElementById(targetId);
@@ -76,6 +84,9 @@ export default function Header() {
                     behavior: "smooth"
                 });
             }
+        } else if (href.startsWith("#") && pathname !== "/") {
+            // Navigate to home page with hash
+            // The browser will handle the scroll on navigation
         }
     };
 
