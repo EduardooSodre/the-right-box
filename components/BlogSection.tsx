@@ -147,8 +147,8 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                                     >
                                         {/* Horizontal Layout: Image Left + Content Right */}
                                         <div className="flex flex-row items-stretch p-4 pb-3">
-                                                {/* Image Container - Left Side with Rounded Effect */}
-                                                <div className="relative w-[160px] h-[160px] overflow-hidden rounded-2xl shrink-0">
+                                            {/* Image Container - Left Side with Rounded Effect */}
+                                            <div className="relative w-[160px] h-[160px] overflow-hidden rounded-2xl shrink-0">
                                                 <Image
                                                     src={post.image}
                                                     alt={post.title}
@@ -157,36 +157,36 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                                                     sizes="160px"
                                                     priority={isCenter}
                                                 />
-                                                </div>
+                                            </div>
 
-                                                {/* Content - Right Side */}
-                                                <div className="flex-1 pl-5 pr-3 py-2 flex flex-col justify-center min-h-[160px]">
-                                                    <h3 className={`
+                                            {/* Content - Right Side */}
+                                            <div className="flex-1 pl-5 pr-3 py-2 flex flex-col justify-center min-h-[160px]">
+                                                <h3 className={`
                                                     font-[AmsiPro] text-xl md:text-2xl font-bold mb-3 leading-tight
                                                     transition-colors duration-300 line-clamp-2
                                                     ${isCenter ? 'text-white' : 'text-zinc-900'}
                                                 `}>
-                                                        {post.title}
-                                                    </h3>
+                                                    {post.title}
+                                                </h3>
 
-                                                    <p className={`
+                                                <p className={`
                                                     text-xs md:text-sm leading-relaxed line-clamp-3
                                                     transition-colors duration-300
                                                     ${isCenter ? 'text-white/90' : 'text-zinc-700'}
                                                 `}>
-                                                        {post.excerpt}
-                                                    </p>
-                                                </div>
+                                                    {post.excerpt}
+                                                </p>
                                             </div>
                                         </div>
-                                        {/* Link only for center card */}
-                                        {isCenter && (
-                                            <Link 
-                                                href={`/blog/${post.slug}`} 
-                                                className="absolute inset-0 z-10"
-                                                aria-label={`Ler mais sobre ${post.title}`}
-                                            />
-                                        )}
+                                    </div>
+                                    {/* Link only for center card */}
+                                    {isCenter && (
+                                        <Link
+                                            href={`/blog/${post.slug}`}
+                                            className="absolute inset-0 z-10"
+                                            aria-label={`Ler mais sobre ${post.title}`}
+                                        />
+                                    )}
                                 </motion.article>
                             );
                         })}
