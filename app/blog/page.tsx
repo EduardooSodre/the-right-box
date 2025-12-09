@@ -212,16 +212,16 @@ export default async function BlogPage() {
                                 </div>
 
                                 {/* CTA Final */}
-                                <div className="mt-20 text-center p-12 bg-linear-to-br from-zinc-900 to-black rounded-3xl">
-                                    <h3 className="font-[AmsiPro] text-3xl md:text-4xl font-bold text-white mb-4 lowercase">
-                                        quer acelerar suas vendas?
+                                <div className="mt-16 p-8 bg-linear-to-br from-zinc-900 to-black rounded-3xl text-white text-center">
+                                    <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold mb-4">
+                                        Quer acelerar suas vendas?
                                     </h3>
-                                    <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                                        Agende uma conversa com nossos especialistas e descubra como podemos transformar seus resultados comerciais.
+                                    <p className="text-lg mb-6 opacity-90">
+                                        Agende uma conversa com nossos especialistas e descubra como podemos ajudar.
                                     </p>
                                     <Link
                                         href="/"
-                                        className="inline-block px-10 py-5 bg-laranja-intenso text-white font-bold rounded-full hover:bg-orange-600 transition-colors text-lg shadow-xl shadow-laranja-intenso/30"
+                                        className="inline-block px-8 py-4 bg-laranja-intenso text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-xl shadow-laranja-intenso/30 text-lg"
                                     >
                                         Falar com Especialista
                                     </Link>

@@ -164,7 +164,7 @@ export default async function BlogPostPage({
                 {/* Breadcrumb e Voltar */}
                 <div className="absolute top-8 left-0 right-0 container mx-auto px-6 md:px-12">
                     <Link
-                        href="/#blog"
+                        href="/blog"
                         className="inline-flex items-center gap-2 text-white hover:text-laranja-intenso transition-colors text-sm md:text-base font-medium"
                     >
                         <svg
@@ -256,8 +256,8 @@ export default async function BlogPostPage({
                 </div>
 
                 {/* CTA Final */}
-                <div className="mt-16 p-8 bg-linear-to-t from-laranja-intenso to-orange-600 rounded-3xl text-white text-center">
-                    <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold mb-4 lowercase">
+                <div className="mt-16 p-8 bg-linear-to-br from-zinc-900 to-black rounded-3xl text-white text-center">
+                    <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold mb-4">
                         Quer acelerar suas vendas?
                     </h3>
                     <p className="text-lg mb-6 opacity-90">
@@ -265,7 +265,7 @@ export default async function BlogPostPage({
                     </p>
                     <Link
                         href="/"
-                        className="inline-block px-8 py-4 bg-white text-laranja-intenso font-bold rounded-full hover:bg-zinc-100 transition-colors text-lg"
+                        className="inline-block px-8 py-4 bg-laranja-intenso text-white font-bold rounded-full hover:bg-orange-600 transition-colors shadow-xl shadow-laranja-intenso/30 text-lg"
                     >
                         Falar com Especialista
                     </Link>
