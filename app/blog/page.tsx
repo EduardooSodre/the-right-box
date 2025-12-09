@@ -70,7 +70,7 @@ export default async function BlogPage() {
 
             <main className="min-h-screen bg-white">
                 {/* Hero Section */}
-                <section className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-black text-white py-20 md:py-32">
+                <section className="bg-linear-to-t from-zinc-900 via-zinc-800 to-black text-white py-20 md:py-32">
                     <div className="container mx-auto px-6 md:px-12 max-w-7xl">
                         <div className="max-w-4xl">
                             <h1 className="font-[AmsiPro] text-5xl md:text-6xl lg:text-7xl font-black lowercase mb-6 leading-tight">

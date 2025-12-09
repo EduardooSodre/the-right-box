@@ -148,7 +148,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                                         {/* Horizontal Layout: Image Left + Content Right */}
                                         <div className="flex flex-row items-stretch p-4 pb-3">
                                             {/* Image Container - Left Side with Rounded Effect */}
-                                            <div className="relative w-[160px] h-[160px] overflow-hidden rounded-2xl shrink-0">
+                                            <div className="relative w-40 h-40 overflow-hidden rounded-2xl shrink-0">
                                                 <Image
                                                     src={post.image}
                                                     alt={post.title}
@@ -160,7 +160,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                                             </div>
 
                                             {/* Content - Right Side */}
-                                            <div className="flex-1 pl-5 pr-3 py-2 flex flex-col justify-center min-h-[160px]">
+                                            <div className="flex-1 pl-5 pr-3 py-2 flex flex-col justify-center min-h-40">
                                                 <h3 className={`
                                                     font-[AmsiPro] text-xl md:text-2xl font-bold mb-3 leading-tight
                                                     transition-colors duration-300 line-clamp-2

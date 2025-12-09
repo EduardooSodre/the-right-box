@@ -55,9 +55,11 @@ export const BLOG_CATEGORIES = {
 export type CategoryKey = keyof typeof BLOG_CATEGORIES;
 
 // Função para obter categoria por slug (normaliza texto)
-export function getCategoryByTag(
-  tag: string
-): (typeof BLOG_CATEGORIES)[CategoryKey] {
+export function getCategoryByTag(tag: string): {
+  label: string;
+  color: string;
+  textColor: string;
+} {
   const normalizedTag = tag
     .toLowerCase()
     .normalize("NFD")

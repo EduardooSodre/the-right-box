@@ -159,7 +159,7 @@ export default async function BlogPostPage({
                         sizes="100vw"
                     />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
                 {/* Breadcrumb e Voltar */}
                 <div className="absolute top-8 left-0 right-0 container mx-auto px-6 md:px-12">
@@ -256,7 +256,7 @@ export default async function BlogPostPage({
                 </div>
 
                 {/* CTA Final */}
-                <div className="mt-16 p-8 bg-gradient-to-r from-laranja-intenso to-orange-600 rounded-3xl text-white text-center">
+                <div className="mt-16 p-8 bg-linear-to-t from-laranja-intenso to-orange-600 rounded-3xl text-white text-center">
                     <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold mb-4 lowercase">
                         Quer acelerar suas vendas?
                     </h3>
