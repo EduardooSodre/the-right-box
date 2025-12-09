@@ -81,19 +81,19 @@ const richTextOptions: any = {
     renderNode: {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.HEADING_1]: (_node: any, children: any) => (
-            <h1 className="font-[AmsiPro] text-4xl md:text-5xl font-black text-zinc-900 mt-16 mb-8 lowercase">
+            <h1 className="font-[AmsiPro] text-4xl md:text-5xl font-black text-zinc-900 mt-16 mb-8">
                 {children}
             </h1>
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.HEADING_2]: (_node: any, children: any) => (
-            <h2 className="font-[AmsiPro] text-3xl md:text-4xl font-bold text-zinc-900 mt-12 mb-6 lowercase">
+            <h2 className="font-[AmsiPro] text-3xl md:text-4xl font-bold text-zinc-900 mt-12 mb-6">
                 {children}
             </h2>
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.HEADING_3]: (_node: any, children: any) => (
-            <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold text-zinc-900 mt-10 mb-4 lowercase">
+            <h3 className="font-[AmsiPro] text-2xl md:text-3xl font-bold text-zinc-900 mt-10 mb-4">
                 {children}
             </h3>
         ),
