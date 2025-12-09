@@ -30,12 +30,31 @@ export const metadata = {
     },
 };
 
-export default async function BlogPage() {
-    // Buscar todos os posts
+interface BlogPageProps {
+    searchParams: Promise<{ page?: string }>;
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+    const params = await searchParams;
+    const currentPage = Number(params.page) || 1;
+    const postsPerPage = 12; // 4 linhas × 3 colunas = 12 posts por página
+
+    // Buscar todos os posts para contar total
+    const allEntries = await client.getEntries({
+        content_type: "blogPost",
+        order: ["-sys.createdAt"],
+        limit: 1000,
+    });
+
+    const totalPosts = allEntries.total;
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+    // Buscar posts da página atual
     const entries = await client.getEntries({
         content_type: "blogPost",
-        order: ["-fields.publishedDate"],
-        limit: 100,
+        order: ["-sys.createdAt"],
+        limit: postsPerPage,
+        skip: (currentPage - 1) * postsPerPage,
     });
 
     const posts = entries.items.map((item) => {
@@ -210,6 +229,103 @@ export default async function BlogPage() {
                                         );
                                     })}
                                 </div>
+
+                                {/* Paginação */}
+                                {totalPages > 1 && (
+                                    <div className="mt-12 flex justify-center items-center gap-2">
+                                        {/* Botão Anterior */}
+                                        {currentPage > 1 ? (
+                                            <Link
+                                                href={`/blog?page=${currentPage - 1}`}
+                                                className="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-zinc-300 text-zinc-600 hover:border-laranja-intenso hover:text-laranja-intenso transition-all"
+                                                aria-label="Página anterior"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </Link>
+                                        ) : (
+                                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-100 text-zinc-400 cursor-not-allowed">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        )}
+
+                                        {/* Números das páginas */}
+                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                                            const isActive = pageNum === currentPage;
+                                            return (
+                                                <Link
+                                                    key={pageNum}
+                                                    href={`/blog?page=${pageNum}`}
+                                                    className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${
+                                                        isActive
+                                                            ? "bg-laranja-intenso text-white shadow-lg"
+                                                            : "bg-white border-2 border-zinc-300 text-zinc-600 hover:border-laranja-intenso hover:text-laranja-intenso"
+                                                    }`}
+                                                >
+                                                    {pageNum}
+                                                </Link>
+                                            );
+                                        })}
+
+                                        {/* Botão Próximo */}
+                                        {currentPage < totalPages ? (
+                                            <Link
+                                                href={`/blog?page=${currentPage + 1}`}
+                                                className="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-zinc-300 text-zinc-600 hover:border-laranja-intenso hover:text-laranja-intenso transition-all"
+                                                aria-label="Próxima página"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </Link>
+                                        ) : (
+                                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-100 text-zinc-400 cursor-not-allowed">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
 
                                 {/* CTA Final */}
                                 <div className="mt-16 p-8 bg-linear-to-br from-zinc-900 to-black rounded-3xl text-white text-center">

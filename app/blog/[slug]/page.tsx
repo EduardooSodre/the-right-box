@@ -1,7 +1,7 @@
 import { client } from "@/lib/contentful";
 import type { Asset } from "contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES, Document } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES, MARKS, Document } from "@contentful/rich-text-types";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -64,7 +64,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const richTextOptions: any = {
+    renderMark: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [MARKS.BOLD]: (text: any) => <strong className="font-bold text-zinc-900">{text}</strong>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [MARKS.ITALIC]: (text: any) => <em className="italic">{text}</em>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [MARKS.UNDERLINE]: (text: any) => <u className="underline">{text}</u>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [MARKS.CODE]: (text: any) => (
+            <code className="bg-zinc-100 text-laranja-intenso px-2 py-1 rounded text-sm font-mono">
+                {text}
+            </code>
+        ),
+    },
     renderNode: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [BLOCKS.HEADING_1]: (_node: any, children: any) => (
+            <h1 className="font-[AmsiPro] text-4xl md:text-5xl font-black text-zinc-900 mt-16 mb-8 lowercase">
+                {children}
+            </h1>
+        ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.HEADING_2]: (_node: any, children: any) => (
             <h2 className="font-[AmsiPro] text-3xl md:text-4xl font-bold text-zinc-900 mt-12 mb-6 lowercase">
@@ -78,6 +98,24 @@ const richTextOptions: any = {
             </h3>
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [BLOCKS.HEADING_4]: (_node: any, children: any) => (
+            <h4 className="font-[AmsiPro] text-xl md:text-2xl font-bold text-zinc-900 mt-8 mb-3">
+                {children}
+            </h4>
+        ),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [BLOCKS.HEADING_5]: (_node: any, children: any) => (
+            <h5 className="font-[AmsiPro] text-lg md:text-xl font-bold text-zinc-900 mt-6 mb-2">
+                {children}
+            </h5>
+        ),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [BLOCKS.HEADING_6]: (_node: any, children: any) => (
+            <h6 className="font-[AmsiPro] text-base md:text-lg font-bold text-zinc-900 mt-4 mb-2">
+                {children}
+            </h6>
+        ),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.PARAGRAPH]: (_node: any, children: any) => (
             <p className="text-base md:text-lg leading-relaxed text-zinc-700 mb-6">
                 {children}
@@ -85,19 +123,19 @@ const richTextOptions: any = {
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.UL_LIST]: (_node: any, children: any) => (
-            <ul className="list-disc list-inside space-y-3 mb-6 text-zinc-700">
+            <ul className="list-disc list-outside space-y-2 mb-6 text-zinc-700 pl-6">
                 {children}
             </ul>
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.OL_LIST]: (_node: any, children: any) => (
-            <ol className="list-decimal list-inside space-y-3 mb-6 text-zinc-700">
+            <ol className="list-decimal list-outside space-y-2 mb-6 text-zinc-700 pl-6">
                 {children}
             </ol>
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.LIST_ITEM]: (_node: any, children: any) => (
-            <li className="text-base md:text-lg leading-relaxed ml-4">{children}</li>
+            <li className="text-base md:text-lg leading-relaxed">{children}</li>
         ),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [BLOCKS.QUOTE]: (_node: any, children: any) => (
@@ -105,6 +143,35 @@ const richTextOptions: any = {
                 {children}
             </blockquote>
         ),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [BLOCKS.HR]: () => (
+            <hr className="my-12 border-t-2 border-zinc-200" />
+        ),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+            const { file, title, description } = node.data.target.fields;
+            const imageUrl = file?.url;
+            
+            if (!imageUrl) return null;
+
+            return (
+                <div className="my-8 rounded-xl overflow-hidden">
+                    <Image
+                        src={`https:${imageUrl}`}
+                        alt={description || title || "Imagem do artigo"}
+                        width={1200}
+                        height={675}
+                        className="w-full h-auto"
+                        sizes="(max-width: 768px) 100vw, 896px"
+                    />
+                    {description && (
+                        <p className="text-sm text-zinc-500 italic mt-2 text-center">
+                            {description}
+                        </p>
+                    )}
+                </div>
+            );
+        },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [INLINES.HYPERLINK]: (node: any, children: any) => (
             <a
