@@ -30,13 +30,14 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
     const entries = await client.getEntries<BlogPostSkeleton>({
       content_type: "blogPost",
-      order: ["-fields.publishedDate"], // Mais recentes primeiro
+      order: ["-sys.createdAt"], // Mais recentes primeiro
       limit: 10,
     });
 
     return entries.items.map((item) => {
       const fields = item.fields;
-      const imageUrl = fields.featuredImage?.fields?.file?.url;
+      const featuredImage = fields.featuredImage as Asset;
+      const imageUrl = featuredImage?.fields?.file?.url;
 
       return {
         title: fields.title || "Post sem título",
