@@ -151,7 +151,7 @@ const richTextOptions: any = {
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
             const { file, title, description } = node.data.target.fields;
             const imageUrl = file?.url;
-            
+
             if (!imageUrl) return null;
 
             return (

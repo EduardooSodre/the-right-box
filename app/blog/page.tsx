@@ -277,11 +277,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                                 <Link
                                                     key={pageNum}
                                                     href={`/blog?page=${pageNum}`}
-                                                    className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${
-                                                        isActive
+                                                    className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${isActive
                                                             ? "bg-laranja-intenso text-white shadow-lg"
                                                             : "bg-white border-2 border-zinc-300 text-zinc-600 hover:border-laranja-intenso hover:text-laranja-intenso"
-                                                    }`}
+                                                        }`}
                                                 >
                                                     {pageNum}
                                                 </Link>
